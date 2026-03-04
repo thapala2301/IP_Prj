@@ -39,7 +39,7 @@ A `shutdown_event` flag coordinates clean exit — pressing BTN3 signals every t
 | `vip` | 🔵 | Blue | Steady 3s — high clearance |
 | `guest` | 🟡 | Yellow | Steady 3s — temporary access |
 | `denied` | 🔴 | Red | 4-flash strobe · night mode saves face image |
-| `pending` | 🩵 | Cyan | Slow pulse 5s — face detected, awaiting result |
+| `pending` | 🔷 | Cyan | Slow pulse 5s — face detected, awaiting result |
 | `flagged` | 🟣 | Magenta | Double-flash ×3 · always saves face image |
 | `override` | ⚪ | White | Steady 3s — supervisor manual grant |
 
