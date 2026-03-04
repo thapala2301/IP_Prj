@@ -100,29 +100,6 @@ FLAGGED_NAMES = ["banned_user"]             # → magenta flash + always capture
 # No match → denied (red strobe)
 ```
 
----
-
-## Files
-
-```
-smart_node_v6.py               ← main system, run this in Jupyter
-diagnostics/
-  cell1_overlay.py             ← PYNQ overlay loads
-  cell2_plain_led.py           ← plain LEDs respond
-  cell3_rgb_led.py             ← RGB LED colour cycle
-  cell4_widget_render.py       ← widgets render
-  cell5_button_callback.py     ← button callbacks fire
-  cell6_button_led_nosleep.py  ← callbacks write to hardware
-  cell7_button_led_sleep.py    ← callbacks work with sleep
-  cell8_physical_buttons.py    ← physical BTN0/BTN1 register
-  cell9_webcam.py              ← webcam captures frames
-  cell10_integration.py        ← full end-to-end test
-attendance_log.txt             ← auto-generated on first run
-intruder_*.jpg                 ← auto-saved night/flagged captures
-```
-
----
-
 ## Confirmed LED Colour Map (this board)
 
 | Code | Colour |
