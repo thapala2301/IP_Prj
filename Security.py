@@ -1,106 +1,123 @@
 import cv2
 import numpy as np
 import time
+import threading
+import ipywidgets as widgets
+from IPython.display import display
 from pynq.overlays.base import BaseOverlay
 
-# --- 1. HARDWARE INITIALIZATION ---
+# --- 1. HARDWARE & UI SETUP ---
 base = BaseOverlay("base.bit")
 LED_MAP = [base.leds[i] for i in range(4)]
-LOCK_LED = base.rgbleds[4] # Using RGB LED as the 'Door Lock' proxy
+LOCK_LED = base.rgbleds[4]
 
-# Camera Setup (Lower res for faster processing on ARM)
+# RESOLUTION SLIM-DOWN: 160x120 is the "Sweet Spot" for no-lag PYNQ streaming
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160) 
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
 
-# --- 2. THE UTILITY FUNCTIONS ---
+# --- 2. THE UI DASHBOARD ---
+image_widget = widgets.Image(format='jpeg', width=320, height=240) # Displayed larger, but source is small
+header = widgets.HTML("<h2>🛡️ SMART NODE: COMMAND CENTER V5.0</h2>")
+instruct = widgets.HTML("""
+<div style='border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;'>
+    <b>SYSTEM GUIDE:</b><br>
+    🟢 <b>Standard:</b> Access for known users (Green LED)<br>
+    🔵 <b>VIP:</b> High-clearance access (Blue LED)<br>
+    🟡 <b>Guest:</b> Temporary entry (Yellow LED)<br>
+    🔴 <b>Alarm:</b> Manual strobe & Photo capture<br>
+    ⏹️ <b>STOP:</b> Use <b>Physical Button 3</b> on the PYNQ to shut down.
+</div>
+""")
+status_label = widgets.HTML("<b>Status:</b> <span style='color:green'>MONITORING</span>")
+mode_label = widgets.HTML("<b>Env:</b> Day Mode")
+
+# Control Buttons
+btn_std = widgets.Button(description="Authorize Standard", button_style='success')
+btn_vip = widgets.Button(description="Authorize VIP", button_style='info')
+btn_guest = widgets.Button(description="Authorize Guest", button_style='warning')
+btn_alarm = widgets.Button(description="MANUAL ALARM", button_style='danger')
+
+# Layout
+dashboard = widgets.VBox([header, instruct, status_label, mode_label, widgets.HBox([btn_std, btn_vip, btn_guest, btn_alarm]), image_widget])
+
+# --- 3. SYSTEM FUNCTIONS ---
 
 def log_event(message):
-    """Timestamped database logging."""
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
     with open("attendance_log.txt", "a") as f:
-        f.write(f"[{timestamp}] {message}\n")
+        f.write(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] {message}\n")
 
-def handle_access_granted():
-    """Unlocks the door and logs success."""
-    print("\n[SUCCESS] Authorized Entry Detected.")
-    log_event("SUCCESS: Door Unlocked for User")
-    LOCK_LED.write(4) # Green Light
-    time.sleep(3)     # Door remains open
-    LOCK_LED.write(0) # Re-lock
+def trigger_access(color, label, name):
+    log_event(f"ACCESS: {label} ({name})")
+    status_label.value = f"<b>Status:</b> <span style='color:blue'>OPENING FOR {label.upper()}</span>"
+    LOCK_LED.write(color)
+    time.sleep(3)
+    LOCK_LED.write(0)
+    status_label.value = "<b>Status:</b> <span style='color:green'>MONITORING</span>"
 
-def handle_security_alert(frame, reason="Intruder"):
-    """Fires alarm, captures photo, and logs alert."""
-    print(f"\n[ALARM] {reason.upper()}! Capturing evidence...")
-    ts = time.strftime("%H%M%S")
-    filename = f"intruder_{ts}.jpg"
-    
-    cv2.imwrite(filename, frame)
-    log_event(f"ALARM: {reason} - Image saved as {filename}")
-    
-    # Physical Strobe Alarm (FPGA-driven timing)
-    for _ in range(15):
-        LOCK_LED.write(1); time.sleep(0.05) # Red
-        LOCK_LED.write(0); time.sleep(0.05)
+# BUTTON CALLBACKS (Now properly linked)
+btn_std.on_click(lambda b: threading.Thread(target=trigger_access, args=(2, "Standard", "User")).start())
+btn_vip.on_click(lambda b: threading.Thread(target=trigger_access, args=(4, "VIP", "Prof. Smith")).start())
+btn_guest.on_click(lambda b: threading.Thread(target=trigger_access, args=(3, "Guest", "Visitor")).start())
+btn_alarm.on_click(lambda b: log_event("MANUAL ALARM TRIGGERED"))
 
-# --- 3. THE MAIN AUTOMATED ENGINE ---
+# --- 4. THE OPTIMIZED MAIN LOOP ---
 
-def start_security_node():
-    print("=== PYNQ SECURITY NODE V3.0 ONLINE ===")
-    print("Calibrating background light... Stay still.")
-    
-    # Get an initial lighting baseline
+def start_system():
+    display(dashboard)
     ret, frame = cap.read()
-    if not ret: return
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    baseline_brightness = np.mean(gray)
+    baseline = np.mean(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))
+    last_motion = time.time()
     
-    log_event("NODE REBOOT: System monitoring active")
-    
+    print("\n[READY] Use Dashboard buttons or Physical BTN0/BTN1. Press BTN3 to Exit.")
+
     try:
-        while base.buttons[3].read() == 0: # BTN3 is Emergency Stop
+        while base.buttons[3].read() == 0:
             ret, frame = cap.read()
             if not ret: break
             
-            # A. REAL-TIME ENVIRONMENT SENSING
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            current_brightness = np.mean(gray)
-            
-            # Identify Night vs Day
-            is_night = current_brightness < 60
-            
-            # B. THE "SMART TRIGGER" (Detecting a Person in the Dark)
-            # If light changes by more than 20%, it's a person/shadow
-            light_delta = abs(current_brightness - baseline_brightness)
-            if is_night and light_delta > (baseline_brightness * 0.20):
-                handle_security_alert(frame, reason="Motion in Dark")
-                # Reset baseline to avoid looping the alarm
-                baseline_brightness = current_brightness
-                time.sleep(1)
+            bright = np.mean(gray)
+            is_night = bright < 50
 
-            # C. MANUAL TEAM HANDSHAKE (Simulated AWS/Face Result)
-            if base.buttons[0].read() == 1: # Team says: Match!
-                handle_access_granted()
-            elif base.buttons[1].read() == 1: # Team says: No Match!
-                handle_security_alert(frame, reason="Access Denied")
+            # UI Refresh (Optimized)
+            _, jpeg = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
+            image_widget.value = jpeg.tobytes()
+            mode_label.value = f"<b>Env:</b> {'Night' if is_night else 'Day'} | <b>Lux:</b> {int(bright)}"
 
-            # D. VISUAL IDLE FEEDBACK (The 'Light Meter')
-            encoded = int(current_brightness / 64)
-            for i in range(4):
-                LED_MAP[i].on() if i <= encoded else LED_MAP[i].off()
+            # 1. Power Save (Idle check)
+            if time.time() - last_motion > 15:
+                time.sleep(0.5) # Drop to 2 FPS
+                status_label.value = "<b>Status:</b> <span style='color:gray'>POWER SAVE</span>"
+            else:
+                status_label.value = "<b>Status:</b> <span style='color:green'>MONITORING</span>"
 
-            status = "NIGHT" if is_night else "DAY"
-            print(f"Monitoring... [{status}] Light: {current_brightness:.1f} ", end='\r')
+            # 2. Hardware Feedback (Light Meter & Heartbeat)
+            for i in range(3):
+                LED_MAP[i].on() if i <= (bright/85) else LED_MAP[i].off()
+            if int(time.time()) % 2 == 0: LED_MAP[3].on()
+            else: LED_MAP[3].off()
 
-    except Exception as e:
-        print(f"\nSystem Error: {e}")
+            # 3. Night Intruder (Auto-Capture)
+            if is_night and abs(bright - baseline) > (baseline * 0.25):
+                ts = time.strftime("%H%M%S")
+                cv2.imwrite(f"intruder_{ts}.jpg", frame)
+                log_event(f"SECURITY: Night Motion Detected. Image saved.")
+                # Flash Alarm
+                for _ in range(5): LOCK_LED.write(1); time.sleep(0.05); LOCK_LED.write(0)
+                last_motion = time.time()
+
+            # 4. Physical Overrides
+            if base.buttons[0].read() == 1: threading.Thread(target=trigger_access, args=(2, "Standard", "BTN0")).start()
+            if base.buttons[1].read() == 1: threading.Thread(target=trigger_access, args=(4, "VIP", "BTN1")).start()
+
+            # Update motion baseline
+            if abs(bright - baseline) > 10: last_motion = time.time()
+
     finally:
-        log_event("NODE SHUTDOWN: Monitoring stopped")
         cap.release()
         LOCK_LED.write(0)
         [l.off() for l in LED_MAP]
-        print("\nNode Securely Offline.")
+        status_label.value = "<b>Status:</b> <span style='color:red'>OFFLINE</span>"
 
-# --- 4. EXECUTION ---
-if __name__ == "__main__":
-    start_security_node()
+start_system()
