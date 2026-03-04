@@ -4,6 +4,8 @@
 # Then restart the kernel and re-run.
 
 import cv2
+import json
+import subprocess
 import numpy as np
 import time
 import threading
@@ -43,6 +45,20 @@ ACCESS_LEVELS = {
     "flagged":  {"color": 5, "label": "Flagged",  "led_duration": 4},  # magenta — known but on watchlist, needs review
     "override": {"color": 7, "label": "Override", "led_duration": 3},  # white  — supervisor manual override
 }
+
+# --- FACE RECOGNITION INTEGRATION CONFIG ---
+# These lists are used by the Shashank bridge to map recognised names to access levels.
+# Edit these to match the names used as filenames in Shashank's known_faces/ directory
+# (i.e. the stem of the image file, e.g. "prof_smith.jpg" → "prof_smith")
+
+VIP_NAMES     = []   # e.g. ["prof_smith", "dr_jones"] — get blue LED
+FLAGGED_NAMES = []   # e.g. ["banned_user"]             — get magenta double-flash + always captured
+
+# Path to Shashank's match_face.py script — update this to the actual path on your system
+MATCH_FACE_SCRIPT = "match_face.py"
+
+# Path to Shashank's known_faces directory
+KNOWN_FACES_DIR = "known_faces"
 
 # =============================================================================
 # 1. HARDWARE SETUP
@@ -280,22 +296,22 @@ def trigger_access(level_key, name="Unknown", frame=None):
 
 def handle_recognition_result(name, clearance_level):
     """
-    ┌─────────────────────────────────────────────────────┐
-    │           AWS / FACE RECOGNITION HOOK               │
-    │  Call this once Archit's video pipeline identifies  │
-    │  a face and AWS returns an access decision.         │
-    │                                                     │
-    │  Args:                                              │
-    │    name (str): Person's name or "Unknown"           │
-    │    clearance_level (str): "standard" | "vip"        │
-    │                           "guest"    | "denied"     │
-    │                           "pending"  | "flagged"    │
-    │                           "override"               │
-    │                                                     │
-    │  Example:                                           │
-    │    handle_recognition_result("Prof. Smith", "vip")  │
-    │    handle_recognition_result("Unknown", "denied")   │
-    └─────────────────────────────────────────────────────┘
+    ┌──────────────────────────────────────────────────────────┐
+    │              FACE RECOGNITION HOOK                       │
+    │  Called automatically by the bridge below,               │
+    │  or manually by whoever when AWS returns a result.       │ 
+    │                                                          │
+    │  Args:                                                   │
+    │    name (str): Recognised person's name or "Unknown"     │
+    │    clearance_level (str): "standard" | "vip"             │
+    │                           "guest"    | "denied"          │
+    │                           "pending"  | "flagged"         │
+    │                           "override"                     │
+    │                                                          │
+    │  Example:                                                │
+    │    handle_recognition_result("prof_smith", "vip")        │
+    │    handle_recognition_result("Unknown", "denied")        │
+    └──────────────────────────────────────────────────────────┘
     """
     t = threading.Thread(
         target=trigger_access,
@@ -304,6 +320,98 @@ def handle_recognition_result(name, clearance_level):
     )
     state["active_threads"].append(t)
     t.start()
+
+
+def _map_recognition_to_level(name: str, status: str) -> str:
+    """
+    Map match_face output to one of our access level keys.
+
+    Rules (in priority order):
+      1. No match → denied
+      2. Name on FLAGGED_NAMES → flagged (regardless of match confidence)
+      3. Name on VIP_NAMES → vip
+      4. Any other match → standard
+    """
+    if status != "MATCH" or name == "NO_MATCH":
+        return "denied"
+    if name in FLAGGED_NAMES:
+        return "flagged"
+    if name in VIP_NAMES:
+        return "vip"
+    return "standard"
+
+
+def process_face_image(image_path: str) -> None:
+    """
+    ┌──────────────────────────────────────────────────────────┐
+    │           BRIDGE — MAIN INTEGRATION POINT                │
+    │                                                          │
+    │  Called by video pipeline when a face frame              │
+    │  is ready to check. This function:                       │
+    │    1. Fires pending (cyan) LED immediately               │
+    │    2. Runs match_face.py on the image                    │
+    │    3. Maps the result to an access level                 │
+    │    4. Calls handle_recognition_result() with outcome     │
+    │                                                          │
+    │  Args:                                                   │
+    │    image_path (str): path to the face image to check     │
+    │                                                          │
+    │  Example (from code):                                    │
+    │    process_face_image("/tmp/captured_face.jpg")          │
+    └──────────────────────────────────────────────────────────┘
+    """
+    if shutdown_event.is_set():
+        return
+
+    # Step 1: Fire pending (cyan) immediately so there's instant visual feedback
+    # while the face recognition runs in the background
+    handle_recognition_result("Scanning...", "pending")
+
+    # Step 2: Run match_face.py as a subprocess, capture JSON output
+    try:
+        result = subprocess.run(
+            [
+                "python3", MATCH_FACE_SCRIPT,
+                "--input", str(image_path),
+                "--known_dir", KNOWN_FACES_DIR,
+                "--json",
+            ],
+            capture_output=True,
+            text=True,
+            timeout=15,  # 15s max — if face_recognition hangs, don't block forever
+        )
+
+        if result.returncode != 0:
+            log_event(f"RECOGNITION ERROR: script exited {result.returncode} — {result.stderr.strip()}")
+            handle_recognition_result("Unknown", "denied")
+            return
+
+        output = json.loads(result.stdout.strip())
+
+    except subprocess.TimeoutExpired:
+        log_event("RECOGNITION ERROR: match_face.py timed out after 15s")
+        handle_recognition_result("Unknown", "denied")
+        return
+    except json.JSONDecodeError as e:
+        log_event(f"RECOGNITION ERROR: could not parse JSON output — {e}")
+        handle_recognition_result("Unknown", "denied")
+        return
+    except Exception as e:
+        log_event(f"RECOGNITION ERROR: {e}")
+        handle_recognition_result("Unknown", "denied")
+        return
+
+    # Step 3: Map result to access level
+    status     = output.get("status", "NO_MATCH")
+    name       = output.get("match_label", "Unknown")
+    distance   = output.get("match_distance")
+    level      = _map_recognition_to_level(name, status)
+
+    dist_str = f" (dist={distance:.3f})" if distance is not None else ""
+    log_event(f"RECOGNITION: {name} → {level.upper()}{dist_str}")
+
+    # Step 4: Fire the actual access response
+    handle_recognition_result(name, level)
 
 
 # =============================================================================
