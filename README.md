@@ -1,4 +1,4 @@
-# 🐒🐒🐒🐒🐒🐒🐒Attendance Add-Ons — Output Node 🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒
+# 🐒🐒🐒🐒Attendance Add-Ons — Output Node 🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒🐒
 
 > **Module owner:** Thanus  
 > **Platform:** PYNQ · Jupyter Notebook (classic)  
