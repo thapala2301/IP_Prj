@@ -1,7 +1,7 @@
 # 🐒 Attendance Add-Ons — Output Node
 
 > **Module owner:** Thanus  
-> **Platform:** PYNQ-Z2 · Jupyter Notebook (classic)  
+> **Platform:** PYNQ · Jupyter Notebook (classic)  
 > **Role in pipeline:** Hardware response layer — handles everything that happens *after* a face is identified
 
 ---
