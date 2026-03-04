@@ -17,7 +17,7 @@ Fully self-contained and demonstrable without the rest of the pipeline connected
 ## Architecture
 
 ```
-Archit (camera) → Shashank (face recog) → AWS (identity) → Thanus (this module)
+X (camera) → Y (face recog) → AWS (identity) → Thanus (this module)
                                                              ↓
                                                     LED response
                                                     Event logging
@@ -74,13 +74,13 @@ All debounced at 2s cooldown.
 
 ## Integration Points
 
-### Archit — video input
+### X — video input
 ```python
 process_face_image("/path/to/captured_face.jpg")
 ```
 Fires cyan LED immediately for visual feedback, runs face recognition, maps result, triggers full response. One call — everything else handled internally.
 
-### Marcus / AWS — direct hook
+### Y / AWS — direct hook
 ```python
 handle_recognition_result("prof_smith", "vip")
 handle_recognition_result("Unknown", "denied")
@@ -89,7 +89,7 @@ handle_recognition_result("Unknown", "denied")
 # "standard" | "vip" | "guest" | "denied" | "pending" | "flagged" | "override"
 ```
 
-### Shashank — face recognition bridge
+### Z — face recognition bridge
 `process_face_image()` calls `match_face.py` as a subprocess with `--json`, parses the output, and maps it to access levels.
 
 To configure clearance, edit the two lists at the top of the file:
