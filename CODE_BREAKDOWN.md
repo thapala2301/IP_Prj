@@ -1,6 +1,5 @@
 # CODE BREAKDOWN — Attendance Add-Ons Output Node
 # What the code actually does, section by section.
-# Written so anyone on the team can understand it without being a Python expert.
 
 
 THE BIG PICTURE
