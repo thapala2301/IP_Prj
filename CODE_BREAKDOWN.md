@@ -1,13 +1,9 @@
 # CODE BREAKDOWN — Attendance Add-Ons Output Node
 # What the code actually does, section by section.
 # Written so anyone on the team can understand it without being a Python expert.
-================================================================================
 
 
-================================================================================
 THE BIG PICTURE
-================================================================================
-
 The script does one job: receive a decision from Marcus's AWS server and make
 something happen physically — LED lights up, door opens, buzzer beeps.
 
@@ -36,9 +32,7 @@ Here is the flow from that call to physical hardware:
               Buzzer plays pattern
 
 
-================================================================================
 SECTION 1 — TUNEABLE CONSTANTS
-================================================================================
 
 These are all the numbers in the system that you might want to adjust.
 They live at the top of the file so you never have to dig into the logic.
@@ -75,9 +69,7 @@ They live at the top of the file so you never have to dig into the logic.
       These must match the filename stems in Shashank's known_faces/ folder.
 
 
-================================================================================
 SECTION 2 — HARDWARE SETUP
-================================================================================
 
     BaseOverlay("base.bit")
     → Loads the FPGA bitfile. This configures the PYNQ hardware — without it,
@@ -105,9 +97,7 @@ SECTION 2 — HARDWARE SETUP
       standard access handler on the Arduino side. Silent if not connected.
 
 
-================================================================================
 SECTION 3 — SHARED STATE
-================================================================================
 
     state = { ... }
     → A dictionary that all parts of the code read from and write to.
@@ -125,9 +115,8 @@ SECTION 3 — SHARED STATE
       all access attempts (except override) before doing anything else.
 
 
-================================================================================
+
 SECTION 4 — DASHBOARD WIDGETS
-================================================================================
 
 The dashboard is built using ipywidgets — a library that lets you create
 interactive UI elements inside Jupyter Notebook.
@@ -154,9 +143,8 @@ interactive UI elements inside Jupyter Notebook.
       can silently fail to appear.
 
 
-================================================================================
+
 SECTION 5 — LOGGING & DISPLAY
-================================================================================
 
     log_event(message)
     → Two things happen simultaneously:
@@ -183,9 +171,9 @@ SECTION 5 — LOGGING & DISPLAY
       full named access history.
 
 
-================================================================================
+
 SECTION 6 — HARDWARE RESPONSE
-================================================================================
+
 
     flash_alarm(flashes)
     → Rapidly turns LOCK_LED red on and off. Checks shutdown_event between
@@ -202,9 +190,8 @@ SECTION 6 — HARDWARE RESPONSE
       Only called when a frame is actually passed in — never touches a camera.
 
 
-================================================================================
+
 SECTION 7 — ACCESS CONTROL LOGIC
-================================================================================
 
     _check_cooldown(name)
     → Looks up when this person last accessed. If it's been less than
@@ -239,9 +226,8 @@ SECTION 7 — ACCESS CONTROL LOGIC
         7. Reset status label to MONITORING when done
 
 
-================================================================================
+
 SECTION 8 — PUBLIC INTEGRATION HOOKS
-================================================================================
 
     handle_recognition_result(name, clearance_level, frame=None)
     → The one function Marcus calls. Spawns a new thread to run trigger_access()
@@ -267,9 +253,7 @@ SECTION 8 — PUBLIC INTEGRATION HOOKS
       If the script times out or crashes, it fails safe to "denied".
 
 
-================================================================================
 SECTION 9 — BUTTON CALLBACKS
-================================================================================
 
 Each dashboard button is wired to a small function that calls trigger_access()
 with the appropriate level. The 'b' parameter is the button object that Jupyter
@@ -288,9 +272,7 @@ passes automatically — we don't use it, but it must be in the signature.
     → Clears the lockdown_active event and restores MONITORING status.
 
 
-================================================================================
 SECTION 10 — BACKGROUND THREADS
-================================================================================
 
 The system runs four threads in parallel once started:
 
@@ -321,9 +303,7 @@ Why background threads?
     stays free and button callbacks fire instantly when clicked.
 
 
-================================================================================
 SECTION 11 — STARTUP
-================================================================================
 
     start_system()
     → Called once at the bottom of the file. Does four things in order:
@@ -336,9 +316,7 @@ SECTION 11 — STARTUP
     before Jupyter has finished rendering them, the dashboard can go blank.
 
 
-================================================================================
 ARDUINO SKETCH SUMMARY (door_mechanism.ino)
-================================================================================
 
 The Arduino sketch is simple by design. It does one thing in a loop:
 
@@ -367,9 +345,7 @@ The heartbeat handler responds to "?" with "K" so the PYNQ can verify the
 Arduino is still alive without triggering any audio or movement.
 
 
-================================================================================
 HOW DAY/NIGHT MODE WORKS
-================================================================================
 
 Currently: time-of-day. The system checks the hour from the PYNQ clock.
     Hour < 8 (before 8am) or Hour >= 20 (from 8pm) = night mode
@@ -384,10 +360,7 @@ When a physical LDR is added:
     Threshold is set by NIGHT_THRESHOLD_V and calibrated manually.
 
 
-================================================================================
 HOW THREADING SAFETY WORKS
-================================================================================
-
 Multiple things can happen at the same time (button clicked while Arduino
 heartbeat is running, etc.). Two mechanisms keep this safe:
 
@@ -402,4 +375,3 @@ heartbeat is running, etc.). Two mechanisms keep this safe:
       complete properly rather than being killed abruptly on shutdown.
       The finally block joins all threads with a 1.5s timeout to bound the wait.
 
-================================================================================
