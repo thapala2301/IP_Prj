@@ -1,57 +1,54 @@
 # 🐒 Attendance Add-Ons — Output Node
 
-> **Platform:** PYNQ board + Arduino Uno  
-> **Role in pipeline:** Physical response layer — receives access decisions and drives hardware
+> **Platform:** PYNQ + Arduino Uno  
+> **Role:** Physical response layer — receives access decisions, drives hardware
 
 ---
 
-## Overview
+## What This Module Does
 
-This is the **output/response node** of the group's face recognition attendance system. It sits at the very end of the pipeline. Once Marcus's AWS server has made an identity decision, this module handles everything that happens physically: the correct LED fires, the door servo opens or stays shut, the buzzer plays an audio pattern, events are logged, and the system responds differently based on time of day.
+Sits at the end of the face recognition attendance pipeline. Once Marcus's AWS server returns an identity decision, this module handles everything that happens physically: the correct LED fires on the PYNQ, the door servo opens or stays shut, the buzzer plays a distinct audio pattern, and all events are logged.
 
-The module is **fully self-contained and runnable right now** — all access states can be triggered manually via dashboard buttons without the rest of the pipeline connected. When Marcus is ready to integrate, he calls one function and everything works automatically.
+Fully self-contained — all access states can be triggered manually via dashboard buttons without the rest of the pipeline connected. When Marcus integrates, he calls one function.
 
 ---
 
-## Where This Fits in the Pipeline
+## Pipeline Position
 
 ```
 Archit          Shashank           Marcus              Thanus
-────────────    ───────────────    ─────────────────   ──────────────────────────
+────────────    ───────────────    ─────────────────   ─────────────────────────
 FPGA camera  →  Face recognition → AWS identity    →   handle_recognition_result()
-Captures         Matches face       decision +              ↓
-clean face       against database   logging/SQL         PYNQ RGB LED
-image                                                   Arduino servo (door)
-                                                        Arduino buzzer (audio)
-                                                        Arduino LEDs
-                                                        Local backup log
-                                                        Live Jupyter dashboard
+Captures         matches face       decision +               ↓
+clean face       against database   logging/SQL          PYNQ RGB LED
+image                                                    Arduino servo (door)
+                                                         Arduino buzzer (audio)
+                                                         Local backup log
+                                                         Live Jupyter dashboard
 ```
 
-**Marcus's integration is one function call:**
+**Marcus's integration — one call:**
 ```python
 handle_recognition_result("prof_smith", "vip")
 handle_recognition_result("Unknown", "denied")
-handle_recognition_result("", "pending")        # while AWS is still processing
-handle_recognition_result("jane", "denied", frame=img)  # pass Archit's frame for capture
+handle_recognition_result("", "pending")              # fire while AWS is still deciding
+handle_recognition_result("jane", "denied", frame=img) # pass Archit's frame for capture
 ```
 
 ---
 
-## Hardware Required
+## Hardware
 
 | Component | Purpose | Notes |
 |-----------|---------|-------|
-| PYNQ-board | Main compute + RGB LED + buttons | Already have |
-| Arduino Uno | Physical door mechanism controller | Needs to be sourced |
-| USB A→B cable | PYNQ ↔ Arduino serial link | Powers Arduino too |
-| Servo motor (SG90/MG90S) | Door open/close simulation | Common hobby servo |
+| PYNQ-Z2 | Compute + RGB LED + buttons | All visual feedback lives here |
+| Arduino Uno | Servo + buzzer controller | No LEDs — PYNQ handles visuals |
+| USB A→B cable | PYNQ ↔ Arduino serial + power | One cable does both |
+| Servo motor (SG90/MG90S) | Physical door mechanism | |
 | Active buzzer | Audio feedback per access level | Must be **active** type |
-| Green LED + 220Ω resistor | Physical access granted indicator | |
-| Red LED + 220Ω resistor | Physical denial/alarm indicator | |
-| LDR + 10kΩ resistor *(optional)* | Physical light sensor for day/night | Time-of-day used until available |
+| LDR + 10kΩ resistor *(optional)* | Physical light sensor | Time-of-day used until available |
 
-> **Note:** If Arduino or LDR are not available, the system runs gracefully without them — PYNQ LEDs still fire, time-of-day handles day/night mode, everything logs normally.
+> No external LEDs on the Arduino — the PYNQ RGB LED already handles all visual feedback. Adding Arduino LEDs would just duplicate what's already there.
 
 ---
 
@@ -60,210 +57,211 @@ handle_recognition_result("jane", "denied", frame=img)  # pass Archit's frame fo
 ```
 📁 output-node/
 │
-├── smart_node_v8.py          ← MAIN SYSTEM — run this on PYNQ in Jupyter
+├── smart_node_v9.py          ← MAIN SYSTEM — run this on PYNQ in Jupyter
 ├── door_mechanism.ino        ← Arduino sketch — upload via Arduino IDE
-├── wiring_diagram.txt        ← Full wiring instructions + breadboard layout
+├── wiring_diagram.txt        ← Full wiring + breadboard layout
 ├── README.md                 ← This file
 │
-└── 📁 diagnostics/           ← Run these to verify hardware before demo
-    ├── cell1_overlay.py      ← PYNQ overlay loads correctly
-    ├── cell2_plain_led.py    ← Plain LEDs 0-3 respond
-    ├── cell3_rgb_led.py      ← RGB LED cycles all 7 colours
-    ├── cell4_widget_render.py← Jupyter widgets render
-    ├── cell5_button_callback.py  ← Dashboard button callbacks fire
+└── 📁 diagnostics/
+    ├── cell1_overlay.py          ← PYNQ overlay loads
+    ├── cell2_plain_led.py        ← Plain LEDs respond
+    ├── cell3_rgb_led.py          ← RGB LED colour cycle
+    ├── cell4_widget_render.py    ← Jupyter widgets render
+    ├── cell5_button_callback.py  ← Button callbacks fire
     ├── cell6_button_led_nosleep.py ← Callbacks write to hardware
-    ├── cell7_button_led_sleep.py   ← Callbacks work with time.sleep
-    ├── cell8_physical_buttons.py   ← Physical BTN0/BTN1 register presses
-    ├── cell9_webcam.py       ← Webcam captures frames (if needed)
-    └── cell10_integration.py ← Full end-to-end pipeline test
+    ├── cell7_button_led_sleep.py   ← Callbacks work with sleep
+    ├── cell8_physical_buttons.py   ← Physical BTN0/1/2 register
+    └── cell10_integration.py       ← Full end-to-end test
 ```
 
 ---
 
 ## Access States
 
-Seven access states, each with a distinct PYNQ LED colour, Arduino behaviour, and audio pattern:
+| State | PYNQ LED | Colour | Servo | Buzzer Pattern |
+|-------|----------|--------|-------|----------------|
+| `standard` | 🟢 | Green | Open 3s | 1 short beep |
+| `vip` | 🔵 | Blue | Open 3s — **fast-tracked** | Rising 2-beep |
+| `guest` | 🟡 | Yellow | Open 3s | Soft single beep |
+| `denied` | 🔴 | Red strobe | Shut | 3 descending beeps |
+| `pending` | 🔷 | Cyan pulse | Shut | 3 slow pulse beeps |
+| `flagged` | 🟣 | Magenta double-flash | Shut | Double-beep alarm ×4 |
+| `override` | ⚪ | White | Open 3s | Long authority beep |
 
-| State | PYNQ LED | Colour | Servo | Buzzer | Arduino LEDs |
-|-------|----------|--------|-------|--------|--------------|
-| `standard` | 🟢 | Green | Open 3s | 1 short beep | Green on |
-| `vip` | 🔵 | Blue | Open 3s — **fast-tracked, no pending** | 2 beeps | Green on |
-| `guest` | 🟡 | Yellow | Open 3s | 1 quiet beep | Green on |
-| `denied` | 🔴 | Red strobe | Shut | 3 sharp beeps | Red on |
-| `pending` | 🔷 | Cyan pulse | Shut | 3 slow pulses | None |
-| `flagged` | 🟣 | Magenta double-flash | Shut | Double-beep alarm ×4 | Red strobe |
-| `override` | ⚪ | White | Open 3s | 1 long beep | Green + Red |
+Each buzzer pattern is intentionally distinct — identifiable by sound alone without looking at the screen.
 
 ---
 
 ## Features
 
 ### 🚪 Physical Door Mechanism
-Arduino Uno receives single-character serial commands from PYNQ over USB. Granted access (Standard / VIP / Guest / Override) rotates servo 90° to simulate door unlock, holds for 3 seconds, then closes. All other states keep the door shut with distinct audio patterns to distinguish them.
-
-### 🌙 Day / Night Mode
-Currently uses **time-of-day** (night = 8pm–8am, day = 8am–8pm). When a physical LDR sensor is plugged into PMODA at the meetup, swap in three uncommented lines at the top of `smart_node_v8.py` and calibrate `NIGHT_THRESHOLD`. No other changes needed.
-
-Night mode effects:
-- Denied access with a face frame passed in → automatically saves a capture image
-- Flagged access → always saves capture image regardless of day/night
-
-### ⚡ Auto-Escalation
-- **3 consecutive unknown denials** → automatic sustained alarm fires on both PYNQ and Arduino
-- **5 denials in any 2-minute window** → sustained alarm + security alert logged
-
-### ⏱️ Access Cooldown (Anti-Tailgate)
-Same named person cannot re-trigger access within 30 seconds. Denied flash + log on attempt. Prevents someone holding the door open and waving people through.
-
-### 🔒 Night Lockdown Mode
-Manual button on dashboard refuses **all** access regardless of clearance level until lifted. White strobe fires on Arduino. Override-level access bypasses lockdown.
+PYNQ sends a single character over USB serial to the Arduino. Access granted states (Standard / VIP / Guest / Override) rotate the servo 90° to simulate door unlock, hold for 3 seconds, then close. All other states keep the door shut with a distinct audio pattern.
 
 ### 🔵 VIP Fast-Track
-VIP access bypasses the pending (cyan) state entirely — goes straight to blue LED + door open. Useful for demo: VIP gets instant response, standard users show the full pipeline flow.
+VIP access bypasses the pending (cyan) state entirely — goes straight to blue LED and door open. Useful for demos where you want to show the contrast between standard flow (pending → result) and VIP (instant response).
 
-### 🔔 Arduino Heartbeat Ping
-Every 30 seconds PYNQ sends a ping character to Arduino. If no response is received, a hardware warning appears on the dashboard. Lets the team know immediately if the USB connection drops during a demo.
+### 🌙 Day / Night Mode
+Currently time-of-day based (night = 8pm–8am). When a physical LDR is available, uncomment 3 lines in the config block at the top of `smart_node_v9.py`. Night mode effects:
+- Denied access with a face frame passed → saves capture image automatically
+- Flagged access → always saves capture image (day or night)
 
-### 📊 Live Dashboard
-- Session counters for all 7 access states
-- Separate named access history scroll (last 20 entries)
-- System event log (last 12 entries, newest first)
-- Arduino connection status indicator
-- Day/Night mode + time display
-- 10 manual trigger buttons
+### ⚡ Auto-Escalation
+- **3 consecutive unknown denials** → automatic sustained alarm (PYNQ strobe + Arduino 10-pulse)
+- **5 denials in any 2-minute window** → sustained alarm + security alert logged
+
+### ⏱️ Anti-Tailgate Cooldown
+Same named person cannot re-trigger access within 30 seconds. Gets a denied flash and a dashboard message showing remaining cooldown time. Prevents someone holding the door and waving people through.
+
+### 🔒 Night Lockdown Mode
+Dashboard button refuses **all** access regardless of clearance until lifted. Only `override` bypasses it. Fires lockdown siren pattern on Arduino.
+
+### 🔔 Arduino Heartbeat
+Every 30 seconds PYNQ pings the Arduino (`?` → Arduino responds `K`). No response logs a hardware warning on the dashboard. Lets the team know immediately if the USB drops during a demo.
+
+### 📊 Live Access Rate
+Dashboard shows how many named entries have occurred in the current hour, updating every 5 seconds. Useful metric for a demo.
 
 ### 💡 LED Boot Sequence
-On startup, cycles through all 7 LED colours to confirm hardware is working before the first real access event hits.
+On startup, cycles through all 7 LED colours. Visual hardware self-check before the first real access event. Arduino also plays a startup double-beep confirming it booted.
 
 ### 📋 Daily Report
-Auto-generates a summary to `daily_report.txt` at midnight and on clean shutdown. Includes total counts for all access types and the full named access history for that session.
+Auto-generates `daily_report.txt` at midnight and on every clean shutdown. Includes per-level counts and full named access history.
 
 ### 💾 Local Backup Log
-All events written to `attendance_log.txt` regardless of Marcus's AWS logging. Timestamped, persistent across sessions.
+Every event written to `attendance_log.txt` with timestamps, regardless of Marcus's AWS logging. Persistent across sessions.
 
-### 📁 Physical PYNQ Buttons
+### 📟 Physical PYNQ Buttons
 | Button | Action |
 |--------|--------|
-| BTN0 | Authorize Standard access |
-| BTN1 | Authorize VIP access |
+| BTN0 | Standard access |
+| BTN1 | VIP access |
+| BTN2 | Guest access |
 | BTN3 | Clean shutdown |
 
-All debounced at 2 seconds to prevent repeat triggers from holding.
+All debounced at 2 seconds.
 
 ---
 
 ## Setup Instructions
 
-### Step 1 — Install dependencies on PYNQ
-Run in a Jupyter cell (one time only):
+### 1 — Install dependencies on PYNQ
 ```python
+# Run in a Jupyter cell — one time only
 !pip install pyserial
 !jupyter nbextension enable --py widgetsnbextension --sys-prefix
-# Restart kernel after running this
+# Restart kernel after this
 ```
 
-### Step 2 — Upload Arduino sketch
-1. Open `door_mechanism.ino` in **Arduino IDE** on a laptop
-2. Select board: **Tools → Board → Arduino Uno**
-3. Select the correct COM/USB port
-4. Click **Upload**
-5. Once uploaded, plug Arduino into PYNQ via USB A→B cable
+### 2 — Upload Arduino sketch
+1. Open `door_mechanism.ino` in Arduino IDE
+2. **Tools → Board → Arduino Uno**
+3. Select the correct port
+4. Click Upload
+5. You should hear two short beeps confirming it booted
 
-### Step 3 — Find Arduino port on PYNQ
-Run in a Jupyter cell with Arduino plugged in:
+### 3 — Find Arduino port on PYNQ
 ```python
+# Run in Jupyter with Arduino plugged in
 import subprocess
 print(subprocess.run(['ls', '/dev/ttyUSB*'], capture_output=True, text=True).stdout)
 print(subprocess.run(['ls', '/dev/ttyACM*'], capture_output=True, text=True).stdout)
+# Common: /dev/ttyUSB0 or /dev/ttyACM0
 ```
-Common values: `/dev/ttyUSB0` or `/dev/ttyACM0`
 
-### Step 4 — Update port in smart_node_v8.py
+### 4 — Update port
 ```python
-ARDUINO_PORT = "/dev/ttyUSB0"   # ← change to match your port
+# Near top of smart_node_v9.py
+ARDUINO_PORT = "/dev/ttyUSB0"   # ← change to your port
 ```
 
-### Step 5 — Wire up Arduino components
-See `wiring_diagram.txt` for full details. Summary:
+### 5 — Wire Arduino
 ```
-Servo signal  → Arduino Pin 6   Servo VCC → 5V   Servo GND → GND
-Buzzer (+)    → Arduino Pin 7   Buzzer (-) → GND
-Green LED (+) → 220Ω → Pin 8   Green LED (-) → GND
-Red LED (+)   → 220Ω → Pin 9   Red LED (-)   → GND
+Servo signal  → Pin 6    Servo VCC → 5V    Servo GND → GND
+Buzzer (+)    → Pin 7    Buzzer (-) → GND
 ```
+Full detail in `wiring_diagram.txt`.
 
-### Step 6 — Run the system
-Copy `smart_node_v8.py` to PYNQ via the Jupyter file browser (drag and drop), open it, paste contents into a cell and run. Dashboard appears, boot sequence fires, system enters monitoring mode.
+### 6 — Run
+Copy `smart_node_v9.py` to PYNQ via the Jupyter file browser, open it, paste into a cell and run. Boot sequence fires, dashboard appears.
 
 ---
 
 ## Connecting Physical Light Sensor (When Available)
 
-When LDR is available at the meetup, plug into PMODA and uncomment 3 lines in `smart_node_v8.py`:
+Plug LDR into PMODA, then uncomment these 3 lines near the top of `smart_node_v9.py`:
 
 ```python
-# Find this block near the top of the file and uncomment:
 from pynq.lib import Pmod_ADC
 _pmod_adc = Pmod_ADC(base.PMODA)
 LIGHT_SENSOR_AVAILABLE = True
 ```
 
-Then calibrate the threshold:
+Calibrate `NIGHT_THRESHOLD_V` by running this in a separate cell:
 ```python
-# Run in a separate cell — bright room then cover sensor with hand
 from pynq.lib import Pmod_ADC
 from pynq.overlays.base import BaseOverlay
+import time
 base = BaseOverlay("base.bit")
 s = Pmod_ADC(base.PMODA)
-import time
 for _ in range(10):
     print(s.read())
     time.sleep(1)
-# Note bright value and dark value, set NIGHT_THRESHOLD between them
+# Note bright room value vs dark room value
+# Set NIGHT_THRESHOLD_V between them
 ```
 
 ---
 
-## Integration Reference for Marcus
+## Integration Reference
 
+### Marcus / AWS
 ```python
-# ─────────────────────────────────────────────────────────────
-# CALL THIS from your AWS handler once a decision is made
-# ─────────────────────────────────────────────────────────────
-
 handle_recognition_result(
-    name,             # str  — person's name e.g. "prof_smith", or "Unknown"
-    clearance_level,  # str  — one of the 7 levels below
-    frame=None        # ndarray (optional) — Archit's face frame for night capture
+    name,             # str  — e.g. "prof_smith", or "Unknown"
+    clearance_level,  # str  — see table below
+    frame=None        # ndarray (optional) — Archit's face image
 )
 
-# Valid clearance levels:
+# clearance_level options:
 #   "standard"  →  green LED, door opens, 1 beep
-#   "vip"       →  blue LED, door opens, 2 beeps, FAST-TRACKED (no pending wait)
-#   "guest"     →  yellow LED, door opens, 1 beep
-#   "denied"    →  red strobe, door shut, 3 beeps
-#   "pending"   →  cyan pulse, door shut, slow beeps  ← fire this BEFORE AWS responds
-#   "flagged"   →  magenta flash, door shut, alarm beeps, saves face image
+#   "vip"       →  blue LED, door opens, rising 2-beep, FAST-TRACKED
+#   "guest"     →  yellow LED, door opens, soft beep
+#   "denied"    →  red strobe, door shut, 3 descending beeps
+#   "pending"   →  cyan pulse, door shut, slow beeps  ← fire BEFORE AWS responds
+#   "flagged"   →  magenta flash, door shut, alarm, saves face image
 #   "override"  →  white LED, door opens, long beep
+```
 
-# Recommended flow:
-#   1. Archit detects face → call handle_recognition_result("", "pending")
-#   2. AWS processes → call handle_recognition_result("prof_smith", "vip")
+### Shashank / face recognition
+`process_face_image(path, frame=None)` — calls `match_face.py`, fires pending first, then triggers full response.
+
+### Configure VIP and flagged names
+```python
+# At top of smart_node_v9.py — match stems of Shashank's known_faces/ filenames
+VIP_NAMES     = ["prof_smith", "dr_jones"]
+FLAGGED_NAMES = ["banned_user"]
+# All other matches → standard
+# No match → denied
 ```
 
 ---
 
-## Configuring VIP and Flagged Names
+## Tunable Constants
 
-Edit these two lists at the top of `smart_node_v8.py` to match the name stems from Shashank's `known_faces/` directory (filename without extension):
+All at the top of `smart_node_v9.py`:
 
-```python
-VIP_NAMES     = ["prof_aura", "dr_nonchalant"]   # → blue LED + door opens + 2 beeps
-FLAGGED_NAMES = ["banned_user"]              # → magenta flash + alarm + always captured
-
-# Anyone else who matches known faces → standard (green)
-# No match at all → denied (red strobe)
-```
+| Constant | Default | Controls |
+|----------|---------|---------|
+| `ARDUINO_PORT` | `/dev/ttyUSB0` | USB port for Arduino |
+| `NIGHT_START_HOUR` | `20` | Hour night mode begins (8pm) |
+| `NIGHT_END_HOUR` | `8` | Hour night mode ends (8am) |
+| `NIGHT_THRESHOLD_V` | `0.5` | LDR voltage for night (physical sensor only) |
+| `ACCESS_COOLDOWN_S` | `30` | Anti-tailgate cooldown per person |
+| `BTN_DEBOUNCE_S` | `2.0` | Physical button cooldown |
+| `CONSEC_UNKNOWN_LIMIT` | `3` | Unknown denials before auto-alarm |
+| `DENIAL_STREAK_LIMIT` | `5` | Denials in window before alarm |
+| `DENIAL_STREAK_WINDOW_S` | `120` | Rolling window for streak check |
+| `ARDUINO_PING_INTERVAL_S` | `30` | Heartbeat check frequency |
 
 ---
 
@@ -271,7 +269,7 @@ FLAGGED_NAMES = ["banned_user"]              # → magenta flash + alarm + alway
 
 | Code | Colour | Used for |
 |------|--------|---------|
-| 0 | Off | Default/reset state |
+| 0 | Off | Reset state |
 | 1 | Blue | VIP |
 | 2 | Green | Standard |
 | 3 | Cyan | Pending |
@@ -282,49 +280,9 @@ FLAGGED_NAMES = ["banned_user"]              # → magenta flash + alarm + alway
 
 ---
 
-## Arduino Serial Command Reference
-
-| Char | Access Level | Servo | Buzzer | LEDs |
-|------|-------------|-------|--------|------|
-| `G` | Standard | Open 3s | 1 short beep | Green |
-| `V` | VIP | Open 3s | 2 short beeps | Green |
-| `U` | Guest | Open 3s | 1 quiet beep | Green |
-| `D` | Denied | Shut | 3 sharp beeps | Red |
-| `P` | Pending | Shut | 3 slow pulses | None |
-| `F` | Flagged | Shut | Double-beep ×4 | Red strobe |
-| `O` | Override | Open 3s | 1 long beep | Green + Red |
-| `A` | Alarm | Shut | 10 rapid beeps | Red strobe |
-| `W` | Lockdown | Shut | Long alarm tone | Green/Red alternate |
-| `?` | Heartbeat ping | — | — | — (responds `K`) |
-
----
-
-## Tunable Constants
-
-All at the top of `smart_node_v8.py` — edit these, not the logic:
-
-| Constant | Default | What it controls |
-|----------|---------|-----------------|
-| `NIGHT_THRESHOLD` | `0.5` | LDR voltage below which = night (physical sensor only) |
-| `BTN_DEBOUNCE_S` | `2.0` | Min seconds between physical button presses |
-| `ACCESS_COOLDOWN_S` | `30` | Seconds before same person can re-enter |
-| `DENIAL_STREAK_WINDOW_S` | `120` | Time window for streak alarm (seconds) |
-| `DENIAL_STREAK_LIMIT` | `5` | Denials in window before sustained alarm |
-| `CONSEC_UNKNOWN_LIMIT` | `3` | Unknown denials in a row before alarm |
-| `ARDUINO_PING_INTERVAL_S` | `30` | Seconds between Arduino heartbeat checks |
-| `ARDUINO_PORT` | `/dev/ttyUSB0` | USB port for Arduino |
-| `ARDUINO_BAUDRATE` | `9600` | Serial baud rate (must match Arduino sketch) |
-
----
-
-
 ## Dependencies
 
 ```
-PYNQ:     pynq · ipywidgets · pyserial
-Arduino:  Servo.h (built into Arduino IDE — no install needed)
+PYNQ Python:  pyserial · ipywidgets  (pynq already installed on board)
+Arduino IDE:  Servo.h  (built into Arduino IDE — no install needed)
 ```
-
-> **Servo power note:** If the servo causes the Arduino to reset or jitter during demo,
-> it's drawing too much current from USB. Power the servo from an external 5V supply,
-> sharing GND with the Arduino. See wiring_diagram.txt for details.
