@@ -2,7 +2,7 @@
 # What the code actually does, section by section.
 
 
-THE BIG PICTURE
+# THE BIG PICTURE
 The script does one job: receive a decision from Marcus's AWS server and make
 something happen physically — LED lights up, door opens, buzzer beeps.
 
@@ -31,7 +31,7 @@ Here is the flow from that call to physical hardware:
               Buzzer plays pattern
 
 
-SECTION 1 — TUNEABLE CONSTANTS
+# SECTION 1 — TUNEABLE CONSTANTS
 
 These are all the numbers in the system that you might want to adjust.
 They live at the top of the file so you never have to dig into the logic.
@@ -68,7 +68,7 @@ They live at the top of the file so you never have to dig into the logic.
       These must match the filename stems in Shashank's known_faces/ folder.
 
 
-SECTION 2 — HARDWARE SETUP
+# SECTION 2 — HARDWARE SETUP
 
     BaseOverlay("base.bit")
     → Loads the FPGA bitfile. This configures the PYNQ hardware — without it,
@@ -96,7 +96,7 @@ SECTION 2 — HARDWARE SETUP
       standard access handler on the Arduino side. Silent if not connected.
 
 
-SECTION 3 — SHARED STATE
+# SECTION 3 — SHARED STATE
 
     state = { ... }
     → A dictionary that all parts of the code read from and write to.
@@ -115,7 +115,7 @@ SECTION 3 — SHARED STATE
 
 
 
-SECTION 4 — DASHBOARD WIDGETS
+# SECTION 4 — DASHBOARD WIDGETS
 
 The dashboard is built using ipywidgets — a library that lets you create
 interactive UI elements inside Jupyter Notebook.
@@ -143,7 +143,7 @@ interactive UI elements inside Jupyter Notebook.
 
 
 
-SECTION 5 — LOGGING & DISPLAY
+# SECTION 5 — LOGGING & DISPLAY
 
     log_event(message)
     → Two things happen simultaneously:
@@ -171,7 +171,7 @@ SECTION 5 — LOGGING & DISPLAY
 
 
 
-SECTION 6 — HARDWARE RESPONSE
+# SECTION 6 — HARDWARE RESPONSE
 
 
     flash_alarm(flashes)
@@ -190,7 +190,7 @@ SECTION 6 — HARDWARE RESPONSE
 
 
 
-SECTION 7 — ACCESS CONTROL LOGIC
+# SECTION 7 — ACCESS CONTROL LOGIC
 
     _check_cooldown(name)
     → Looks up when this person last accessed. If it's been less than
@@ -226,7 +226,7 @@ SECTION 7 — ACCESS CONTROL LOGIC
 
 
 
-SECTION 8 — PUBLIC INTEGRATION HOOKS
+# SECTION 8 — PUBLIC INTEGRATION HOOKS
 
     handle_recognition_result(name, clearance_level, frame=None)
     → The one function Marcus calls. Spawns a new thread to run trigger_access()
@@ -252,7 +252,7 @@ SECTION 8 — PUBLIC INTEGRATION HOOKS
       If the script times out or crashes, it fails safe to "denied".
 
 
-SECTION 9 — BUTTON CALLBACKS
+# SECTION 9 — BUTTON CALLBACKS
 
 Each dashboard button is wired to a small function that calls trigger_access()
 with the appropriate level. The 'b' parameter is the button object that Jupyter
@@ -271,7 +271,7 @@ passes automatically — we don't use it, but it must be in the signature.
     → Clears the lockdown_active event and restores MONITORING status.
 
 
-SECTION 10 — BACKGROUND THREADS
+# SECTION 10 — BACKGROUND THREADS
 
 The system runs four threads in parallel once started:
 
@@ -295,14 +295,14 @@ The system runs four threads in parallel once started:
     → Refreshes the status bar (day/night mode, Arduino status, access rate)
       every 5 seconds. Also blinks LED 3 as a heartbeat indicator.
 
-Why background threads?
+# Why background threads?
     Classic Jupyter Notebook has one kernel thread. If the main loop ran in the
     kernel thread, button clicks could never execute because the kernel would be
     stuck in the loop. By moving everything to background threads, the kernel
     stays free and button callbacks fire instantly when clicked.
 
 
-SECTION 11 — STARTUP
+# SECTION 11 — STARTUP
 
     start_system()
     → Called once at the bottom of the file. Does four things in order:
@@ -315,7 +315,7 @@ SECTION 11 — STARTUP
     before Jupyter has finished rendering them, the dashboard can go blank.
 
 
-ARDUINO SKETCH SUMMARY (door_mechanism.ino)
+# ARDUINO SKETCH SUMMARY (door_mechanism.ino)
 
 The Arduino sketch is simple by design. It does one thing in a loop:
 
@@ -344,7 +344,7 @@ The heartbeat handler responds to "?" with "K" so the PYNQ can verify the
 Arduino is still alive without triggering any audio or movement.
 
 
-HOW DAY/NIGHT MODE WORKS
+# HOW DAY/NIGHT MODE WORKS
 
 Currently: time-of-day. The system checks the hour from the PYNQ clock.
     Hour < 8 (before 8am) or Hour >= 20 (from 8pm) = night mode
@@ -359,7 +359,7 @@ When a physical LDR is added:
     Threshold is set by NIGHT_THRESHOLD_V and calibrated manually.
 
 
-HOW THREADING SAFETY WORKS
+# HOW THREADING SAFETY WORKS
 Multiple things can happen at the same time (button clicked while Arduino
 heartbeat is running, etc.). Two mechanisms keep this safe:
 
