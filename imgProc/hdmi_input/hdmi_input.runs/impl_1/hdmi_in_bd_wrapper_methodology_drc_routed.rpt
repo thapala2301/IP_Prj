@@ -1,0 +1,867 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Mon Mar  9 17:37:31 2026
+| Host         : Archit-Vivobook running 64-bit major release  (build 9200)
+| Command      : report_methodology -file hdmi_in_bd_wrapper_methodology_drc_routed.rpt -pb hdmi_in_bd_wrapper_methodology_drc_routed.pb -rpx hdmi_in_bd_wrapper_methodology_drc_routed.rpx
+| Design       : hdmi_in_bd_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 143
++-----------+------------------+------------------------------------------------------------------+------------+
+| Rule      | Severity         | Description                                                      | Violations |
++-----------+------------------+------------------------------------------------------------------+------------+
+| TIMING-6  | Critical Warning | No common primary clock between related clocks                   | 4          |
+| TIMING-7  | Critical Warning | No common node between related clocks                            | 2          |
+| TIMING-8  | Critical Warning | No common period between related clocks                          | 2          |
+| CKBF-1    | Warning          | connects_I_driver_BUFR                                           | 1          |
+| LUTAR-1   | Warning          | LUT drives async reset alert                                     | 8          |
+| TIMING-9  | Warning          | Unknown CDC Logic                                                | 1          |
+| TIMING-16 | Warning          | Large setup violation                                            | 122        |
+| TIMING-56 | Warning          | Missing logically or physically excluded clock groups constraint | 2          |
+| XDCB-5    | Warning          | Runtime inefficient way to find pin objects                      | 1          |
++-----------+------------------+------------------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+TIMING-6#1 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0 and PixelClk_int are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0] -to [get_clocks PixelClk_int]
+Related violations: <none>
+
+TIMING-6#2 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0 and clk_out1_hdmi_in_bd_clk_wiz_0_0_1 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0] -to [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1]
+Related violations: <none>
+
+TIMING-6#3 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1 and PixelClk_int are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1] -to [get_clocks PixelClk_int]
+Related violations: <none>
+
+TIMING-6#4 Critical Warning
+No common primary clock between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1 and clk_out1_hdmi_in_bd_clk_wiz_0_0 are related (timed together) but they have no common primary clock. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1] -to [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0]
+Related violations: <none>
+
+TIMING-7#1 Critical Warning
+No common node between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0 and PixelClk_int are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0] -to [get_clocks PixelClk_int]
+Related violations: <none>
+
+TIMING-7#2 Critical Warning
+No common node between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1 and PixelClk_int are related (timed together) but they have no common node. The design could fail in hardware. To find a timing path between these clocks, run the following command: report_timing -from [get_clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1] -to [get_clocks PixelClk_int]
+Related violations: <none>
+
+TIMING-8#1 Critical Warning
+No common period between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0 and PixelClk_int are found related (timed together) but have no common (expandable) period
+Related violations: <none>
+
+TIMING-8#2 Critical Warning
+No common period between related clocks  
+The clocks clk_out1_hdmi_in_bd_clk_wiz_0_0_1 and PixelClk_int are found related (timed together) but have no common (expandable) period
+Related violations: <none>
+
+CKBF-1#1 Warning
+connects_I_driver_BUFR  
+The BUFG cell hdmi_in_bd_i/dvi2rgb_0/U0/GenerateBUFG.ResyncToBUFG_X/InstBUFG I pin is driven by a BUFR cell hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/PixelClkBuffer. For 7-Series devices, this is not a recommended clock topology. Please analyze your clock network and remove the BUFR to BUFG cascade.
+Related violations: <none>
+
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_o_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[0]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[1]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_reg/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[2]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[3]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]/CLR
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#2 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_o_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[0]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[1]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_reg/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[2]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[3]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]/CLR
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#3 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_o_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[0]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[1]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_reg/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i_reg/PRE,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[2]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[3]/CLR,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]/CLR
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#4 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_o_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[0]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[1]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_reg/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[2]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[3]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]/CLR
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#5 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_o_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[0]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[1]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_reg/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[2]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[3]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]/CLR
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#6 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/gpregsm1.curr_fwft_state[1]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_fb_o_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/empty_fwft_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[0]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.curr_fwft_state_reg[1]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/gpregsm1.user_valid_reg/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_fb_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.rsts/ram_empty_i_reg/PRE,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[0]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[1]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[2]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[3]/CLR,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/rpntr/gc0.count_d1_reg[4]/CLR
+ (the first 15 of 32 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#7 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/gf36e1_inst.sngfifo36e1_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[10].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[1].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[2].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[3].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[4].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[5].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[6].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[7].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[8].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_MM2S.MM2S_LINEBUFFER_I/GEN_LINEBUF_NO_SOF.GEN_LINEBUFFER.GEN_ASYNC_FIFO.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[9].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+LUTAR-1#8 Warning
+LUT drives async reset alert  
+LUT cell hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/g7ser_birst.rstbt/gf36e1_inst.sngfifo36e1_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[10].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[1].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[2].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[3].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[4].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[5].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[6].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[7].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST,
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[8].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST
+hdmi_in_bd_i/axi_vdma_0/U0/GEN_SPRT_FOR_S2MM.S2MM_LINEBUFFER_I/GEN_S2MM_FLUSH_SOF_LOGIC.GEN_LINEBUFFER_FLUSH_SOF.GEN_ASYNC_FIFO_FLUSH_SOF.LB_BUILT_IN.I_LINEBUFFER_FIFO/fg_builtin_fifo_inst/inst_fifo_gen/gconvfifo.rf/gbi.bi/v7_bi_fifo.fblk/gextw[9].gnll_fifo.inst_extd/gonep.inst_prim/gf36e1_inst.sngfifo36e1/RST. The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
+TIMING-9#1 Warning
+Unknown CDC Logic  
+One or more asynchronous Clock Domain Crossing has been detected between 2 clock domains through a set_false_path or a set_clock_groups or set_max_delay -datapath_only constraint but no double-registers logic synchronizer has been found on the side of the capture clock. It is recommended to run report_cdc for a complete and detailed CDC coverage. Please consider using XPM_CDC to avoid Critical severities
+Related violations: <none>
+
+TIMING-16#1 Warning
+Large setup violation  
+There is a large setup violation of -4.359 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gof.overflow_i_reg/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#2 Warning
+Large setup violation  
+There is a large setup violation of -4.420 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[0]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#3 Warning
+Large setup violation  
+There is a large setup violation of -4.597 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[1]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#4 Warning
+Large setup violation  
+There is a large setup violation of -4.720 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[2]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#5 Warning
+Large setup violation  
+There is a large setup violation of -4.723 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[6]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#6 Warning
+Large setup violation  
+There is a large setup violation of -4.735 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[5]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#7 Warning
+Large setup violation  
+There is a large setup violation of -4.740 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_pntr_flags_cc.ram_empty_i_reg/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#8 Warning
+Large setup violation  
+There is a large setup violation of -4.744 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_pntr_flags_cc.gen_full_rst_val.ram_full_i_reg/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#9 Warning
+Large setup violation  
+There is a large setup violation of -4.778 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[8]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#10 Warning
+Large setup violation  
+There is a large setup violation of -4.778 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[9]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#11 Warning
+Large setup violation  
+There is a large setup violation of -4.779 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[3]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#12 Warning
+Large setup violation  
+There is a large setup violation of -4.883 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[0]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#13 Warning
+Large setup violation  
+There is a large setup violation of -4.883 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[1]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#14 Warning
+Large setup violation  
+There is a large setup violation of -4.883 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[2]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#15 Warning
+Large setup violation  
+There is a large setup violation of -4.883 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[9]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#16 Warning
+Large setup violation  
+There is a large setup violation of -4.907 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[0]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#17 Warning
+Large setup violation  
+There is a large setup violation of -4.907 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[1]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#18 Warning
+Large setup violation  
+There is a large setup violation of -4.907 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[2]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#19 Warning
+Large setup violation  
+There is a large setup violation of -4.907 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[3]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#20 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[4]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#21 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[5]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#22 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[6]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#23 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[7]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#24 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[3]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#25 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[4]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#26 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[5]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#27 Warning
+Large setup violation  
+There is a large setup violation of -4.918 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[6]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#28 Warning
+Large setup violation  
+There is a large setup violation of -4.929 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[4]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#29 Warning
+Large setup violation  
+There is a large setup violation of -4.945 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[6]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#30 Warning
+Large setup violation  
+There is a large setup violation of -5.019 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[7]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#31 Warning
+Large setup violation  
+There is a large setup violation of -5.024 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[7]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#32 Warning
+Large setup violation  
+There is a large setup violation of -5.024 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[8]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#33 Warning
+Large setup violation  
+There is a large setup violation of -5.040 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[5]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#34 Warning
+Large setup violation  
+There is a large setup violation of -5.044 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[8]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#35 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[15]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#36 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[22]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#37 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[6]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#38 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[15]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#39 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[22]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#40 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[12]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#41 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[1]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#42 Warning
+Large setup violation  
+There is a large setup violation of -5.137 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[4]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#43 Warning
+Large setup violation  
+There is a large setup violation of -5.154 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[9]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#44 Warning
+Large setup violation  
+There is a large setup violation of -5.155 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[9]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#45 Warning
+Large setup violation  
+There is a large setup violation of -5.169 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vert_blanking_intvl_reg/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#46 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[11]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#47 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[21]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#48 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[9]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#49 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[11]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#50 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[9]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#51 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[11]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#52 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[9]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#53 Warning
+Large setup violation  
+There is a large setup violation of -5.171 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vsync_1_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#54 Warning
+Large setup violation  
+There is a large setup violation of -5.269 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[8]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#55 Warning
+Large setup violation  
+There is a large setup violation of -5.289 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[7]/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#56 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[0]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#57 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[12]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#58 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[1]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#59 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[5]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#60 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[12]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#61 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[1]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#62 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[5]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#63 Warning
+Large setup violation  
+There is a large setup violation of -5.312 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[5]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#64 Warning
+Large setup violation  
+There is a large setup violation of -5.403 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[2]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#65 Warning
+Large setup violation  
+There is a large setup violation of -5.403 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[8]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#66 Warning
+Large setup violation  
+There is a large setup violation of -5.403 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/eol_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#67 Warning
+Large setup violation  
+There is a large setup violation of -5.403 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/sof_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#68 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[13]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#69 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[14]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#70 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[19]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#71 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[18]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#72 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[20]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#73 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[23]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#74 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[21]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#75 Warning
+Large setup violation  
+There is a large setup violation of -5.425 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[23]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#76 Warning
+Large setup violation  
+There is a large setup violation of -5.557 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ENARDEN (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#77 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[10]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#78 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[16]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#79 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[18]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#80 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[20]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#81 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[22]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#82 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[6]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#83 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/de_1_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#84 Warning
+Large setup violation  
+There is a large setup violation of -5.641 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/de_2_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#85 Warning
+Large setup violation  
+There is a large setup violation of -5.709 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vtd_locked_reg/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#86 Warning
+Large setup violation  
+There is a large setup violation of -5.713 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/proc_sys_reset_1/U0/EXT_LPF/lpf_int_reg/D (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#87 Warning
+Large setup violation  
+There is a large setup violation of -5.767 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[13]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#88 Warning
+Large setup violation  
+There is a large setup violation of -5.798 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[18]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#89 Warning
+Large setup violation  
+There is a large setup violation of -5.798 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[23]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#90 Warning
+Large setup violation  
+There is a large setup violation of -5.798 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[2]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#91 Warning
+Large setup violation  
+There is a large setup violation of -5.798 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[8]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#92 Warning
+Large setup violation  
+There is a large setup violation of -5.798 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[13]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#93 Warning
+Large setup violation  
+There is a large setup violation of -5.798 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[14]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#94 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[4]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#95 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[16]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#96 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[19]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#97 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[21]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#98 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[2]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#99 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[4]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#100 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[19]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#101 Warning
+Large setup violation  
+There is a large setup violation of -5.806 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/v_blank_sync_2_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#102 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[3]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#103 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[7]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#104 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[3]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#105 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[7]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#106 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[3]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#107 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[7]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#108 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/de_3_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#109 Warning
+Large setup violation  
+There is a large setup violation of -5.900 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/sof_1_reg/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#110 Warning
+Large setup violation  
+There is a large setup violation of -5.957 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[10]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#111 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[16]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#112 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[17]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#113 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[0]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#114 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[17]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#115 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[6]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#116 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[8]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#117 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[0]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#118 Warning
+Large setup violation  
+There is a large setup violation of -5.980 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[17]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#119 Warning
+Large setup violation  
+There is a large setup violation of -5.986 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[10]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#120 Warning
+Large setup violation  
+There is a large setup violation of -5.986 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[14]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#121 Warning
+Large setup violation  
+There is a large setup violation of -5.986 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[15]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-16#122 Warning
+Large setup violation  
+There is a large setup violation of -6.101 ns between hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg/C (clocked by clk_out1_hdmi_in_bd_clk_wiz_0_0) and hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[20]/CE (clocked by PixelClk_int). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
+Related violations: <none>
+
+TIMING-56#1 Warning
+Missing logically or physically excluded clock groups constraint  
+Multiple clocks are user generated or auto-derived on the source pin hdmi_in_bd_i/clk_wiz_0/inst/mmcm_adv_inst/CLKFBOUT but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clkfbout_hdmi_in_bd_clk_wiz_0_0, clkfbout_hdmi_in_bd_clk_wiz_0_0_1
+Related violations: <none>
+
+TIMING-56#2 Warning
+Missing logically or physically excluded clock groups constraint  
+Multiple clocks are user generated or auto-derived on the source pin hdmi_in_bd_i/clk_wiz_0/inst/mmcm_adv_inst/CLKOUT0 but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clk_out1_hdmi_in_bd_clk_wiz_0_0, clk_out1_hdmi_in_bd_clk_wiz_0_0_1
+Related violations: <none>
+
+XDCB-5#1 Warning
+Runtime inefficient way to find pin objects  
+The option '-through : [get_pins -filter {NAME =~ */SyncAsync*/oSyncStages_reg[0]/D} -hier]' of constraint 'set_false_path' uses inefficient query to find pin objects (see constraint position '2' in the Timing Constraint window in Vivado IDE). To reduce runtime, it is recommended to get the pins through the cell objects. Please refer to Using Constraints Guide (Constraints Efficiency). An example of optimal query is: get_pins -filter {REF_PIN_NAME=~yy*} -of_objects [get_cells -hierarchical xx*].
+Current XDC: c:/imgProc/attempt4/hdmi_input/hdmi_input.gen/sources_1/bd/hdmi_in_bd/ip/hdmi_in_bd_dvi2rgb_0_0/src/dvi2rgb.xdc (Line: 13)
+Related violations: <none>
+
+

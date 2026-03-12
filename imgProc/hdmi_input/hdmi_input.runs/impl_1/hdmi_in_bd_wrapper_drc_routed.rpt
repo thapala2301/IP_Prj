@@ -1,0 +1,156 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Mon Mar  9 17:37:24 2026
+| Host         : Archit-Vivobook running 64-bit major release  (build 9200)
+| Command      : report_drc -file hdmi_in_bd_wrapper_drc_routed.rpt -pb hdmi_in_bd_wrapper_drc_routed.pb -rpx hdmi_in_bd_wrapper_drc_routed.rpx
+| Design       : hdmi_in_bd_wrapper
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 19
++-----------+------------------+----------------------------+------------+
+| Rule      | Severity         | Description                | Violations |
++-----------+------------------+----------------------------+------------+
+| AVAL-46   | Critical Warning | v7v8_mmcm_fvco_rule1       | 1          |
+| DPIP-1    | Warning          | Input pipelining           | 4          |
+| DPOP-1    | Warning          | PREG Output pipelining     | 4          |
+| DPOP-2    | Warning          | MREG Output pipelining     | 8          |
+| REQP-1839 | Warning          | RAMB36 async control check | 1          |
+| RTSTAT-10 | Warning          | No routable loads          | 1          |
++-----------+------------------+----------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+AVAL-46#1 Critical Warning
+v7v8_mmcm_fvco_rule1  
+The current computed target frequency, FVCO, is out of range for cell hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/DVI_ClkGenerator. The computed FVCO is 599.952 MHz. The valid FVCO range for speed grade -1 is 600MHz to 1200MHz. The cell attribute values used to compute FVCO are CLKFBOUT_MULT_F = 5.000, CLKIN1_PERIOD = 8.33400, and DIVCLK_DIVIDE = 1 (FVCO = 1000 * CLKFBOUT_MULT_F/(CLKIN1_PERIOD * DIVCLK_DIVIDE)).
+This violation may be corrected by:
+  1. The timer uses timing constraints for clock period or clock frequency that affect CLKIN1 to set cell attribute CLKIN1_PERIOD, over-riding any previous value. This may already be in place and, if so this violation will be resolved once Timing is run.  Otherwise, consider modifying timing constraints to adjust the CLKIN1_PERIOD and bring FVCO into the allowed range.
+  2. In the absence of timing constraints that affect CLKIN1, consider modifying the cell CLKIN1_PERIOD to bring FVCO into the allowed range.
+  3. If CLKIN1_PERIOD is satisfactory, modify the CLKFBOUT_MULT_F or DIVCLK_DIVIDE cell attributes to bring FVCO into the allowed range.
+  4. The MMCM configuration may be dynamically modified by use of DRP which is recognized by an ACTIVE signal on DCLK pin.
+Related violations: <none>
+
+DPIP-1#1 Warning
+Input pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/mac_muladd_17ns_8ns_9ns_24_4_1_U43/image_accelerator_mac_muladd_17ns_8ns_9ns_24_4_1_DSP48_3_U/p_reg_reg input hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/mac_muladd_17ns_8ns_9ns_24_4_1_U43/image_accelerator_mac_muladd_17ns_8ns_9ns_24_4_1_DSP48_3_U/p_reg_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#2 Warning
+Input pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_10s_40_2_0_U69/image_accelerator_mul_32ns_10s_40_2_0_Multiplier_1_U/p_reg__0 input hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_10s_40_2_0_U69/image_accelerator_mul_32ns_10s_40_2_0_Multiplier_1_U/p_reg__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#3 Warning
+Input pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_ln40_reg_304_reg input hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_ln40_reg_304_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPIP-1#4 Warning
+Input pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/rgb2gray_9_0_1080_1920_1_U0/mac_muladd_8ns_16ns_22ns_23_4_1_U32/image_accelerator_mac_muladd_8ns_16ns_22ns_23_4_1_DSP48_2_U/p_reg_reg input hdmi_in_bd_i/image_accelerator_0/inst/rgb2gray_9_0_1080_1920_1_U0/mac_muladd_8ns_16ns_22ns_23_4_1_U32/image_accelerator_mac_muladd_8ns_16ns_22ns_23_4_1_DSP48_2_U/p_reg_reg/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+Related violations: <none>
+
+DPOP-1#1 Warning
+PREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product output hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#2 Warning
+PREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product__0 output hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#3 Warning
+PREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U81/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/tmp_product output hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U81/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/tmp_product/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-1#4 Warning
+PREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U82/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/tmp_product output hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U82/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/tmp_product/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+Related violations: <none>
+
+DPOP-2#1 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_10s_40_2_0_U69/image_accelerator_mul_32ns_10s_40_2_0_Multiplier_1_U/p_reg__0 multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_10s_40_2_0_U69/image_accelerator_mul_32ns_10s_40_2_0_Multiplier_1_U/p_reg__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#2 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/p_reg multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/p_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#3 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/p_reg__0 multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/p_reg__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#4 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#5 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product__0 multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_32ns_64_2_0_U68/image_accelerator_mul_32ns_32ns_64_2_0_Multiplier_0_U/tmp_product__0/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#6 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_9s_40_2_0_U71/image_accelerator_mul_32ns_9s_40_2_0_Multiplier_2_U/p_reg multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_CoreProcessUpArea_fu_853/mul_32ns_9s_40_2_0_U71/image_accelerator_mul_32ns_9s_40_2_0_Multiplier_2_U/p_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#7 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U81/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/buff0_reg multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U81/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/buff0_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+DPOP-2#8 Warning
+MREG Output pipelining  
+DSP hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U82/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/buff0_reg multiplier stage hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/mul_64s_17s_64_5_1_U82/image_accelerator_mul_64s_17s_64_5_1_Multiplier_3_U/buff0_reg/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+REQP-1839#1 Warning
+RAMB36 async control check  
+The RAMB36E1 hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg has an input control pin hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ENARDEN (net: hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/wea[0]) which is driven by a register (hdmi_in_bd_i/dvi2rgb_0/U0/TMDS_ClockingX/aLocked_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
+Related violations: <none>
+
+RTSTAT-10#1 Warning
+No routable loads  
+66 net(s) have no routable loads. The problem bus(es) and/or net(s) are hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+hdmi_in_bd_i/axi_interconnect_0/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_i,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i,
+hdmi_in_bd_i/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwss.wsts/ram_afull_fb
+ (the first 15 of 42 listed).
+Related violations: <none>
+
+

@@ -1,0 +1,181 @@
+
+
+================================================================
+== Vitis HLS Report for 'image_accelerator'
+================================================================
+* Date:           Mon Mar  9 12:24:03 2026
+
+* Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:45 MST 2020)
+* Project:        accel_downscale
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.268 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+---------+---------+----------+
+    |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline |
+    |   min   |   max   |    min    |    max    |   min   |   max   |   Type   |
+    +---------+---------+-----------+-----------+---------+---------+----------+
+    |  2082245|  2087118|  20.822 ms|  20.871 ms|  2082242|  2087117|  dataflow|
+    +---------+---------+-----------+-----------+---------+---------+----------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------------------+------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+        |                                     |                                    |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline|
+        |               Instance              |               Module               |   min   |   max   |    min    |    max    |   min   |   max   |   Type  |
+        +-------------------------------------+------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+        |resize_2_0_1080_1920_270_480_1_4_U0  |resize_2_0_1080_1920_270_480_1_4_s  |      251|  2087116|   2.510 us|  20.871 ms|      251|  2087116|     none|
+        |AXIvideo2xfMat_24_9_1080_1920_1_U0   |AXIvideo2xfMat_24_9_1080_1920_1_s   |        3|  2080084|  30.000 ns|  20.801 ms|        3|  2080084|     none|
+        |rgb2gray_9_0_1080_1920_1_U0          |rgb2gray_9_0_1080_1920_1_s          |  2082241|  2082241|  20.822 ms|  20.822 ms|  2082241|  2082241|     none|
+        |xfMat2AXIvideo_8_0_270_480_1_U0      |xfMat2AXIvideo_8_0_270_480_1_s      |        1|   130681|  10.000 ns|   1.307 ms|        1|   130681|     none|
+        |Block_split1_proc_U0                 |Block_split1_proc                   |        0|        0|       0 ns|       0 ns|        0|        0|     none|
+        +-------------------------------------+------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      4|    -|
+|FIFO             |        -|    -|    1287|    884|    -|
+|Instance         |        8|   13|    8633|   9714|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|      -|    -|
+|Register         |        -|    -|       -|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        8|   13|    9920|  10602|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        2|    5|       9|     19|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------------+------------------------------------+---------+----+------+------+-----+
+    |               Instance              |               Module               | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-------------------------------------+------------------------------------+---------+----+------+------+-----+
+    |AXIvideo2xfMat_24_9_1080_1920_1_U0   |AXIvideo2xfMat_24_9_1080_1920_1_s   |        0|   0|   267|   460|    0|
+    |Block_split1_proc_U0                 |Block_split1_proc                   |        0|   0|     3|    74|    0|
+    |control_s_axi_U                      |control_s_axi                       |        0|   0|   188|   296|    0|
+    |resize_2_0_1080_1920_270_480_1_4_U0  |resize_2_0_1080_1920_270_480_1_4_s  |        8|  10|  7863|  8389|    0|
+    |rgb2gray_9_0_1080_1920_1_U0          |rgb2gray_9_0_1080_1920_1_s          |        0|   3|   175|   213|    0|
+    |xfMat2AXIvideo_8_0_270_480_1_U0      |xfMat2AXIvideo_8_0_270_480_1_s      |        0|   0|   137|   282|    0|
+    +-------------------------------------+------------------------------------+---------+----+------+------+-----+
+    |Total                                |                                    |        8|  13|  8633|  9714|    0|
+    +-------------------------------------+------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +--------------------+---------+----+----+-----+------+-----+---------+
+    |        Name        | BRAM_18K| FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +--------------------+---------+----+----+-----+------+-----+---------+
+    |img_gray_cols_c_U   |        0|  99|   0|    -|     4|   32|      128|
+    |img_gray_data_U     |        0|  99|   0|    -|     2|    8|       16|
+    |img_gray_rows_c_U   |        0|  99|   0|    -|     4|   32|      128|
+    |img_in_cols_c12_U   |        0|  99|   0|    -|     2|   32|       64|
+    |img_in_cols_c_U     |        0|  99|   0|    -|     2|   32|       64|
+    |img_in_data_U       |        0|  99|   0|    -|     2|   24|       48|
+    |img_in_rows_c11_U   |        0|  99|   0|    -|     2|   32|       64|
+    |img_in_rows_c_U     |        0|  99|   0|    -|     2|   32|       64|
+    |img_out_cols_c14_U  |        0|  99|   0|    -|     2|   32|       64|
+    |img_out_cols_c_U    |        0|  99|   0|    -|     4|   32|      128|
+    |img_out_data_U      |        0|  99|   0|    -|     2|    8|       16|
+    |img_out_rows_c13_U  |        0|  99|   0|    -|     2|   32|       64|
+    |img_out_rows_c_U    |        0|  99|   0|    -|     4|   32|      128|
+    +--------------------+---------+----+----+-----+------+-----+---------+
+    |Total               |        0|1287|   0|    0|    34|  360|      976|
+    +--------------------+---------+----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |           Variable Name           | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |Block_split1_proc_U0_start_full_n  |       and|   0|  0|   2|           1|           1|
+    |ap_idle                            |       and|   0|  0|   2|           1|           1|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+    |Total                              |          |   0|  0|   4|           2|           2|
+    +-----------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++-----------------------+-----+-----+------------+--------------------+--------------+
+|s_axi_control_AWVALID  |   in|    1|       s_axi|             control|        scalar|
+|s_axi_control_AWREADY  |  out|    1|       s_axi|             control|        scalar|
+|s_axi_control_AWADDR   |   in|    6|       s_axi|             control|        scalar|
+|s_axi_control_WVALID   |   in|    1|       s_axi|             control|        scalar|
+|s_axi_control_WREADY   |  out|    1|       s_axi|             control|        scalar|
+|s_axi_control_WDATA    |   in|   32|       s_axi|             control|        scalar|
+|s_axi_control_WSTRB    |   in|    4|       s_axi|             control|        scalar|
+|s_axi_control_ARVALID  |   in|    1|       s_axi|             control|        scalar|
+|s_axi_control_ARREADY  |  out|    1|       s_axi|             control|        scalar|
+|s_axi_control_ARADDR   |   in|    6|       s_axi|             control|        scalar|
+|s_axi_control_RVALID   |  out|    1|       s_axi|             control|        scalar|
+|s_axi_control_RREADY   |   in|    1|       s_axi|             control|        scalar|
+|s_axi_control_RDATA    |  out|   32|       s_axi|             control|        scalar|
+|s_axi_control_RRESP    |  out|    2|       s_axi|             control|        scalar|
+|s_axi_control_BVALID   |  out|    1|       s_axi|             control|        scalar|
+|s_axi_control_BREADY   |   in|    1|       s_axi|             control|        scalar|
+|s_axi_control_BRESP    |  out|    2|       s_axi|             control|        scalar|
+|ap_clk                 |   in|    1|  ap_ctrl_hs|   image_accelerator|  return value|
+|ap_rst_n               |   in|    1|  ap_ctrl_hs|   image_accelerator|  return value|
+|interrupt              |  out|    1|  ap_ctrl_hs|   image_accelerator|  return value|
+|video_in_TDATA         |   in|   24|        axis|   video_in_V_data_V|       pointer|
+|video_in_TKEEP         |   in|    3|        axis|   video_in_V_keep_V|       pointer|
+|video_in_TSTRB         |   in|    3|        axis|   video_in_V_strb_V|       pointer|
+|video_in_TUSER         |   in|    1|        axis|   video_in_V_user_V|       pointer|
+|video_in_TLAST         |   in|    1|        axis|   video_in_V_last_V|       pointer|
+|video_in_TID           |   in|    1|        axis|     video_in_V_id_V|       pointer|
+|video_in_TDEST         |   in|    1|        axis|   video_in_V_dest_V|       pointer|
+|video_in_TVALID        |   in|    1|        axis|   video_in_V_dest_V|       pointer|
+|video_in_TREADY        |  out|    1|        axis|   video_in_V_dest_V|       pointer|
+|video_out_TDATA        |  out|    8|        axis|  video_out_V_data_V|       pointer|
+|video_out_TKEEP        |  out|    1|        axis|  video_out_V_keep_V|       pointer|
+|video_out_TSTRB        |  out|    1|        axis|  video_out_V_strb_V|       pointer|
+|video_out_TUSER        |  out|    1|        axis|  video_out_V_user_V|       pointer|
+|video_out_TLAST        |  out|    1|        axis|  video_out_V_last_V|       pointer|
+|video_out_TID          |  out|    1|        axis|    video_out_V_id_V|       pointer|
+|video_out_TDEST        |  out|    1|        axis|  video_out_V_dest_V|       pointer|
+|video_out_TVALID       |  out|    1|        axis|  video_out_V_dest_V|       pointer|
+|video_out_TREADY       |   in|    1|        axis|  video_out_V_dest_V|       pointer|
++-----------------------+-----+-----+------------+--------------------+--------------+
+

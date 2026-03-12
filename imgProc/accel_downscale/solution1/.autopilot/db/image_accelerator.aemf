@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1773059045307">
+  <ports id="1" name="video_in_V_data_V" type="PortType" originalName="video_in" coreId="1970037614" bitwidth="24">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="2" name="video_in_V_keep_V" type="PortType" originalName="video_in" coreId="1735223644" bitwidth="3">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="3" name="video_in_V_strb_V" type="PortType" originalName="video_in" coreId="1835621477" bitwidth="3">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="4" name="video_in_V_user_V" type="PortType" originalName="video_in" coreId="1735223644" bitwidth="1">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="5" name="video_in_V_last_V" type="PortType" originalName="video_in" coreId="1685417059" bitwidth="1">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="6" name="video_in_V_id_V" type="PortType" originalName="video_in" coreId="1835621477" bitwidth="1">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="7" name="video_in_V_dest_V" type="PortType" originalName="video_in" coreId="791759919" bitwidth="1">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="8" name="video_out_V_data_V" type="PortType" originalName="video_out" coreId="1970037614" bitwidth="8" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="9" name="video_out_V_keep_V" type="PortType" originalName="video_out" coreId="1685417059" bitwidth="1" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="10" name="video_out_V_strb_V" type="PortType" originalName="video_out" coreId="1970037614" bitwidth="1" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="11" name="video_out_V_user_V" type="PortType" originalName="video_out" coreId="1970037614" bitwidth="1" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="12" name="video_out_V_last_V" type="PortType" originalName="video_out" coreId="1970037614" bitwidth="1" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="13" name="video_out_V_id_V" type="PortType" originalName="video_out" coreId="1835621477" bitwidth="1" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="14" name="video_out_V_dest_V" type="PortType" originalName="video_out" coreId="1970037614" bitwidth="1" direction="DirOut">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="15" name="in_rows" type="PortType" originalName="in_rows" coreId="1735223644" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="16" name="in_cols" type="PortType" originalName="in_cols" coreId="791759919" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="17" name="out_rows" type="PortType" originalName="out_rows" coreId="1835621477" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="18" name="out_cols" type="PortType" originalName="out_cols" coreId="1970037614" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <edges id="102" source_obj="//@ports.17" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="104" source_obj="//@ports.16" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.1"/>
+  <edges id="106" source_obj="//@ports.15" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="108" source_obj="//@ports.14" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="125" source_obj="//@regions.0/@basic_blocks.0/@node_objs.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="126" source_obj="//@regions.0/@basic_blocks.0/@node_objs.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="127" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="128" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="129" source_obj="//@regions.0/@basic_blocks.0/@node_objs.13" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="130" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="131" source_obj="//@regions.0/@basic_blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="132" source_obj="//@regions.0/@basic_blocks.0/@node_objs.10" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="133" source_obj="//@regions.0/@basic_blocks.0/@node_objs.9" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="134" source_obj="//@regions.0/@basic_blocks.0/@node_objs.8" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.17"/>
+  <edges id="137" source_obj="//@regions.0/@basic_blocks.0/@node_objs.14" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="138" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="139" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="140" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="141" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="142" source_obj="//@ports.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="143" source_obj="//@ports.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="144" source_obj="//@ports.6" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="145" source_obj="//@regions.0/@basic_blocks.0/@node_objs.13" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="146" source_obj="//@regions.0/@basic_blocks.0/@node_objs.12" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="147" source_obj="//@regions.0/@basic_blocks.0/@node_objs.7" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="148" source_obj="//@regions.0/@basic_blocks.0/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="151" source_obj="//@regions.0/@basic_blocks.0/@node_objs.14" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="152" source_obj="//@regions.0/@basic_blocks.0/@node_objs.15" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="153" source_obj="//@regions.0/@basic_blocks.0/@node_objs.7" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="154" source_obj="//@regions.0/@basic_blocks.0/@node_objs.6" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="157" source_obj="//@regions.0/@basic_blocks.0/@node_objs.15" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="158" source_obj="//@regions.0/@basic_blocks.0/@node_objs.16" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="159" source_obj="//@regions.0/@basic_blocks.0/@node_objs.11" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="160" source_obj="//@regions.0/@basic_blocks.0/@node_objs.10" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="161" source_obj="//@regions.0/@basic_blocks.0/@node_objs.9" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="162" source_obj="//@regions.0/@basic_blocks.0/@node_objs.8" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="163" source_obj="//@regions.0/@basic_blocks.0/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="164" source_obj="//@regions.0/@basic_blocks.0/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="167" source_obj="//@regions.0/@basic_blocks.0/@node_objs.16" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.21"/>
+  <edges id="168" source_obj="//@regions.0/@basic_blocks.0/@node_objs.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.21"/>
+  <edges id="169" source_obj="//@regions.0/@basic_blocks.0/@node_objs.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.21"/>
+  <edges id="170" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.7"/>
+  <edges id="171" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.8"/>
+  <edges id="172" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.9"/>
+  <edges id="173" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.10"/>
+  <edges id="174" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.11"/>
+  <edges id="175" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.12"/>
+  <edges id="176" source_obj="//@regions.0/@basic_blocks.0/@node_objs.21" sink_obj="//@ports.13"/>
+  <edges id="819" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.20" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.21"/>
+  <edges id="820" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.19" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="821" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.18" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="822" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.17" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="823" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.17" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.18"/>
+  <edges id="824" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.18" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.19"/>
+  <edges id="825" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.19" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.20"/>
+  <edges id="826" edge_type="VirtEdge" source_obj="//@regions.0/@basic_blocks.0/@node_objs.20" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.21"/>
+  <regions anchor_node="-1" region_type="16" typeName="Dataflow" id="359" RegionName="image_accelerator">
+    <basic_blocks id="99" name="image_accelerator" type="BlockType">
+      <node_objs xsi:type="cdfg:CdfgNode" id="19" name="out_cols_read" originalName="out_cols" coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="114" bitwidth="32" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="1" m_clusterGroupNumber="-1">
+        <dataInputObjs>out_cols</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="20" name="out_rows_read" originalName="out_rows" coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="114" bitwidth="32" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="2" m_clusterGroupNumber="-1">
+        <dataInputObjs>out_rows</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="21" name="in_cols_read" originalName="in_cols" coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="114" bitwidth="32" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="3" m_clusterGroupNumber="-1">
+        <dataInputObjs>in_cols</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="22" name="in_rows_read" originalName="in_rows" coreName="s_axilite" implIndex="UNSUPPORTED" control="auto" coreId="114" bitwidth="32" opcode="read" m_display="0" m_delay="1.0" m_topoIndex="4" m_clusterGroupNumber="-1">
+        <dataInputObjs>in_rows</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="23" name="img_out_cols_c14" rtlName="img_out_cols_c14_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="24" name="img_out_rows_c13" rtlName="img_out_rows_c13_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="25" name="img_in_cols_c12" rtlName="img_in_cols_c12_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="26" name="img_in_rows_c11" rtlName="img_in_rows_c11_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="8" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="27" name="img_out_cols_c" rtlName="img_out_cols_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="9" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="28" name="img_out_rows_c" rtlName="img_out_rows_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="10" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="29" name="img_gray_cols_c" rtlName="img_gray_cols_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="11" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="30" name="img_gray_rows_c" rtlName="img_gray_rows_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="12" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="31" name="img_in_cols_c" rtlName="img_in_cols_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="13" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="32" name="img_in_rows_c" rtlName="img_in_rows_c_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="14" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="64" name="img_in_data" lineNumber="49" originalName="img_in.data" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="img_in_data_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="image_accelerator" bitwidth="24" opcode="alloca" m_display="0" m_topoIndex="15" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="49" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="67" name="img_gray_data" lineNumber="50" originalName="img_gray.data" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="img_gray_data_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="image_accelerator" bitwidth="8" opcode="alloca" m_display="0" m_topoIndex="16" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="50" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="70" name="img_out_data" lineNumber="51" originalName="img_out.data" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="img_out_data_U" coreName="FIFO_SRL" implIndex="srl" control="auto" opType="fifo" coreId="81" contextFuncName="image_accelerator" bitwidth="8" opcode="alloca" m_display="0" m_topoIndex="17" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="51" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="85" name="_ln0" rtlName="Block_split1_proc_U0" coreId="1646275677" opcode="call" m_display="0" m_delay="3.63" m_topoIndex="18" m_clusterGroupNumber="-1">
+        <dataInputObjs>read</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <constName>Block_split1_proc</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="90" name="_ln54" lineNumber="54" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="AXIvideo2xfMat_24_9_1080_1920_1_U0" coreId="1868701740" contextFuncName="image_accelerator" opcode="call" nodeLabel="1.0" nodeLatency="1" m_display="0" m_topoIndex="19" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="54" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>video_in_V_data_V</dataInputObjs>
+        <dataInputObjs>video_in_V_keep_V</dataInputObjs>
+        <dataInputObjs>video_in_V_strb_V</dataInputObjs>
+        <dataInputObjs>video_in_V_user_V</dataInputObjs>
+        <dataInputObjs>video_in_V_last_V</dataInputObjs>
+        <dataInputObjs>video_in_V_id_V</dataInputObjs>
+        <dataInputObjs>video_in_V_dest_V</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <constName>AXIvideo2xfMat_24_9_1080_1920_1_s</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="91" name="_ln57" lineNumber="57" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="rgb2gray_9_0_1080_1920_1_U0" coreId="1684368999" contextFuncName="image_accelerator" opcode="call" nodeLabel="3.0" nodeLatency="1" m_display="0" m_topoIndex="20" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="57" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <constName>rgb2gray_9_0_1080_1920_1_s</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="96" name="_ln61" lineNumber="61" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="resize_2_0_1080_1920_270_480_1_4_U0" coreId="1663050274" contextFuncName="image_accelerator" opcode="call" nodeLabel="5.0" nodeLatency="1" m_display="0" m_topoIndex="21" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="61" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <constName>resize_2_0_1080_1920_270_480_1_4_s</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="97" name="_ln64" lineNumber="64" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." rtlName="xfMat2AXIvideo_8_0_270_480_1_U0" coreId="1756238840" contextFuncName="image_accelerator" opcode="call" nodeLabel="7.0" nodeLatency="1" m_display="0" m_topoIndex="22" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="64" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataOutputObjs>video_out_V_data_V</dataOutputObjs>
+        <dataOutputObjs>video_out_V_keep_V</dataOutputObjs>
+        <dataOutputObjs>video_out_V_strb_V</dataOutputObjs>
+        <dataOutputObjs>video_out_V_user_V</dataOutputObjs>
+        <dataOutputObjs>video_out_V_last_V</dataOutputObjs>
+        <dataOutputObjs>video_out_V_id_V</dataOutputObjs>
+        <dataOutputObjs>video_out_V_dest_V</dataOutputObjs>
+        <constName>xfMat2AXIvideo_8_0_270_480_1_s</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="98" name="_ln65" lineNumber="65" fileName="accel_downscale/accel_downscale.cpp" fileDirectory=".." coreId="828093314" contextFuncName="image_accelerator" opcode="ret" nodeLabel="9.0" m_display="0" m_topoIndex="23" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="accel_downscale/accel_downscale.cpp" linenumber="65" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="image_accelerator"/>
+      </node_objs>
+      <fileValidLineNumbers fileName="accel_downscale/accel_downscale.cpp">
+        <validLinenumbers>49</validLinenumbers>
+        <validLinenumbers>50</validLinenumbers>
+        <validLinenumbers>51</validLinenumbers>
+        <validLinenumbers>54</validLinenumbers>
+        <validLinenumbers>57</validLinenumbers>
+        <validLinenumbers>61</validLinenumbers>
+        <validLinenumbers>64</validLinenumbers>
+        <validLinenumbers>65</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+  </regions>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <ScheduleInfo time="3"/>
+  <ScheduleInfo time="4"/>
+  <ScheduleInfo time="5"/>
+  <ScheduleInfo time="6"/>
+  <ScheduleInfo time="7"/>
+  <ScheduleInfo time="8"/>
+  <ScheduleInfo time="9"/>
+  <regnodes realName="img_in_cols_c_reg_332">
+    <nodeIds>31</nodeIds>
+  </regnodes>
+  <regnodes realName="img_out_rows_c13_reg_290">
+    <nodeIds>24</nodeIds>
+  </regnodes>
+  <regnodes realName="img_gray_rows_c_reg_326">
+    <nodeIds>30</nodeIds>
+  </regnodes>
+  <regnodes realName="img_out_rows_c_reg_314">
+    <nodeIds>28</nodeIds>
+  </regnodes>
+  <regnodes realName="img_out_cols_c_reg_308">
+    <nodeIds>27</nodeIds>
+  </regnodes>
+  <regnodes realName="img_gray_data_reg_350">
+    <nodeIds>67</nodeIds>
+  </regnodes>
+  <regnodes realName="img_in_rows_c11_reg_302">
+    <nodeIds>26</nodeIds>
+  </regnodes>
+  <regnodes realName="img_in_rows_c_reg_338">
+    <nodeIds>32</nodeIds>
+  </regnodes>
+  <regnodes realName="img_out_data_reg_356">
+    <nodeIds>70</nodeIds>
+  </regnodes>
+  <regnodes realName="img_out_cols_c14_reg_284">
+    <nodeIds>23</nodeIds>
+  </regnodes>
+  <regnodes realName="img_gray_cols_c_reg_320">
+    <nodeIds>29</nodeIds>
+  </regnodes>
+  <regnodes realName="img_in_data_reg_344">
+    <nodeIds>64</nodeIds>
+  </regnodes>
+  <regnodes realName="img_in_cols_c12_reg_296">
+    <nodeIds>25</nodeIds>
+  </regnodes>
+  <expressionNodes realName="img_out_rows_c13_fu_130">
+    <nodeIds>24</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_in_rows_c11_fu_138">
+    <nodeIds>26</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_gray_data_fu_170">
+    <nodeIds>67</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_out_cols_c14_fu_126">
+    <nodeIds>23</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_gray_rows_c_fu_154">
+    <nodeIds>30</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_in_rows_c_fu_162">
+    <nodeIds>32</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_gray_cols_c_fu_150">
+    <nodeIds>29</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_in_data_fu_166">
+    <nodeIds>64</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_in_cols_c12_fu_134">
+    <nodeIds>25</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_out_rows_c_fu_146">
+    <nodeIds>28</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_out_cols_c_fu_142">
+    <nodeIds>27</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_out_data_fu_174">
+    <nodeIds>70</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="img_in_cols_c_fu_158">
+    <nodeIds>31</nodeIds>
+  </expressionNodes>
+  <moduleNodes realName="grp_resize_2_0_1080_1920_270_480_1_4_s_fu_202">
+    <nodeIds>96</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_rgb2gray_9_0_1080_1920_1_s_fu_237">
+    <nodeIds>91</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_AXIvideo2xfMat_24_9_1080_1920_1_s_fu_214">
+    <nodeIds>90</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_xfMat2AXIvideo_8_0_270_480_1_s_fu_245">
+    <nodeIds>97</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="call_ln0_Block_split1_proc_fu_266">
+    <nodeIds>85</nodeIds>
+  </moduleNodes>
+  <ioNodes realName="in_rows_read_read_fu_196">
+    <nodeIds>22</nodeIds>
+  </ioNodes>
+  <ioNodes realName="in_cols_read_read_fu_190">
+    <nodeIds>21</nodeIds>
+  </ioNodes>
+  <ioNodes realName="out_rows_read_read_fu_184">
+    <nodeIds>20</nodeIds>
+  </ioNodes>
+  <ioNodes realName="out_cols_read_read_fu_178">
+    <nodeIds>19</nodeIds>
+  </ioNodes>
+  <ioPorts name="in_cols">
+    <contents name="read">
+      <nodeIds>21</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="in_rows">
+    <contents name="read">
+      <nodeIds>22</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="out_cols">
+    <contents name="read">
+      <nodeIds>19</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="out_rows">
+    <contents name="read">
+      <nodeIds>20</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_data_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_dest_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_id_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_keep_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_last_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_strb_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_in_V_user_V">
+    <contents name="call">
+      <nodeIds>90</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_data_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_dest_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_id_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_keep_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_last_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_strb_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="video_out_V_user_V">
+    <contents name="call">
+      <nodeIds>97</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="20" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="24" stage="1" latency="1"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="1" latency="1"/>
+      <operations id="27" stage="1" latency="1"/>
+      <operations id="28" stage="1" latency="1"/>
+      <operations id="29" stage="1" latency="1"/>
+      <operations id="30" stage="1" latency="1"/>
+      <operations id="31" stage="1" latency="1"/>
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="64" stage="1" latency="1"/>
+      <operations id="67" stage="1" latency="1"/>
+      <operations id="70" stage="1" latency="1"/>
+      <operations id="85" stage="1" latency="1"/>
+    </states>
+    <states id="2">
+      <operations id="90" stage="2" latency="2"/>
+    </states>
+    <states id="3">
+      <operations id="90" stage="1" latency="2"/>
+    </states>
+    <states id="4">
+      <operations id="91" stage="2" latency="2"/>
+    </states>
+    <states id="5">
+      <operations id="91" stage="1" latency="2"/>
+    </states>
+    <states id="6">
+      <operations id="96" stage="2" latency="2"/>
+    </states>
+    <states id="7">
+      <operations id="96" stage="1" latency="2"/>
+    </states>
+    <states id="8">
+      <operations id="97" stage="2" latency="2"/>
+    </states>
+    <states id="9">
+      <operations id="97" stage="1" latency="2"/>
+    </states>
+    <states id="10">
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="34" stage="1" latency="1"/>
+      <operations id="35" stage="1" latency="1"/>
+      <operations id="36" stage="1" latency="1"/>
+      <operations id="37" stage="1" latency="1"/>
+      <operations id="38" stage="1" latency="1"/>
+      <operations id="39" stage="1" latency="1"/>
+      <operations id="40" stage="1" latency="1"/>
+      <operations id="41" stage="1" latency="1"/>
+      <operations id="42" stage="1" latency="1"/>
+      <operations id="43" stage="1" latency="1"/>
+      <operations id="44" stage="1" latency="1"/>
+      <operations id="45" stage="1" latency="1"/>
+      <operations id="46" stage="1" latency="1"/>
+      <operations id="47" stage="1" latency="1"/>
+      <operations id="48" stage="1" latency="1"/>
+      <operations id="49" stage="1" latency="1"/>
+      <operations id="50" stage="1" latency="1"/>
+      <operations id="51" stage="1" latency="1"/>
+      <operations id="52" stage="1" latency="1"/>
+      <operations id="53" stage="1" latency="1"/>
+      <operations id="54" stage="1" latency="1"/>
+      <operations id="55" stage="1" latency="1"/>
+      <operations id="56" stage="1" latency="1"/>
+      <operations id="57" stage="1" latency="1"/>
+      <operations id="58" stage="1" latency="1"/>
+      <operations id="59" stage="1" latency="1"/>
+      <operations id="60" stage="1" latency="1"/>
+      <operations id="61" stage="1" latency="1"/>
+      <operations id="62" stage="1" latency="1"/>
+      <operations id="63" stage="1" latency="1"/>
+      <operations id="65" stage="1" latency="1"/>
+      <operations id="66" stage="1" latency="1"/>
+      <operations id="68" stage="1" latency="1"/>
+      <operations id="69" stage="1" latency="1"/>
+      <operations id="71" stage="1" latency="1"/>
+      <operations id="72" stage="1" latency="1"/>
+      <operations id="73" stage="1" latency="1"/>
+      <operations id="74" stage="1" latency="1"/>
+      <operations id="75" stage="1" latency="1"/>
+      <operations id="76" stage="1" latency="1"/>
+      <operations id="77" stage="1" latency="1"/>
+      <operations id="78" stage="1" latency="1"/>
+      <operations id="79" stage="1" latency="1"/>
+      <operations id="80" stage="1" latency="1"/>
+      <operations id="81" stage="1" latency="1"/>
+      <operations id="82" stage="1" latency="1"/>
+      <operations id="83" stage="1" latency="1"/>
+      <operations id="84" stage="1" latency="1"/>
+      <operations id="86" stage="1" latency="1"/>
+      <operations id="87" stage="1" latency="1"/>
+      <operations id="88" stage="1" latency="1"/>
+      <operations id="89" stage="1" latency="1"/>
+      <operations id="92" stage="1" latency="1"/>
+      <operations id="93" stage="1" latency="1"/>
+      <operations id="94" stage="1" latency="1"/>
+      <operations id="95" stage="1" latency="1"/>
+      <operations id="98" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="3" outState="4">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="4" outState="5">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="5" outState="6">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="6" outState="7">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="7" outState="8">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="8" outState="9">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="9" outState="10">
+      <condition id="-1"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="image_accelerator" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="2082245" mMaxLatency="2087118" mIsDfPipe="true">
+      <basicBlocks>99</basicBlocks>
+      <mDfPipe allPipePinInst="//@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.0/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.1/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.4/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@channel_list.2/@sink/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@channel_list.6/@sink/@inst">
+        <processe_list name="Block_split1_proc_U0" ssdmobj_id="85">
+          <pins>
+            <port name="in_rows" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_139" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </pins>
+          <pins>
+            <port name="in_cols" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_140" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </pins>
+          <pins>
+            <port name="out_rows" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_141" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </pins>
+          <pins>
+            <port name="out_cols" type="SIOType" need_hs="true" top_port_object_id="" top_port_object_id_reference="_142" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </pins>
+        </processe_list>
+        <processe_list name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90">
+          <pins>
+            <port name="AXI_video_strm_V_data_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_125" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_keep_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_126" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_strb_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_127" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_user_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_128" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_last_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_129" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_id_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_130" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_dest_V" type="SIOType" top_port_object_id="" top_port_object_id_reference="_131" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </pins>
+        </processe_list>
+        <processe_list name="rgb2gray_9_0_1080_1920_1_U0" ssdmobj_id="91"/>
+        <processe_list name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96"/>
+        <processe_list name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97">
+          <pins>
+            <port name="AXI_video_strm_V_data_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_132" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_keep_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_133" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_strb_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_134" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_user_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_135" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_last_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_136" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_id_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_137" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+          <pins>
+            <port name="AXI_video_strm_V_dest_V" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="_138" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </pins>
+        </processe_list>
+        <channel_list depth="2" bitwidth="32" suggested_type="2" suggested_depth="2" name="img_in_rows_c" ssdmobj_id="32">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="32" suggested_type="2" suggested_depth="2" name="img_in_cols_c" ssdmobj_id="31">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="4" bitwidth="32" suggested_type="2" suggested_depth="4" name="img_gray_rows_c" ssdmobj_id="30">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="4" bitwidth="32" suggested_type="2" suggested_depth="4" name="img_gray_cols_c" ssdmobj_id="29">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="4" bitwidth="32" suggested_type="2" suggested_depth="4" name="img_out_rows_c" ssdmobj_id="28">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="4" bitwidth="32" suggested_type="2" suggested_depth="4" name="img_out_cols_c" ssdmobj_id="27">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="Block_split1_proc_U0" ssdmobj_id="85" object_id="_146"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="24" suggested_type="0" suggested_depth="2" name="img_in_data" ssdmobj_id="64">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="rgb2gray_9_0_1080_1920_1_U0" ssdmobj_id="91" object_id="_223"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="32" suggested_type="2" suggested_depth="2" name="img_in_rows_c11" ssdmobj_id="26">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="rgb2gray_9_0_1080_1920_1_U0" ssdmobj_id="91" object_id="_223"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="32" suggested_type="2" suggested_depth="2" name="img_in_cols_c12" ssdmobj_id="25">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="AXIvideo2xfMat_24_9_1080_1920_1_U0" ssdmobj_id="90" object_id="_156"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="rgb2gray_9_0_1080_1920_1_U0" ssdmobj_id="91" object_id="_223"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="8" suggested_type="0" suggested_depth="2" name="img_gray_data" ssdmobj_id="67">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="rgb2gray_9_0_1080_1920_1_U0" ssdmobj_id="91" object_id="_223"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="8" suggested_type="0" suggested_depth="2" name="img_out_data" ssdmobj_id="70">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="32" suggested_type="2" suggested_depth="2" name="img_out_rows_c13" ssdmobj_id="24">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </sink>
+        </channel_list>
+        <channel_list depth="2" bitwidth="32" suggested_type="2" suggested_depth="2" name="img_out_cols_c14" ssdmobj_id="23">
+          <source>
+            <port name="in" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="resize_2_0_1080_1920_270_480_1_4_U0" ssdmobj_id="96" object_id="_202"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirOut" type="SIOType" top_port_object_id="" top_port_object_id_reference="" chan_object_id="" chan_object_id_reference=""/>
+            <inst name="xfMat2AXIvideo_8_0_270_480_1_U0" ssdmobj_id="97" object_id="_174"/>
+          </sink>
+        </channel_list>
+      </mDfPipe>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="image_accelerator.wdb" id="1">
+         <top_modules>
+            <top_module name="apa_image_accelerator_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0ns"></ZoomStartTime>
+      <ZoomEndTime time="2000ns"></ZoomEndTime>
+      <Cursor1Time time="0ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="257"></NameColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="2" />
+   <wvobject type="group" fp_name="HLS Process Summary Group">
+      <obj_property name="label">HLS Process Summary</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator//AESL_inst_image_accelerator_activity">
+         <obj_property name="label">AESL_inst_image_accelerator_activity</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="UseFullPath">true</obj_property>
+         <obj_property name="ElementShortName">AESL_inst_image_accelerator_activity</obj_property>
+         <obj_property name="ObjectShortName">AESL_inst_image_accelerator_activity</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+         <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="CustomSignalColor">turquoise</obj_property>
+         <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+         <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator//AESL_inst_image_accelerator_activity.dataflowTxWaveData.Cycles</obj_property>
+         <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator//AESL_inst_image_accelerator_activity.dataflowTxWaveData.OutStanding</obj_property>
+         <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator//AESL_inst_image_accelerator_activity.dataflowTxTooltipData</obj_property>
+         <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/Block_split1_proc_U0_activity">
+            <obj_property name="label">Block_split1_proc_U0_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">Block_split1_proc_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">Block_split1_proc_U0_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/Block_split1_proc_U0_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/Block_split1_proc_U0_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/Block_split1_proc_U0_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/AXIvideo2xfMat_24_9_1080_1920_1_U0_activity">
+            <obj_property name="label">AXIvideo2xfMat_24_9_1080_1920_1_U0_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">AXIvideo2xfMat_24_9_1080_1920_1_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">AXIvideo2xfMat_24_9_1080_1920_1_U0_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/AXIvideo2xfMat_24_9_1080_1920_1_U0_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/AXIvideo2xfMat_24_9_1080_1920_1_U0_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/AXIvideo2xfMat_24_9_1080_1920_1_U0_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/rgb2gray_9_0_1080_1920_1_U0_activity">
+            <obj_property name="label">rgb2gray_9_0_1080_1920_1_U0_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">rgb2gray_9_0_1080_1920_1_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">rgb2gray_9_0_1080_1920_1_U0_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/rgb2gray_9_0_1080_1920_1_U0_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/rgb2gray_9_0_1080_1920_1_U0_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/rgb2gray_9_0_1080_1920_1_U0_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/resize_2_0_1080_1920_270_480_1_4_U0_activity">
+            <obj_property name="label">resize_2_0_1080_1920_270_480_1_4_U0_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">resize_2_0_1080_1920_270_480_1_4_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">resize_2_0_1080_1920_270_480_1_4_U0_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/resize_2_0_1080_1920_270_480_1_4_U0_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/resize_2_0_1080_1920_270_480_1_4_U0_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/resize_2_0_1080_1920_270_480_1_4_U0_activity.dataflowTxTooltipData</obj_property>
+            <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity">
+               <obj_property name="label">grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity.dataflowTxTooltipData</obj_property>
+               <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/grp_xFUDivAreaUp_fu_825_activity">
+                  <obj_property name="label">grp_xFUDivAreaUp_fu_825_activity</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <obj_property name="UseFullPath">true</obj_property>
+                  <obj_property name="ElementShortName">grp_xFUDivAreaUp_fu_825_activity</obj_property>
+                  <obj_property name="ObjectShortName">grp_xFUDivAreaUp_fu_825_activity</obj_property>
+                  <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+                  <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                  <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+                  <obj_property name="UseCustomSignalColor">true</obj_property>
+                  <obj_property name="CustomSignalColor">turquoise</obj_property>
+                  <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+                  <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/grp_xFUDivAreaUp_fu_825_activity.dataflowTxWaveData.Cycles</obj_property>
+                  <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/grp_xFUDivAreaUp_fu_825_activity.dataflowTxWaveData.OutStanding</obj_property>
+                  <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/grp_xFUDivAreaUp_fu_825_activity.dataflowTxTooltipData</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity">
+               <obj_property name="label">grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity.dataflowTxTooltipData</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/xfMat2AXIvideo_8_0_270_480_1_U0_activity">
+            <obj_property name="label">xfMat2AXIvideo_8_0_270_480_1_U0_activity</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="UseFullPath">true</obj_property>
+            <obj_property name="ElementShortName">xfMat2AXIvideo_8_0_270_480_1_U0_activity</obj_property>
+            <obj_property name="ObjectShortName">xfMat2AXIvideo_8_0_270_480_1_U0_activity</obj_property>
+            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+            <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+            <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+            <obj_property name="CustomSignalColor">turquoise</obj_property>
+            <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+            <obj_property name="Render_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/xfMat2AXIvideo_8_0_270_480_1_U0_activity.dataflowTxWaveData.Cycles</obj_property>
+            <obj_property name="Value_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/xfMat2AXIvideo_8_0_270_480_1_U0_activity.dataflowTxWaveData.OutStanding</obj_property>
+            <obj_property name="Detail_Data">/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/xfMat2AXIvideo_8_0_270_480_1_U0_activity.dataflowTxTooltipData</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator//AESL_inst_image_accelerator_activity">
+      <obj_property name="ElementShortName">AESL_inst_image_accelerator_activity</obj_property>
+      <obj_property name="ObjectShortName">AESL_inst_image_accelerator_activity</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="AESL_inst_image_accelerator_group">
+      <obj_property name="label">AESL_inst_image_accelerator</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/Block_split1_proc_U0_activity">
+         <obj_property name="ElementShortName">Block_split1_proc_U0_activity</obj_property>
+         <obj_property name="ObjectShortName">Block_split1_proc_U0_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/AXIvideo2xfMat_24_9_1080_1920_1_U0_activity">
+         <obj_property name="ElementShortName">AXIvideo2xfMat_24_9_1080_1920_1_U0_activity</obj_property>
+         <obj_property name="ObjectShortName">AXIvideo2xfMat_24_9_1080_1920_1_U0_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/rgb2gray_9_0_1080_1920_1_U0_activity">
+         <obj_property name="ElementShortName">rgb2gray_9_0_1080_1920_1_U0_activity</obj_property>
+         <obj_property name="ObjectShortName">rgb2gray_9_0_1080_1920_1_U0_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/resize_2_0_1080_1920_270_480_1_4_U0_activity">
+         <obj_property name="ElementShortName">resize_2_0_1080_1920_270_480_1_4_U0_activity</obj_property>
+         <obj_property name="ObjectShortName">resize_2_0_1080_1920_270_480_1_4_U0_activity</obj_property>
+      </wvobject>
+      <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/xfMat2AXIvideo_8_0_270_480_1_U0_activity">
+         <obj_property name="ElementShortName">xfMat2AXIvideo_8_0_270_480_1_U0_activity</obj_property>
+         <obj_property name="ObjectShortName">xfMat2AXIvideo_8_0_270_480_1_U0_activity</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="AESL_inst_image_accelerator_Handshake_group">
+         <obj_property name="label">Block-level handshake</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/ap_start">
+            <obj_property name="ElementShortName">ap_start</obj_property>
+            <obj_property name="ObjectShortName">ap_start</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/ap_ready">
+            <obj_property name="ElementShortName">ap_ready</obj_property>
+            <obj_property name="ObjectShortName">ap_ready</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/ap_done">
+            <obj_property name="ElementShortName">ap_done</obj_property>
+            <obj_property name="ObjectShortName">ap_done</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="Block_split1_proc_U0_group">
+         <obj_property name="label">Block_split1_proc_U0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="Block_split1_proc_U0_Input_group">
+            <obj_property name="label">Input Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="Block_split1_proc_U0_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/real_start">
+               <obj_property name="ElementShortName">real_start</obj_property>
+               <obj_property name="ObjectShortName">real_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/ap_continue">
+               <obj_property name="ElementShortName">ap_continue</obj_property>
+               <obj_property name="ObjectShortName">ap_continue</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="Block_split1_proc_U0_Output_group">
+            <obj_property name="label">Output Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_in_rows_out_group">
+               <obj_property name="label">img_in_rows_out(img_in_rows_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_rows_out_blk_n">
+                  <obj_property name="ElementShortName">img_in_rows_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_rows_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_rows_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_rows_out_full_n">
+                  <obj_property name="ElementShortName">img_in_rows_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_rows_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_rows_out_write">
+                  <obj_property name="ElementShortName">img_in_rows_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_in_rows_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_in_cols_out_group">
+               <obj_property name="label">img_in_cols_out(img_in_cols_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_cols_out_blk_n">
+                  <obj_property name="ElementShortName">img_in_cols_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_cols_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_cols_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_cols_out_full_n">
+                  <obj_property name="ElementShortName">img_in_cols_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_cols_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_in_cols_out_write">
+                  <obj_property name="ElementShortName">img_in_cols_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_in_cols_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_gray_rows_out_group">
+               <obj_property name="label">img_gray_rows_out(img_gray_rows_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_rows_out_blk_n">
+                  <obj_property name="ElementShortName">img_gray_rows_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_rows_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_rows_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_rows_out_full_n">
+                  <obj_property name="ElementShortName">img_gray_rows_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_rows_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_rows_out_write">
+                  <obj_property name="ElementShortName">img_gray_rows_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_rows_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_gray_cols_out_group">
+               <obj_property name="label">img_gray_cols_out(img_gray_cols_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_cols_out_blk_n">
+                  <obj_property name="ElementShortName">img_gray_cols_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_cols_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_cols_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_cols_out_full_n">
+                  <obj_property name="ElementShortName">img_gray_cols_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_cols_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_gray_cols_out_write">
+                  <obj_property name="ElementShortName">img_gray_cols_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_cols_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_out_rows_out_group">
+               <obj_property name="label">img_out_rows_out(img_out_rows_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_rows_out_blk_n">
+                  <obj_property name="ElementShortName">img_out_rows_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_rows_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_rows_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_rows_out_full_n">
+                  <obj_property name="ElementShortName">img_out_rows_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_rows_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_rows_out_write">
+                  <obj_property name="ElementShortName">img_out_rows_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_out_rows_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_out_cols_out_group">
+               <obj_property name="label">img_out_cols_out(img_out_cols_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_cols_out_blk_n">
+                  <obj_property name="ElementShortName">img_out_cols_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_cols_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_cols_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_cols_out_full_n">
+                  <obj_property name="ElementShortName">img_out_cols_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_cols_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/Block_split1_proc_U0/img_out_cols_out_write">
+                  <obj_property name="ElementShortName">img_out_cols_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_out_cols_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="AXIvideo2xfMat_24_9_1080_1920_1_U0_group">
+         <obj_property name="label">AXIvideo2xfMat_24_9_1080_1920_1_U0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="AXIvideo2xfMat_24_9_1080_1920_1_U0_Input_group">
+            <obj_property name="label">Input Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_1_group">
+               <obj_property name="label">img_1(img_in_rows_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_blk_n">
+                  <obj_property name="ElementShortName">img_1_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_1_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_dout">
+                  <obj_property name="ElementShortName">img_1_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_1_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_empty_n">
+                  <obj_property name="ElementShortName">img_1_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_1_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_read">
+                  <obj_property name="ElementShortName">img_1_read</obj_property>
+                  <obj_property name="ObjectShortName">img_1_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_2_group">
+               <obj_property name="label">img_2(img_in_cols_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_blk_n">
+                  <obj_property name="ElementShortName">img_2_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_2_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_dout">
+                  <obj_property name="ElementShortName">img_2_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_2_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_empty_n">
+                  <obj_property name="ElementShortName">img_2_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_2_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_read">
+                  <obj_property name="ElementShortName">img_2_read</obj_property>
+                  <obj_property name="ObjectShortName">img_2_read</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="AXIvideo2xfMat_24_9_1080_1920_1_U0_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/real_start">
+               <obj_property name="ElementShortName">real_start</obj_property>
+               <obj_property name="ObjectShortName">real_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/ap_continue">
+               <obj_property name="ElementShortName">ap_continue</obj_property>
+               <obj_property name="ObjectShortName">ap_continue</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="AXIvideo2xfMat_24_9_1080_1920_1_U0_Output_group">
+            <obj_property name="label">Output Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_in_432_group">
+               <obj_property name="label">img_in_432(img_in_data_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_in_432_blk_n">
+                  <obj_property name="ElementShortName">img_in_432_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_in_432_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_in_432_full_n">
+                  <obj_property name="ElementShortName">img_in_432_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_in_432_write">
+                  <obj_property name="ElementShortName">img_in_432_write</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_1_out_group">
+               <obj_property name="label">img_1_out(img_in_rows_c11_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_out_blk_n">
+                  <obj_property name="ElementShortName">img_1_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_1_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_out_full_n">
+                  <obj_property name="ElementShortName">img_1_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_1_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_1_out_write">
+                  <obj_property name="ElementShortName">img_1_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_1_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_2_out_group">
+               <obj_property name="label">img_2_out(img_in_cols_c12_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_out_blk_n">
+                  <obj_property name="ElementShortName">img_2_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_2_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_out_full_n">
+                  <obj_property name="ElementShortName">img_2_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_2_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/AXIvideo2xfMat_24_9_1080_1920_1_U0/img_2_out_write">
+                  <obj_property name="ElementShortName">img_2_out_write</obj_property>
+                  <obj_property name="ObjectShortName">img_2_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="rgb2gray_9_0_1080_1920_1_U0_group">
+         <obj_property name="label">rgb2gray_9_0_1080_1920_1_U0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="rgb2gray_9_0_1080_1920_1_U0_Input_group">
+            <obj_property name="label">Input Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_in_432_group">
+               <obj_property name="label">img_in_432(img_in_data_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_in_432_blk_n">
+                  <obj_property name="ElementShortName">img_in_432_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_in_432_dout">
+                  <obj_property name="ElementShortName">img_in_432_dout[23:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_dout[23:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_in_432_empty_n">
+                  <obj_property name="ElementShortName">img_in_432_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_in_432_read">
+                  <obj_property name="ElementShortName">img_in_432_read</obj_property>
+                  <obj_property name="ObjectShortName">img_in_432_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_src_rows_group">
+               <obj_property name="label">p_src_rows(img_in_rows_c11_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_rows_blk_n">
+                  <obj_property name="ElementShortName">p_src_rows_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_rows_dout">
+                  <obj_property name="ElementShortName">p_src_rows_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_rows_empty_n">
+                  <obj_property name="ElementShortName">p_src_rows_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_rows_read">
+                  <obj_property name="ElementShortName">p_src_rows_read</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_src_cols_group">
+               <obj_property name="label">p_src_cols(img_in_cols_c12_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_cols_blk_n">
+                  <obj_property name="ElementShortName">p_src_cols_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_cols_dout">
+                  <obj_property name="ElementShortName">p_src_cols_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_cols_empty_n">
+                  <obj_property name="ElementShortName">p_src_cols_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/p_src_cols_read">
+                  <obj_property name="ElementShortName">p_src_cols_read</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_read</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="rgb2gray_9_0_1080_1920_1_U0_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/ap_continue">
+               <obj_property name="ElementShortName">ap_continue</obj_property>
+               <obj_property name="ObjectShortName">ap_continue</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="rgb2gray_9_0_1080_1920_1_U0_Output_group">
+            <obj_property name="label">Output Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_gray_433_group">
+               <obj_property name="label">img_gray_433(img_gray_data_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_gray_433_blk_n">
+                  <obj_property name="ElementShortName">img_gray_433_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_433_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_gray_433_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_gray_433_full_n">
+                  <obj_property name="ElementShortName">img_gray_433_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_433_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/rgb2gray_9_0_1080_1920_1_U0/img_gray_433_write">
+                  <obj_property name="ElementShortName">img_gray_433_write</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_433_write</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="resize_2_0_1080_1920_270_480_1_4_U0_group">
+         <obj_property name="label">resize_2_0_1080_1920_270_480_1_4_U0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity">
+            <obj_property name="ElementShortName">grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_activity</obj_property>
+         </wvobject>
+         <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity">
+            <obj_property name="ElementShortName">grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity</obj_property>
+            <obj_property name="ObjectShortName">grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_activity</obj_property>
+         </wvobject>
+         <wvobject type="group" fp_name="resize_2_0_1080_1920_270_480_1_4_U0_Input_group">
+            <obj_property name="label">Input Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_gray_433_group">
+               <obj_property name="label">img_gray_433(img_gray_data_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/img_gray_433_dout">
+                  <obj_property name="ElementShortName">img_gray_433_dout[7:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_433_dout[7:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/img_gray_433_empty_n">
+                  <obj_property name="ElementShortName">img_gray_433_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_433_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/img_gray_433_read">
+                  <obj_property name="ElementShortName">img_gray_433_read</obj_property>
+                  <obj_property name="ObjectShortName">img_gray_433_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_src_rows_group">
+               <obj_property name="label">p_src_rows(img_gray_rows_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_rows_blk_n">
+                  <obj_property name="ElementShortName">p_src_rows_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_rows_dout">
+                  <obj_property name="ElementShortName">p_src_rows_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_rows_empty_n">
+                  <obj_property name="ElementShortName">p_src_rows_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_rows_read">
+                  <obj_property name="ElementShortName">p_src_rows_read</obj_property>
+                  <obj_property name="ObjectShortName">p_src_rows_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_src_cols_group">
+               <obj_property name="label">p_src_cols(img_gray_cols_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_cols_blk_n">
+                  <obj_property name="ElementShortName">p_src_cols_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_cols_dout">
+                  <obj_property name="ElementShortName">p_src_cols_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_cols_empty_n">
+                  <obj_property name="ElementShortName">p_src_cols_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_src_cols_read">
+                  <obj_property name="ElementShortName">p_src_cols_read</obj_property>
+                  <obj_property name="ObjectShortName">p_src_cols_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_dst_rows_group">
+               <obj_property name="label">p_dst_rows(img_out_rows_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_blk_n">
+                  <obj_property name="ElementShortName">p_dst_rows_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_dout">
+                  <obj_property name="ElementShortName">p_dst_rows_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_empty_n">
+                  <obj_property name="ElementShortName">p_dst_rows_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_read">
+                  <obj_property name="ElementShortName">p_dst_rows_read</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_dst_cols_group">
+               <obj_property name="label">p_dst_cols(img_out_cols_c_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_blk_n">
+                  <obj_property name="ElementShortName">p_dst_cols_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_dout">
+                  <obj_property name="ElementShortName">p_dst_cols_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_empty_n">
+                  <obj_property name="ElementShortName">p_dst_cols_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_read">
+                  <obj_property name="ElementShortName">p_dst_cols_read</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_read</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="resize_2_0_1080_1920_270_480_1_4_U0_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/real_start">
+               <obj_property name="ElementShortName">real_start</obj_property>
+               <obj_property name="ObjectShortName">real_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/ap_continue">
+               <obj_property name="ElementShortName">ap_continue</obj_property>
+               <obj_property name="ObjectShortName">ap_continue</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="resize_2_0_1080_1920_270_480_1_4_U0_Output_group">
+            <obj_property name="label">Output Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_out_434_group">
+               <obj_property name="label">img_out_434(img_out_data_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/img_out_434_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/img_out_434_full_n">
+                  <obj_property name="ElementShortName">img_out_434_full_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_434_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/img_out_434_write">
+                  <obj_property name="ElementShortName">img_out_434_write</obj_property>
+                  <obj_property name="ObjectShortName">img_out_434_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_dst_rows_out_group">
+               <obj_property name="label">p_dst_rows_out(img_out_rows_c13_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_out_blk_n">
+                  <obj_property name="ElementShortName">p_dst_rows_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_out_full_n">
+                  <obj_property name="ElementShortName">p_dst_rows_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_rows_out_write">
+                  <obj_property name="ElementShortName">p_dst_rows_out_write</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_rows_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="p_dst_cols_out_group">
+               <obj_property name="label">p_dst_cols_out(img_out_cols_c14_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_out_blk_n">
+                  <obj_property name="ElementShortName">p_dst_cols_out_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_out_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_out_din">
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_out_full_n">
+                  <obj_property name="ElementShortName">p_dst_cols_out_full_n</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_out_full_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/p_dst_cols_out_write">
+                  <obj_property name="ElementShortName">p_dst_cols_out_write</obj_property>
+                  <obj_property name="ObjectShortName">p_dst_cols_out_write</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_group">
+            <obj_property name="label">grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="protoinst" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/grp_xFUDivAreaUp_fu_825_activity">
+               <obj_property name="ElementShortName">grp_xFUDivAreaUp_fu_825_activity</obj_property>
+               <obj_property name="ObjectShortName">grp_xFUDivAreaUp_fu_825_activity</obj_property>
+            </wvobject>
+            <wvobject type="group" fp_name="grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="grp_xFUDivAreaUp_fu_825_group">
+               <obj_property name="label">grp_xFUDivAreaUp_fu_825</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="group" fp_name="grp_xFUDivAreaUp_fu_825_Handshake_group">
+                  <obj_property name="label">Block-level handshake</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/ap_start">
+                     <obj_property name="ElementShortName">ap_start</obj_property>
+                     <obj_property name="ObjectShortName">ap_start</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/ap_ready">
+                     <obj_property name="ElementShortName">ap_ready</obj_property>
+                     <obj_property name="ObjectShortName">ap_ready</obj_property>
+                  </wvobject>
+                  <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaUpScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_82/grp_xFUDivAreaUp_fu_825/ap_done">
+                     <obj_property name="ElementShortName">ap_done</obj_property>
+                     <obj_property name="ObjectShortName">ap_done</obj_property>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_group">
+            <obj_property name="label">grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94_Handshake_group">
+               <obj_property name="label">Block-level handshake</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/ap_start">
+                  <obj_property name="ElementShortName">ap_start</obj_property>
+                  <obj_property name="ObjectShortName">ap_start</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/ap_ready">
+                  <obj_property name="ElementShortName">ap_ready</obj_property>
+                  <obj_property name="ObjectShortName">ap_ready</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/ap_done">
+                  <obj_property name="ElementShortName">ap_done</obj_property>
+                  <obj_property name="ObjectShortName">ap_done</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="xfMat2AXIvideo_8_0_270_480_1_U0_group">
+         <obj_property name="label">xfMat2AXIvideo_8_0_270_480_1_U0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="xfMat2AXIvideo_8_0_270_480_1_U0_Input_group">
+            <obj_property name="label">Input Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="group" fp_name="img_out_434_group">
+               <obj_property name="label">img_out_434(img_out_data_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_out_434_blk_n">
+                  <obj_property name="ElementShortName">img_out_434_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_434_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_out_434_dout">
+                  <obj_property name="ElementShortName">img_out_434_dout[7:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_out_434_dout[7:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_out_434_empty_n">
+                  <obj_property name="ElementShortName">img_out_434_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_out_434_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_out_434_read">
+                  <obj_property name="ElementShortName">img_out_434_read</obj_property>
+                  <obj_property name="ObjectShortName">img_out_434_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_1_group">
+               <obj_property name="label">img_1(img_out_rows_c13_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_1_blk_n">
+                  <obj_property name="ElementShortName">img_1_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_1_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_1_dout">
+                  <obj_property name="ElementShortName">img_1_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_1_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_1_empty_n">
+                  <obj_property name="ElementShortName">img_1_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_1_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_1_read">
+                  <obj_property name="ElementShortName">img_1_read</obj_property>
+                  <obj_property name="ObjectShortName">img_1_read</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject type="group" fp_name="img_2_group">
+               <obj_property name="label">img_2(img_out_cols_c14_U, FIFO)</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_2_blk_n">
+                  <obj_property name="ElementShortName">img_2_blk_n</obj_property>
+                  <obj_property name="ObjectShortName">img_2_blk_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_2_dout">
+                  <obj_property name="ElementShortName">img_2_dout[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">img_2_dout[31:0]</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_2_empty_n">
+                  <obj_property name="ElementShortName">img_2_empty_n</obj_property>
+                  <obj_property name="ObjectShortName">img_2_empty_n</obj_property>
+               </wvobject>
+               <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/img_2_read">
+                  <obj_property name="ElementShortName">img_2_read</obj_property>
+                  <obj_property name="ObjectShortName">img_2_read</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="xfMat2AXIvideo_8_0_270_480_1_U0_Handshake_group">
+            <obj_property name="label">Block-level handshake</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/ap_start">
+               <obj_property name="ElementShortName">ap_start</obj_property>
+               <obj_property name="ObjectShortName">ap_start</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/ap_ready">
+               <obj_property name="ElementShortName">ap_ready</obj_property>
+               <obj_property name="ObjectShortName">ap_ready</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/ap_done">
+               <obj_property name="ElementShortName">ap_done</obj_property>
+               <obj_property name="ObjectShortName">ap_done</obj_property>
+            </wvobject>
+            <wvobject type="logic" fp_name="/apatb_image_accelerator_top/AESL_inst_image_accelerator/xfMat2AXIvideo_8_0_270_480_1_U0/ap_continue">
+               <obj_property name="ElementShortName">ap_continue</obj_property>
+               <obj_property name="ObjectShortName">ap_continue</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="group" fp_name="xfMat2AXIvideo_8_0_270_480_1_U0_Output_group">
+            <obj_property name="label">Output Channels</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>
