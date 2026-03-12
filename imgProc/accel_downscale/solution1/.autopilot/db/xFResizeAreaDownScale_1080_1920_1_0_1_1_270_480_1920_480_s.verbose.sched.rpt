@@ -1,0 +1,1279 @@
+
+
+================================================================
+== Vitis HLS Report for 'xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s'
+================================================================
+* Date:           Mon Mar  9 12:23:40 2026
+
+* Version:        2020.2 (Build 3064766 on Wed Nov 18 09:12:45 MST 2020)
+* Project:        accel_downscale
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.061 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+-----+---------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max    | min |   max   |   Type  |
+    +---------+---------+----------+-----------+-----+---------+---------+
+    |      556|  2087114|  5.560 us|  20.871 ms|  556|  2087114|     none|
+    +---------+---------+----------+-----------+-----+---------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip   |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  |   Count  | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+----------+----------+
+        |- VITIS_LOOP_658_4  |      480|      480|         1|          1|          1|       480|       yes|
+        |- LOOP_ROW          |        2|  2086560|  2 ~ 1932|          -|          -|  1 ~ 1080|        no|
+        | + LOOP_COL         |       10|     1929|        11|          1|          1|  1 ~ 1920|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+----------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+  * Pipeline-1: initiation interval (II) = 1, depth = 11
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 87
+* Pipeline : 2
+  Pipeline-0 : II = 1, D = 1, States = { 37 }
+  Pipeline-1 : II = 1, D = 11, States = { 76 77 78 79 80 81 82 83 84 85 86 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 38 37 
+38 --> 39 
+39 --> 40 
+40 --> 41 
+41 --> 42 
+42 --> 43 
+43 --> 44 
+44 --> 45 
+45 --> 46 
+46 --> 47 
+47 --> 48 
+48 --> 49 
+49 --> 50 
+50 --> 51 
+51 --> 52 
+52 --> 53 
+53 --> 54 
+54 --> 55 
+55 --> 56 
+56 --> 57 
+57 --> 58 
+58 --> 59 
+59 --> 60 
+60 --> 61 
+61 --> 62 
+62 --> 63 
+63 --> 64 
+64 --> 65 
+65 --> 66 
+66 --> 67 
+67 --> 68 
+68 --> 69 
+69 --> 70 
+70 --> 71 
+71 --> 72 
+72 --> 73 
+73 --> 74 
+74 --> 75 
+75 --> 87 76 
+76 --> 87 77 
+77 --> 78 
+78 --> 79 
+79 --> 80 
+80 --> 81 
+81 --> 82 
+82 --> 83 
+83 --> 84 
+84 --> 85 
+85 --> 86 
+86 --> 76 
+87 --> 75 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 4.13>
+ST_1 : Operation 88 [1/1] (0.00ns)   --->   "%p_read_5 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read3"   --->   Operation 88 'read' 'p_read_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 89 [1/1] (0.00ns)   --->   "%p_read_7 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read1"   --->   Operation 89 'read' 'p_read_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 90 [1/1] (0.00ns)   --->   "%ouput_buffer_V_0_0 = alloca i64 1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:630]   --->   Operation 90 'alloca' 'ouput_buffer_V_0_0' <Predicate = true> <Delay = 0.00> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 480> <RAM>
+ST_1 : Operation 91 [1/1] (0.00ns)   --->   "%zext_ln29 = zext i16 %p_read_7" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 91 'zext' 'zext_ln29' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 92 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i16.i16, i16 %p_read_5, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 92 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 93 [36/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 93 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 2 <SV = 1> <Delay = 4.13>
+ST_2 : Operation 94 [35/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 94 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 4.13>
+ST_3 : Operation 95 [34/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 95 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 4.13>
+ST_4 : Operation 96 [33/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 96 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 4.13>
+ST_5 : Operation 97 [32/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 97 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 4.13>
+ST_6 : Operation 98 [31/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 98 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 4.13>
+ST_7 : Operation 99 [30/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 99 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 4.13>
+ST_8 : Operation 100 [29/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 100 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 4.13>
+ST_9 : Operation 101 [28/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 101 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 4.13>
+ST_10 : Operation 102 [27/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 102 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 4.13>
+ST_11 : Operation 103 [26/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 103 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 4.13>
+ST_12 : Operation 104 [25/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 104 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 4.13>
+ST_13 : Operation 105 [24/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 105 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 4.13>
+ST_14 : Operation 106 [23/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 106 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 4.13>
+ST_15 : Operation 107 [22/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 107 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 4.13>
+ST_16 : Operation 108 [21/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 108 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 4.13>
+ST_17 : Operation 109 [20/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 109 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 4.13>
+ST_18 : Operation 110 [19/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 110 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 4.13>
+ST_19 : Operation 111 [18/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 111 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 4.13>
+ST_20 : Operation 112 [17/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 112 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 4.13>
+ST_21 : Operation 113 [16/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 113 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 4.13>
+ST_22 : Operation 114 [15/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 114 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 4.13>
+ST_23 : Operation 115 [14/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 115 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 4.13>
+ST_24 : Operation 116 [13/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 116 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 4.13>
+ST_25 : Operation 117 [12/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 117 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 4.13>
+ST_26 : Operation 118 [11/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 118 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 4.13>
+ST_27 : Operation 119 [10/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 119 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 4.13>
+ST_28 : Operation 120 [9/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 120 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 4.13>
+ST_29 : Operation 121 [8/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 121 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 4.13>
+ST_30 : Operation 122 [7/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 122 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 4.13>
+ST_31 : Operation 123 [6/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 123 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 4.13>
+ST_32 : Operation 124 [5/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 124 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 4.13>
+ST_33 : Operation 125 [4/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 125 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 4.13>
+ST_34 : Operation 126 [3/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 126 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 4.13>
+ST_35 : Operation 127 [2/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 127 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 4.13>
+ST_36 : Operation 128 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %img_gray_433, void @empty_12, i32 0, i32 0, void @empty_4, i32 0, i32 0, void @empty_4, void @empty_4, void @empty_4, i32 0, i32 0, i32 0, i32 0, void @empty_4, void @empty_4"   --->   Operation 128 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 129 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %img_out_434, void @empty_12, i32 0, i32 0, void @empty_4, i32 0, i32 0, void @empty_4, void @empty_4, void @empty_4, i32 0, i32 0, i32 0, i32 0, void @empty_4, void @empty_4"   --->   Operation 129 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 130 [1/1] (0.00ns)   --->   "%p_read_6 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read2"   --->   Operation 130 'read' 'p_read_6' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 131 [1/1] (0.00ns)   --->   "%p_read_8 = read i16 @_ssdm_op_Read.ap_auto.i16, i16 %p_read"   --->   Operation 131 'read' 'p_read_8' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 132 [1/1] (0.00ns)   --->   "%zext_ln29_2 = zext i16 %p_read_7" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 132 'zext' 'zext_ln29_2' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 133 [1/1] (0.00ns)   --->   "%zext_ln29_1 = zext i16 %p_read_5" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 133 'zext' 'zext_ln29_1' <Predicate = true> <Delay = 0.00>
+ST_36 : Operation 134 [1/36] (4.13ns)   --->   "%out_div_3 = udiv i32 %shl_ln, i32 %zext_ln29" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 134 'udiv' 'out_div_3' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 135 [1/1] (1.58ns)   --->   "%br_ln658 = br void" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:658]   --->   Operation 135 'br' 'br_ln658' <Predicate = true> <Delay = 1.58>
+
+State 37 <SV = 36> <Delay = 4.91>
+ST_37 : Operation 136 [1/1] (0.00ns)   --->   "%dim3_V = phi i9 0, void %arrayctor.loop, i9 %dim3_V_1, void %.split28"   --->   Operation 136 'phi' 'dim3_V' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 137 [1/1] (1.82ns)   --->   "%dim3_V_1 = add i9 %dim3_V, i9 1"   --->   Operation 137 'add' 'dim3_V_1' <Predicate = true> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 138 [1/1] (1.66ns)   --->   "%icmp_ln878 = icmp_eq  i9 %dim3_V, i9 480"   --->   Operation 138 'icmp' 'icmp_ln878' <Predicate = true> <Delay = 1.66> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 139 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 480, i64 480, i64 480"   --->   Operation 139 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 140 [1/1] (0.00ns)   --->   "%br_ln658 = br i1 %icmp_ln878, void %.split28, void %.lr.ph75" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:658]   --->   Operation 140 'br' 'br_ln658' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 141 [1/1] (0.00ns)   --->   "%specpipeline_ln658 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_4" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:658]   --->   Operation 141 'specpipeline' 'specpipeline_ln658' <Predicate = (!icmp_ln878)> <Delay = 0.00>
+ST_37 : Operation 142 [1/1] (0.00ns)   --->   "%specloopname_ln658 = specloopname void @_ssdm_op_SpecLoopName, void @empty_26" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:658]   --->   Operation 142 'specloopname' 'specloopname_ln658' <Predicate = (!icmp_ln878)> <Delay = 0.00>
+ST_37 : Operation 143 [1/1] (0.00ns)   --->   "%conv_i396 = zext i9 %dim3_V"   --->   Operation 143 'zext' 'conv_i396' <Predicate = (!icmp_ln878)> <Delay = 0.00>
+ST_37 : Operation 144 [1/1] (0.00ns)   --->   "%ouput_buffer_V_0_0_addr = getelementptr i16 %ouput_buffer_V_0_0, i64 0, i64 %conv_i396" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:670]   --->   Operation 144 'getelementptr' 'ouput_buffer_V_0_0_addr' <Predicate = (!icmp_ln878)> <Delay = 0.00>
+ST_37 : Operation 145 [1/1] (3.25ns)   --->   "%store_ln670 = store i16 0, i9 %ouput_buffer_V_0_0_addr" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:670]   --->   Operation 145 'store' 'store_ln670' <Predicate = (!icmp_ln878)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 480> <RAM>
+ST_37 : Operation 146 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 146 'br' 'br_ln0' <Predicate = (!icmp_ln878)> <Delay = 0.00>
+
+State 38 <SV = 37> <Delay = 4.13>
+ST_38 : Operation 147 [1/1] (0.00ns)   --->   "%Xindex_output_next_V = alloca i32 1"   --->   Operation 147 'alloca' 'Xindex_output_next_V' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 148 [1/1] (0.00ns)   --->   "%Yindex_output_V_1 = alloca i32 1"   --->   Operation 148 'alloca' 'Yindex_output_V_1' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 149 [1/1] (0.00ns)   --->   "%Yindex_output_prev_V = alloca i32 1"   --->   Operation 149 'alloca' 'Yindex_output_prev_V' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 150 [1/1] (0.00ns)   --->   "%write_col_index_V = alloca i32 1"   --->   Operation 150 'alloca' 'write_col_index_V' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 151 [1/1] (0.00ns)   --->   "%ouput_index_write_counter_V = alloca i32 1"   --->   Operation 151 'alloca' 'ouput_index_write_counter_V' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 152 [1/1] (0.00ns)   --->   "%out_col_index = alloca i32 1"   --->   Operation 152 'alloca' 'out_col_index' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 153 [1/1] (0.00ns)   --->   "%Yaxis_overlap_en = alloca i32 1"   --->   Operation 153 'alloca' 'Yaxis_overlap_en' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 154 [1/1] (0.00ns)   --->   "%p_Val2_1 = alloca i32 1"   --->   Operation 154 'alloca' 'p_Val2_1' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 155 [1/1] (0.00ns)   --->   "%data_previous_V = alloca i32 1"   --->   Operation 155 'alloca' 'data_previous_V' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 156 [1/1] (0.00ns)   --->   "%data_previous_V_2 = alloca i32 1"   --->   Operation 156 'alloca' 'data_previous_V_2' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 157 [1/1] (0.00ns)   --->   "%data_previous_overlap_V = alloca i32 1"   --->   Operation 157 'alloca' 'data_previous_overlap_V' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 158 [1/1] (0.00ns)   --->   "%data_previous_overlap_V_2 = alloca i32 1"   --->   Operation 158 'alloca' 'data_previous_overlap_V_2' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 159 [1/1] (0.00ns)   --->   "%shl_ln29_2 = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i16.i16, i16 %p_read_7, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 159 'bitconcatenate' 'shl_ln29_2' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 160 [36/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 160 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 161 [1/1] (1.58ns)   --->   "%store_ln686 = store i16 0, i16 %data_previous_overlap_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 161 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 162 [1/1] (1.58ns)   --->   "%store_ln686 = store i16 0, i16 %data_previous_overlap_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 162 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 163 [1/1] (1.58ns)   --->   "%store_ln686 = store i16 0, i16 %data_previous_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 163 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 164 [1/1] (1.58ns)   --->   "%store_ln686 = store i16 0, i16 %data_previous_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 164 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 165 [1/1] (1.58ns)   --->   "%store_ln686 = store i1 0, i1 %Yaxis_overlap_en" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 165 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 166 [1/1] (1.58ns)   --->   "%store_ln686 = store i32 0, i32 %out_col_index" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 166 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 167 [1/1] (1.58ns)   --->   "%store_ln686 = store i16 1, i16 %ouput_index_write_counter_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 167 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 168 [1/1] (1.58ns)   --->   "%store_ln686 = store i16 0, i16 %write_col_index_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 168 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_38 : Operation 169 [1/1] (1.58ns)   --->   "%store_ln686 = store i32 0, i32 %Yindex_output_prev_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 169 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+
+State 39 <SV = 38> <Delay = 4.13>
+ST_39 : Operation 170 [1/1] (0.00ns)   --->   "%shl_ln29_1 = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i16.i16, i16 %p_read_6, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 170 'bitconcatenate' 'shl_ln29_1' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 171 [1/1] (0.00ns)   --->   "%zext_ln29_3 = zext i16 %p_read_8" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 171 'zext' 'zext_ln29_3' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 172 [35/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 172 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_39 : Operation 173 [36/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 173 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 40 <SV = 39> <Delay = 4.13>
+ST_40 : Operation 174 [34/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 174 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_40 : Operation 175 [35/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 175 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 41 <SV = 40> <Delay = 4.13>
+ST_41 : Operation 176 [33/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 176 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_41 : Operation 177 [34/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 177 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 42 <SV = 41> <Delay = 4.13>
+ST_42 : Operation 178 [32/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 178 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_42 : Operation 179 [33/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 179 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 43 <SV = 42> <Delay = 4.13>
+ST_43 : Operation 180 [31/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 180 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_43 : Operation 181 [32/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 181 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 44 <SV = 43> <Delay = 4.13>
+ST_44 : Operation 182 [30/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 182 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_44 : Operation 183 [31/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 183 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 45 <SV = 44> <Delay = 4.13>
+ST_45 : Operation 184 [29/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 184 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_45 : Operation 185 [30/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 185 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 46 <SV = 45> <Delay = 4.13>
+ST_46 : Operation 186 [28/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 186 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_46 : Operation 187 [29/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 187 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 47 <SV = 46> <Delay = 4.13>
+ST_47 : Operation 188 [27/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 188 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_47 : Operation 189 [28/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 189 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 48 <SV = 47> <Delay = 4.13>
+ST_48 : Operation 190 [26/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 190 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_48 : Operation 191 [27/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 191 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 49 <SV = 48> <Delay = 4.13>
+ST_49 : Operation 192 [25/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 192 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_49 : Operation 193 [26/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 193 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 50 <SV = 49> <Delay = 4.13>
+ST_50 : Operation 194 [24/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 194 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_50 : Operation 195 [25/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 195 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 51 <SV = 50> <Delay = 4.13>
+ST_51 : Operation 196 [23/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 196 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_51 : Operation 197 [24/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 197 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 52 <SV = 51> <Delay = 4.13>
+ST_52 : Operation 198 [22/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 198 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_52 : Operation 199 [23/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 199 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 53 <SV = 52> <Delay = 4.13>
+ST_53 : Operation 200 [21/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 200 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_53 : Operation 201 [22/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 201 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 54 <SV = 53> <Delay = 4.13>
+ST_54 : Operation 202 [20/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 202 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_54 : Operation 203 [21/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 203 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 55 <SV = 54> <Delay = 4.13>
+ST_55 : Operation 204 [19/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 204 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_55 : Operation 205 [20/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 205 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 56 <SV = 55> <Delay = 4.13>
+ST_56 : Operation 206 [18/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 206 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_56 : Operation 207 [19/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 207 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 57 <SV = 56> <Delay = 4.13>
+ST_57 : Operation 208 [17/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 208 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_57 : Operation 209 [18/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 209 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 58 <SV = 57> <Delay = 4.13>
+ST_58 : Operation 210 [16/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 210 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_58 : Operation 211 [17/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 211 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 59 <SV = 58> <Delay = 4.13>
+ST_59 : Operation 212 [15/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 212 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_59 : Operation 213 [16/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 213 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 60 <SV = 59> <Delay = 4.13>
+ST_60 : Operation 214 [14/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 214 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_60 : Operation 215 [15/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 215 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 61 <SV = 60> <Delay = 4.13>
+ST_61 : Operation 216 [13/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 216 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_61 : Operation 217 [14/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 217 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 62 <SV = 61> <Delay = 4.13>
+ST_62 : Operation 218 [12/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 218 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_62 : Operation 219 [13/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 219 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 63 <SV = 62> <Delay = 4.13>
+ST_63 : Operation 220 [11/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 220 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_63 : Operation 221 [12/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 221 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 64 <SV = 63> <Delay = 4.13>
+ST_64 : Operation 222 [10/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 222 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_64 : Operation 223 [11/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 223 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 65 <SV = 64> <Delay = 4.13>
+ST_65 : Operation 224 [9/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 224 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_65 : Operation 225 [10/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 225 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 66 <SV = 65> <Delay = 4.13>
+ST_66 : Operation 226 [8/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 226 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_66 : Operation 227 [9/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 227 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 67 <SV = 66> <Delay = 4.13>
+ST_67 : Operation 228 [7/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 228 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_67 : Operation 229 [8/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 229 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 68 <SV = 67> <Delay = 4.13>
+ST_68 : Operation 230 [6/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 230 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_68 : Operation 231 [7/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 231 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 69 <SV = 68> <Delay = 4.13>
+ST_69 : Operation 232 [5/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 232 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_69 : Operation 233 [6/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 233 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 70 <SV = 69> <Delay = 4.13>
+ST_70 : Operation 234 [4/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 234 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_70 : Operation 235 [5/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 235 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 71 <SV = 70> <Delay = 4.13>
+ST_71 : Operation 236 [3/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 236 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_71 : Operation 237 [4/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 237 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 72 <SV = 71> <Delay = 4.13>
+ST_72 : Operation 238 [2/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 238 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_72 : Operation 239 [3/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 239 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 73 <SV = 72> <Delay = 6.60>
+ST_73 : Operation 240 [1/36] (4.13ns)   --->   "%out_div = udiv i32 %shl_ln29_2, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 240 'udiv' 'out_div' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_73 : Operation 241 [2/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 241 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_73 : Operation 242 [1/1] (2.47ns)   --->   "%cmp_i_i937_i = icmp_eq  i32 %out_div, i32 65536" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 242 'icmp' 'cmp_i_i937_i' <Predicate = true> <Delay = 2.47> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+
+State 74 <SV = 73> <Delay = 6.56>
+ST_74 : Operation 243 [1/1] (0.00ns)   --->   "%zext_ln29_4 = zext i16 %p_read_8" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 243 'zext' 'zext_ln29_4' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 244 [1/36] (4.13ns)   --->   "%out_div_4 = udiv i32 %shl_ln29_1, i32 %zext_ln29_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 244 'udiv' 'out_div_4' <Predicate = true> <Delay = 4.13> <CoreInst = "DivnS_SEQ">   --->   Core 7 'DivnS_SEQ' <Latency = 35> <II = 32> <Delay = 4.13> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 245 [1/1] (0.00ns)   --->   "%trunc_ln213 = trunc i32 %out_div_4"   --->   Operation 245 'trunc' 'trunc_ln213' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 246 [1/1] (0.00ns)   --->   "%shl_ln213 = shl i32 %out_div_3, i32 1"   --->   Operation 246 'shl' 'shl_ln213' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 247 [1/1] (0.00ns)   --->   "%rhs_4 = zext i32 %out_div_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 247 'zext' 'rhs_4' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 248 [1/1] (0.00ns)   --->   "%tmp = bitselect i1 @_ssdm_op_BitSelect.i1.i32.i32, i32 %out_div_3, i32 16" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 248 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 249 [1/1] (0.00ns)   --->   "%tmp_5 = bitconcatenate i17 @_ssdm_op_BitConcatenate.i17.i1.i16, i1 %tmp, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 249 'bitconcatenate' 'tmp_5' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 250 [1/1] (2.43ns)   --->   "%bit_select_i_i90_i = icmp_eq  i17 %tmp_5, i17 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 250 'icmp' 'bit_select_i_i90_i' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 251 [1/1] (2.07ns)   --->   "%sub162_i = add i17 %zext_ln29_2, i17 131071" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 251 'add' 'sub162_i' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 252 [1/1] (2.07ns)   --->   "%sub158_i = add i17 %zext_ln29_4, i17 131071" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 252 'add' 'sub158_i' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 253 [1/1] (0.00ns)   --->   "%lhs_V_6 = zext i32 %out_div_4" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 253 'zext' 'lhs_V_6' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 254 [1/1] (0.00ns)   --->   "%tmp_6 = bitselect i1 @_ssdm_op_BitSelect.i1.i32.i32, i32 %out_div_4, i32 16" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 254 'bitselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_74 : Operation 255 [1/1] (0.97ns)   --->   "%rev = xor i1 %tmp_6, i1 1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 255 'xor' 'rev' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 256 [1/1] (2.42ns)   --->   "%cmp10531 = icmp_eq  i16 %p_read_7, i16 0"   --->   Operation 256 'icmp' 'cmp10531' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 257 [1/1] (0.00ns) (grouped into LUT with out node empty_49)   --->   "%empty = and i17 %trunc_ln213, i17 %tmp_5"   --->   Operation 257 'and' 'empty' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 258 [1/1] (2.43ns) (out node of the LUT)   --->   "%empty_49 = icmp_ne  i17 %empty, i17 0"   --->   Operation 258 'icmp' 'empty_49' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 259 [1/1] (0.97ns)   --->   "%sel_tmp = xor i1 %cmp_i_i937_i, i1 1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 259 'xor' 'sel_tmp' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_74 : Operation 260 [1/1] (1.58ns)   --->   "%store_ln686 = store i32 %out_div_4, i32 %Yindex_output_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 260 'store' 'store_ln686' <Predicate = true> <Delay = 1.58>
+ST_74 : Operation 261 [1/1] (1.58ns)   --->   "%br_ln686 = br void" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 261 'br' 'br_ln686' <Predicate = true> <Delay = 1.58>
+
+State 75 <SV = 74> <Delay = 2.43>
+ST_75 : Operation 262 [1/1] (0.00ns)   --->   "%row_index_V = phi i16 0, void %.lr.ph75, i16 %row_index_V_1, void %._crit_edge"   --->   Operation 262 'phi' 'row_index_V' <Predicate = true> <Delay = 0.00>
+ST_75 : Operation 263 [1/1] (2.07ns)   --->   "%row_index_V_1 = add i16 %row_index_V, i16 1"   --->   Operation 263 'add' 'row_index_V_1' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_75 : Operation 264 [1/1] (2.42ns)   --->   "%icmp_ln686 = icmp_eq  i16 %row_index_V, i16 %p_read_8" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 264 'icmp' 'icmp_ln686' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_75 : Operation 265 [1/1] (0.00ns)   --->   "%br_ln686 = br i1 %icmp_ln686, void %.split25, void %._crit_edge76.loopexit" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 265 'br' 'br_ln686' <Predicate = true> <Delay = 0.00>
+ST_75 : Operation 266 [1/1] (0.00ns)   --->   "%zext_ln686 = zext i16 %row_index_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 266 'zext' 'zext_ln686' <Predicate = (!icmp_ln686)> <Delay = 0.00>
+ST_75 : Operation 267 [1/1] (0.00ns)   --->   "%speclooptripcount_ln608 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1, i64 1080, i64 540" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:608]   --->   Operation 267 'speclooptripcount' 'speclooptripcount_ln608' <Predicate = (!icmp_ln686)> <Delay = 0.00>
+ST_75 : Operation 268 [1/1] (0.00ns)   --->   "%specloopname_ln608 = specloopname void @_ssdm_op_SpecLoopName, void @empty_25" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:608]   --->   Operation 268 'specloopname' 'specloopname_ln608' <Predicate = (!icmp_ln686)> <Delay = 0.00>
+ST_75 : Operation 269 [1/1] (2.43ns)   --->   "%cmp_i_i109_i = icmp_eq  i17 %zext_ln686, i17 %sub158_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686]   --->   Operation 269 'icmp' 'cmp_i_i109_i' <Predicate = (!icmp_ln686)> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_75 : Operation 270 [1/1] (0.00ns)   --->   "%br_ln692 = br i1 %cmp10531, void %.lr.ph, void %._crit_edge" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 270 'br' 'br_ln692' <Predicate = (!icmp_ln686)> <Delay = 0.00>
+ST_75 : Operation 271 [1/1] (0.00ns)   --->   "%weight_value_V = trunc i32 %out_div_3"   --->   Operation 271 'trunc' 'weight_value_V' <Predicate = (!icmp_ln686 & !cmp10531)> <Delay = 0.00>
+ST_75 : Operation 272 [1/1] (1.58ns)   --->   "%br_ln692 = br void" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 272 'br' 'br_ln692' <Predicate = (!icmp_ln686 & !cmp10531)> <Delay = 1.58>
+ST_75 : Operation 273 [1/1] (0.00ns)   --->   "%ret_ln854 = ret" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:854]   --->   Operation 273 'ret' 'ret_ln854' <Predicate = (icmp_ln686)> <Delay = 0.00>
+
+State 76 <SV = 75> <Delay = 5.67>
+ST_76 : Operation 274 [1/1] (0.00ns)   --->   "%output_buffer_index_start_V_5 = phi i16 0, void %.lr.ph, i16 %output_buffer_index_next_V, void %_ZL20update_output_bufferILi1ELi1ELi0ELi480ELi480ELi1EEvbb7ap_uintILi32EES0_ILi16EEtPAmlLi2ET4__S2_S4_PAT0__AT3__S2_PS2_PAplT0_Li1E_S2_iSA_bPAT4__S0_ILi8EE.exit9495.thread_ifconv"   --->   Operation 274 'phi' 'output_buffer_index_start_V_5' <Predicate = true> <Delay = 0.00>
+ST_76 : Operation 275 [1/1] (2.07ns)   --->   "%output_buffer_index_next_V = add i16 %output_buffer_index_start_V_5, i16 1"   --->   Operation 275 'add' 'output_buffer_index_next_V' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 276 [1/1] (2.42ns)   --->   "%icmp_ln692 = icmp_eq  i16 %output_buffer_index_start_V_5, i16 %p_read_7" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 276 'icmp' 'icmp_ln692' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 277 [1/1] (0.00ns)   --->   "%br_ln692 = br i1 %icmp_ln692, void %.split23_ifconv, void %._crit_edge.loopexit" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 277 'br' 'br_ln692' <Predicate = true> <Delay = 0.00>
+ST_76 : Operation 278 [1/1] (0.00ns)   --->   "%Xindex_output_next_V_load = load i32 %Xindex_output_next_V"   --->   Operation 278 'load' 'Xindex_output_next_V_load' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 279 [1/1] (0.00ns)   --->   "%p_Val2_1_load = load i32 %p_Val2_1"   --->   Operation 279 'load' 'p_Val2_1_load' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 280 [1/1] (2.42ns)   --->   "%cmp108 = icmp_eq  i16 %output_buffer_index_start_V_5, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:84]   --->   Operation 280 'icmp' 'cmp108' <Predicate = (!icmp_ln692)> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 281 [1/1] (2.55ns)   --->   "%add_ln691 = add i32 %p_Val2_1_load, i32 %out_div_3"   --->   Operation 281 'add' 'add_ln691' <Predicate = (!icmp_ln692)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 282 [1/1] (0.69ns)   --->   "%p_Val2_5 = select i1 %cmp108, i32 %out_div_3, i32 %add_ln691" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:703]   --->   Operation 282 'select' 'p_Val2_5' <Predicate = (!icmp_ln692)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_76 : Operation 283 [1/1] (2.55ns)   --->   "%Xindex_output_next_V_1 = add i32 %Xindex_output_next_V_load, i32 %out_div_3"   --->   Operation 283 'add' 'Xindex_output_next_V_1' <Predicate = (!icmp_ln692)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 284 [1/1] (0.69ns)   --->   "%p_Val2_s = select i1 %cmp108, i32 %shl_ln213, i32 %Xindex_output_next_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:714]   --->   Operation 284 'select' 'p_Val2_s' <Predicate = (!icmp_ln692)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_76 : Operation 285 [1/1] (0.00ns)   --->   "%index_fract_value_V = trunc i32 %p_Val2_5"   --->   Operation 285 'trunc' 'index_fract_value_V' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 286 [1/1] (2.07ns)   --->   "%sub_value_V = sub i16 %weight_value_V, i16 %index_fract_value_V"   --->   Operation 286 'sub' 'sub_value_V' <Predicate = (!icmp_ln692)> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 287 [1/1] (0.00ns)   --->   "%output_buffer_index_start_V = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %p_Val2_5, i32 16, i32 31"   --->   Operation 287 'partselect' 'output_buffer_index_start_V' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 288 [1/1] (0.00ns)   --->   "%index_fract_value_V_1 = trunc i32 %p_Val2_s"   --->   Operation 288 'trunc' 'index_fract_value_V_1' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 289 [1/1] (2.07ns)   --->   "%sub_value_V_1 = sub i16 %weight_value_V, i16 %index_fract_value_V_1"   --->   Operation 289 'sub' 'sub_value_V_1' <Predicate = (!icmp_ln692)> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 290 [1/1] (2.42ns)   --->   "%icmp_ln878_2 = icmp_ult  i16 %index_fract_value_V_1, i16 %weight_value_V"   --->   Operation 290 'icmp' 'icmp_ln878_2' <Predicate = (!icmp_ln692)> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_76 : Operation 291 [1/1] (0.00ns)   --->   "%output_buffer_index_next_V_1 = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %p_Val2_s, i32 16, i32 31"   --->   Operation 291 'partselect' 'output_buffer_index_next_V_1' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 292 [1/1] (0.00ns)   --->   "%store_ln703 = store i32 %p_Val2_5, i32 %p_Val2_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:703]   --->   Operation 292 'store' 'store_ln703' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_76 : Operation 293 [1/1] (0.00ns)   --->   "%store_ln714 = store i32 %p_Val2_s, i32 %Xindex_output_next_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:714]   --->   Operation 293 'store' 'store_ln714' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+
+State 77 <SV = 76> <Delay = 7.06>
+ST_77 : Operation 294 [1/1] (0.00ns)   --->   "%zext_ln692 = zext i16 %output_buffer_index_start_V_5" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 294 'zext' 'zext_ln692' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 295 [1/1] (2.42ns)   --->   "%icmp_ln878_1 = icmp_ult  i16 %index_fract_value_V, i16 %weight_value_V"   --->   Operation 295 'icmp' 'icmp_ln878_1' <Predicate = (!cmp_i_i937_i)> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 296 [1/1] (2.42ns)   --->   "%icmp_ln886 = icmp_ugt  i16 %sub_value_V, i16 65"   --->   Operation 296 'icmp' 'icmp_ln886' <Predicate = (!cmp_i_i937_i)> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 297 [1/1] (2.07ns)   --->   "%output_buffer_index_start_V_2 = add i16 %output_buffer_index_start_V, i16 65535"   --->   Operation 297 'add' 'output_buffer_index_start_V_2' <Predicate = (!cmp_i_i937_i)> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 298 [1/1] (0.00ns) (grouped into LUT with out node output_buffer_index_start_V_3)   --->   "%and_ln72 = and i1 %icmp_ln886, i1 %sel_tmp" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:72]   --->   Operation 298 'and' 'and_ln72' <Predicate = (!cmp_i_i937_i)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 299 [1/1] (0.00ns) (grouped into LUT with out node output_buffer_index_start_V_3)   --->   "%and_ln72_1 = and i1 %and_ln72, i1 %icmp_ln878_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:72]   --->   Operation 299 'and' 'and_ln72_1' <Predicate = (!cmp_i_i937_i)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 300 [1/1] (0.97ns) (out node of the LUT)   --->   "%output_buffer_index_start_V_3 = select i1 %and_ln72_1, i16 %output_buffer_index_start_V_2, i16 %output_buffer_index_start_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:72]   --->   Operation 300 'select' 'output_buffer_index_start_V_3' <Predicate = (!cmp_i_i937_i)> <Delay = 0.97> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_77 : Operation 301 [1/1] (0.80ns) (out node of the LUT)   --->   "%output_buffer_index_start_V_6 = select i1 %cmp_i_i937_i, i16 %output_buffer_index_start_V_5, i16 %output_buffer_index_start_V_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 301 'select' 'output_buffer_index_start_V_6' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_77 : Operation 302 [1/1] (0.00ns)   --->   "%out_index_val_V = trunc i16 %output_buffer_index_start_V_6" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 302 'trunc' 'out_index_val_V' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 303 [1/1] (0.00ns)   --->   "%zext_ln1346 = zext i16 %output_buffer_index_start_V_6"   --->   Operation 303 'zext' 'zext_ln1346' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 304 [1/1] (2.42ns)   --->   "%icmp_ln886_1 = icmp_ugt  i16 %sub_value_V_1, i16 65"   --->   Operation 304 'icmp' 'icmp_ln886_1' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 305 [1/1] (2.07ns)   --->   "%output_buffer_index_next_V_2 = add i16 %output_buffer_index_next_V_1, i16 65535"   --->   Operation 305 'add' 'output_buffer_index_next_V_2' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 306 [1/1] (0.00ns) (grouped into LUT with out node output_buffer_index_next_V_5)   --->   "%output_buffer_index_next_V_3 = select i1 %cmp_i_i937_i, i16 %output_buffer_index_next_V, i16 %output_buffer_index_next_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29]   --->   Operation 306 'select' 'output_buffer_index_next_V_3' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_77 : Operation 307 [1/1] (0.00ns) (grouped into LUT with out node and_ln89_1)   --->   "%and_ln89 = and i1 %icmp_ln886_1, i1 %sel_tmp" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:89]   --->   Operation 307 'and' 'and_ln89' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 308 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln89_1 = and i1 %and_ln89, i1 %icmp_ln878_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:89]   --->   Operation 308 'and' 'and_ln89_1' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 309 [1/1] (0.80ns) (out node of the LUT)   --->   "%output_buffer_index_next_V_5 = select i1 %and_ln89_1, i16 %output_buffer_index_next_V_2, i16 %output_buffer_index_next_V_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:89]   --->   Operation 309 'select' 'output_buffer_index_next_V_5' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_77 : Operation 310 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%ret = sub i32 %p_Val2_5, i32 %out_div_3"   --->   Operation 310 'sub' 'ret' <Predicate = (!cmp108)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_77 : Operation 311 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%ret_1 = add i32 %ret, i32 4294967231"   --->   Operation 311 'add' 'ret_1' <Predicate = (!cmp108)> <Delay = 4.37> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync>
+ST_77 : Operation 312 [1/1] (0.00ns) (grouped into LUT with out node ret_3)   --->   "%int_bits_Xindex_out_previous_V = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %ret_1, i32 16, i32 31"   --->   Operation 312 'partselect' 'int_bits_Xindex_out_previous_V' <Predicate = (!cmp108)> <Delay = 0.00>
+ST_77 : Operation 313 [1/1] (0.00ns) (grouped into LUT with out node ret_3)   --->   "%int_bits_Xindex_out_previous_V_2 = select i1 %cmp108, i16 0, i16 %int_bits_Xindex_out_previous_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:84]   --->   Operation 313 'select' 'int_bits_Xindex_out_previous_V_2' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_77 : Operation 314 [1/1] (0.00ns) (grouped into LUT with out node ret_3)   --->   "%rhs_1 = zext i16 %int_bits_Xindex_out_previous_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:84]   --->   Operation 314 'zext' 'rhs_1' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 315 [1/1] (2.55ns)   --->   "%ret_2 = add i32 %p_Val2_5, i32 4294967231"   --->   Operation 315 'add' 'ret_2' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 316 [1/1] (0.00ns)   --->   "%int_bits_Xindex_out_V = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %ret_2, i32 16, i32 31"   --->   Operation 316 'partselect' 'int_bits_Xindex_out_V' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 317 [1/1] (2.42ns)   --->   "%t1 = icmp_eq  i16 %output_buffer_index_start_V_6, i16 %int_bits_Xindex_out_V"   --->   Operation 317 'icmp' 't1' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 318 [1/1] (0.00ns)   --->   "%zext_ln215 = zext i16 %int_bits_Xindex_out_V"   --->   Operation 318 'zext' 'zext_ln215' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 319 [1/1] (2.07ns) (out node of the LUT)   --->   "%ret_3 = sub i17 %zext_ln215, i17 %rhs_1"   --->   Operation 319 'sub' 'ret_3' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 320 [1/1] (2.07ns)   --->   "%ret_4 = add i17 %zext_ln215, i17 131071"   --->   Operation 320 'add' 'ret_4' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 321 [1/1] (2.43ns)   --->   "%icmp_ln870_9 = icmp_eq  i17 %zext_ln1346, i17 %ret_4"   --->   Operation 321 'icmp' 'icmp_ln870_9' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 322 [1/1] (0.00ns)   --->   "%zext_ln215_1 = zext i16 %index_fract_value_V"   --->   Operation 322 'zext' 'zext_ln215_1' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 323 [1/1] (2.55ns)   --->   "%ret_5 = sub i33 %rhs_4, i33 %zext_ln215_1"   --->   Operation 323 'sub' 'ret_5' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 324 [1/1] (2.48ns)   --->   "%icmp_ln886_2 = icmp_sgt  i33 %ret_5, i33 65"   --->   Operation 324 'icmp' 'icmp_ln886_2' <Predicate = true> <Delay = 2.48> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 325 [1/1] (0.00ns)   --->   "%r = bitconcatenate i32 @_ssdm_op_BitConcatenate.i32.i16.i16, i16 %output_buffer_index_next_V_5, i16 0"   --->   Operation 325 'bitconcatenate' 'r' <Predicate = true> <Delay = 0.00>
+ST_77 : Operation 326 [1/1] (2.55ns)   --->   "%overlap_next_pixel_V = sub i32 %r, i32 %p_Val2_5"   --->   Operation 326 'sub' 'overlap_next_pixel_V' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 327 [1/1] (2.07ns)   --->   "%ret_6 = add i17 %zext_ln1346, i17 1"   --->   Operation 327 'add' 'ret_6' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 328 [1/1] (2.43ns)   --->   "%icmp_ln204 = icmp_eq  i17 %zext_ln692, i17 %sub162_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:204]   --->   Operation 328 'icmp' 'icmp_ln204' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 329 [1/1] (2.43ns)   --->   "%icmp_ln218_1 = icmp_ne  i17 %zext_ln692, i17 %sub162_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:218]   --->   Operation 329 'icmp' 'icmp_ln218_1' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_77 : Operation 330 [1/1] (2.42ns)   --->   "%icmp_ln870_11 = icmp_eq  i16 %output_buffer_index_start_V_6, i16 %output_buffer_index_start_V"   --->   Operation 330 'icmp' 'icmp_ln870_11' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+
+State 78 <SV = 77> <Delay = 5.93>
+ST_78 : Operation 331 [1/1] (0.00ns)   --->   "%ouput_index_write_counter_V_load = load i16 %ouput_index_write_counter_V"   --->   Operation 331 'load' 'ouput_index_write_counter_V_load' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 332 [1/1] (2.43ns)   --->   "%icmp_ln870 = icmp_eq  i17 %ret_3, i17 1"   --->   Operation 332 'icmp' 'icmp_ln870' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 333 [1/1] (0.00ns)   --->   "%zext_ln878 = zext i16 %index_fract_value_V"   --->   Operation 333 'zext' 'zext_ln878' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 334 [1/1] (2.47ns)   --->   "%icmp_ln878_3 = icmp_ult  i32 %zext_ln878, i32 %out_div_3"   --->   Operation 334 'icmp' 'icmp_ln878_3' <Predicate = true> <Delay = 2.47> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 335 [1/1] (0.00ns) (grouped into LUT with out node or_ln138_1)   --->   "%and_ln870 = and i1 %icmp_ln870_9, i1 %icmp_ln878_3"   --->   Operation 335 'and' 'and_ln870' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 336 [1/1] (0.00ns) (grouped into LUT with out node or_ln138_1)   --->   "%and_ln870_1 = and i1 %icmp_ln870, i1 %icmp_ln886_2"   --->   Operation 336 'and' 'and_ln870_1' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 337 [1/1] (0.00ns) (grouped into LUT with out node or_ln138_1)   --->   "%t2 = and i1 %and_ln870_1, i1 %and_ln870"   --->   Operation 337 'and' 't2' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 338 [1/1] (0.00ns) (grouped into LUT with out node or_ln138_1)   --->   "%or_ln138 = or i1 %t2, i1 %cmp_i_i937_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:138]   --->   Operation 338 'or' 'or_ln138' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 339 [1/1] (0.97ns) (out node of the LUT)   --->   "%or_ln138_1 = or i1 %or_ln138, i1 %t1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:138]   --->   Operation 339 'or' 'or_ln138_1' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 340 [1/1] (0.00ns)   --->   "%zext_ln870 = zext i16 %output_buffer_index_next_V_5"   --->   Operation 340 'zext' 'zext_ln870' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 341 [1/1] (2.43ns)   --->   "%icmp_ln870_10 = icmp_eq  i17 %ret_6, i17 %zext_ln870"   --->   Operation 341 'icmp' 'icmp_ln870_10' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 342 [1/1] (2.47ns)   --->   "%icmp_ln886_3 = icmp_ugt  i32 %overlap_next_pixel_V, i32 65"   --->   Operation 342 'icmp' 'icmp_ln886_3' <Predicate = true> <Delay = 2.47> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 343 [1/1] (0.00ns) (grouped into LUT with out node Wx_for_Nplus1_Procblock)   --->   "%and_ln166 = and i1 %icmp_ln870_10, i1 %icmp_ln886_3" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:166]   --->   Operation 343 'and' 'and_ln166' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 344 [1/1] (0.97ns) (out node of the LUT)   --->   "%Wx_for_Nplus1_Procblock = select i1 %and_ln166, i16 %index_fract_value_V, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:166]   --->   Operation 344 'select' 'Wx_for_Nplus1_Procblock' <Predicate = true> <Delay = 0.97> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_78 : Operation 345 [1/1] (2.42ns)   --->   "%icmp_ln890_1 = icmp_ult  i16 %output_buffer_index_next_V_5, i16 %ouput_index_write_counter_V_load"   --->   Operation 345 'icmp' 'icmp_ln890_1' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 346 [1/1] (0.97ns)   --->   "%xor_ln890 = xor i1 %icmp_ln890_1, i1 1"   --->   Operation 346 'xor' 'xor_ln890' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 347 [1/1] (2.42ns)   --->   "%icmp_ln218 = icmp_ugt  i16 %ouput_index_write_counter_V_load, i16 %output_buffer_index_next_V_5" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:218]   --->   Operation 347 'icmp' 'icmp_ln218' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 348 [1/1] (0.00ns) (grouped into LUT with out node and_ln218_1)   --->   "%and_ln218 = and i1 %icmp_ln218, i1 %bit_select_i_i90_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:218]   --->   Operation 348 'and' 'and_ln218' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 349 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln218_1 = and i1 %and_ln218, i1 %icmp_ln218_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:218]   --->   Operation 349 'and' 'and_ln218_1' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 350 [1/1] (2.42ns)   --->   "%icmp_ln237 = icmp_ugt  i16 %index_fract_value_V, i16 %weight_value_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:237]   --->   Operation 350 'icmp' 'icmp_ln237' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 351 [1/1] (0.00ns) (grouped into LUT with out node select_ln237)   --->   "%or_ln237 = or i1 %cmp_i_i937_i, i1 %icmp_ln237" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:237]   --->   Operation 351 'or' 'or_ln237' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 352 [1/1] (0.00ns) (grouped into LUT with out node select_ln237)   --->   "%Wx_V_0_0_1 = trunc i32 %out_div_3"   --->   Operation 352 'trunc' 'Wx_V_0_0_1' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 353 [1/1] (0.00ns) (grouped into LUT with out node select_ln237)   --->   "%select_ln239 = select i1 %icmp_ln870_11, i16 %index_fract_value_V, i16 %sub_value_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:239]   --->   Operation 353 'select' 'select_ln239' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_78 : Operation 354 [1/1] (0.00ns) (grouped into LUT with out node select_ln237)   --->   "%zext_ln239 = zext i16 %select_ln239" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:239]   --->   Operation 354 'zext' 'zext_ln239' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 355 [1/1] (0.97ns) (out node of the LUT)   --->   "%select_ln237 = select i1 %or_ln237, i17 %Wx_V_0_0_1, i17 %zext_ln239" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:237]   --->   Operation 355 'select' 'select_ln237' <Predicate = true> <Delay = 0.97> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_78 : Operation 356 [1/1] (2.07ns)   --->   "%ouput_index_write_counter_V_1 = add i16 %ouput_index_write_counter_V_load, i16 1"   --->   Operation 356 'add' 'ouput_index_write_counter_V_1' <Predicate = (!icmp_ln204)> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_78 : Operation 357 [1/1] (0.00ns) (grouped into LUT with out node ouput_index_write_counter_V_2)   --->   "%select_ln752 = select i1 %xor_ln890, i16 %ouput_index_write_counter_V_1, i16 %ouput_index_write_counter_V_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:752]   --->   Operation 357 'select' 'select_ln752' <Predicate = (!icmp_ln204)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_78 : Operation 358 [1/1] (0.80ns) (out node of the LUT)   --->   "%ouput_index_write_counter_V_2 = select i1 %icmp_ln204, i16 1, i16 %select_ln752" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750]   --->   Operation 358 'select' 'ouput_index_write_counter_V_2' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_78 : Operation 359 [1/1] (3.63ns)   --->   "%read_word = read i8 @_ssdm_op_Read.ap_fifo.volatile.i8P0A, i8 %img_gray_433" [C:/Xilinx/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:145]   --->   Operation 359 'read' 'read_word' <Predicate = true> <Delay = 3.63> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
+ST_78 : Operation 360 [1/1] (0.00ns)   --->   "%zext_ln208 = zext i16 %Wx_for_Nplus1_Procblock"   --->   Operation 360 'zext' 'zext_ln208' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 361 [1/1] (1.24ns) (out node of the LUT)   --->   "%in_data_V = select i1 %or_ln138_1, i8 %read_word, i8 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:324]   --->   Operation 361 'select' 'in_data_V' <Predicate = true> <Delay = 1.24> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_78 : Operation 362 [1/1] (0.00ns)   --->   "%zext_ln208_1 = zext i17 %select_ln237"   --->   Operation 362 'zext' 'zext_ln208_1' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 363 [1/1] (0.00ns)   --->   "%zext_ln208_2 = zext i8 %in_data_V"   --->   Operation 363 'zext' 'zext_ln208_2' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 364 [3/3] (1.05ns) (grouped into DSP with root node x_mul_round)   --->   "%x_mul = mul i24 %zext_ln208_1, i24 %zext_ln208_2"   --->   Operation 364 'mul' 'x_mul' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_78 : Operation 365 [1/1] (0.00ns)   --->   "%zext_ln208_3 = zext i8 %read_word"   --->   Operation 365 'zext' 'zext_ln208_3' <Predicate = true> <Delay = 0.00>
+ST_78 : Operation 366 [4/4] (2.15ns) (root node of the DSP)   --->   "%x_mul_1 = mul i24 %zext_ln208, i24 %zext_ln208_3"   --->   Operation 366 'mul' 'x_mul_1' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_78 : Operation 367 [1/1] (1.58ns)   --->   "%store_ln750 = store i16 %ouput_index_write_counter_V_2, i16 %ouput_index_write_counter_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750]   --->   Operation 367 'store' 'store_ln750' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+
+State 79 <SV = 78> <Delay = 2.15>
+ST_79 : Operation 368 [2/3] (1.05ns) (grouped into DSP with root node x_mul_round)   --->   "%x_mul = mul i24 %zext_ln208_1, i24 %zext_ln208_2"   --->   Operation 368 'mul' 'x_mul' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_79 : Operation 369 [3/4] (2.15ns) (root node of the DSP)   --->   "%x_mul_1 = mul i24 %zext_ln208, i24 %zext_ln208_3"   --->   Operation 369 'mul' 'x_mul_1' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 80 <SV = 79> <Delay = 5.80>
+ST_80 : Operation 370 [1/1] (0.00ns)   --->   "%Yindex_output_V_1_load = load i32 %Yindex_output_V_1"   --->   Operation 370 'load' 'Yindex_output_V_1_load' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 371 [1/1] (0.00ns)   --->   "%Yindex_output_prev_V_load = load i32 %Yindex_output_prev_V"   --->   Operation 371 'load' 'Yindex_output_prev_V_load' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 372 [1/1] (0.00ns)   --->   "%p_Result_s = trunc i32 %Yindex_output_V_1_load"   --->   Operation 372 'trunc' 'p_Result_s' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 373 [1/1] (0.00ns)   --->   "%p_Result_3 = trunc i32 %Yindex_output_prev_V_load"   --->   Operation 373 'trunc' 'p_Result_3' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 374 [1/1] (0.00ns)   --->   "%zext_ln674_1 = zext i16 %p_Result_3"   --->   Operation 374 'zext' 'zext_ln674_1' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 375 [1/1] (2.10ns)   --->   "%Yindex_output_prev_precision_error_V = sub i17 65536, i17 %zext_ln674_1"   --->   Operation 375 'sub' 'Yindex_output_prev_precision_error_V' <Predicate = true> <Delay = 2.10> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 376 [1/1] (0.00ns)   --->   "%p_Result_1 = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %Yindex_output_V_1_load, i32 16, i32 31"   --->   Operation 376 'partselect' 'p_Result_1' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 377 [1/1] (0.00ns)   --->   "%p_Result_2 = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %Yindex_output_prev_V_load, i32 16, i32 31"   --->   Operation 377 'partselect' 'p_Result_2' <Predicate = true> <Delay = 0.00>
+ST_80 : Operation 378 [1/1] (2.42ns)   --->   "%icmp_ln576 = icmp_ne  i16 %p_Result_1, i16 %p_Result_2"   --->   Operation 378 'icmp' 'icmp_ln576' <Predicate = true> <Delay = 2.42> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 379 [1/1] (2.43ns)   --->   "%icmp_ln886_4 = icmp_ugt  i17 %Yindex_output_prev_precision_error_V, i17 65"   --->   Operation 379 'icmp' 'icmp_ln886_4' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 380 [1/3] (0.00ns) (grouped into DSP with root node x_mul_round)   --->   "%x_mul = mul i24 %zext_ln208_1, i24 %zext_ln208_2"   --->   Operation 380 'mul' 'x_mul' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_80 : Operation 381 [2/2] (2.10ns) (root node of the DSP)   --->   "%x_mul_round = add i24 %x_mul, i24 128"   --->   Operation 381 'add' 'x_mul_round' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_80 : Operation 382 [2/4] (2.15ns) (root node of the DSP)   --->   "%x_mul_1 = mul i24 %zext_ln208, i24 %zext_ln208_3"   --->   Operation 382 'mul' 'x_mul_1' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_80 : Operation 383 [1/1] (0.00ns)   --->   "%Yindex_output_V_1_load_1 = load i32 %Yindex_output_V_1"   --->   Operation 383 'load' 'Yindex_output_V_1_load_1' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_80 : Operation 384 [1/1] (0.00ns)   --->   "%Yindex_output_prev_V_load_1 = load i32 %Yindex_output_prev_V"   --->   Operation 384 'load' 'Yindex_output_prev_V_load_1' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_80 : Operation 385 [1/1] (2.55ns)   --->   "%Yindex_output_V = add i32 %Yindex_output_V_1_load_1, i32 %out_div_4"   --->   Operation 385 'add' 'Yindex_output_V' <Predicate = (!icmp_ln692 & icmp_ln204)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 386 [1/1] (2.55ns)   --->   "%Yindex_output_prev_V_1 = add i32 %Yindex_output_prev_V_load_1, i32 %out_div_4"   --->   Operation 386 'add' 'Yindex_output_prev_V_1' <Predicate = (!icmp_ln692 & icmp_ln204)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 387 [1/1] (0.69ns)   --->   "%Yindex_output_V_4 = select i1 %icmp_ln204, i32 %Yindex_output_V, i32 %Yindex_output_V_1_load_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:823]   --->   Operation 387 'select' 'Yindex_output_V_4' <Predicate = (!icmp_ln692)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_80 : Operation 388 [1/1] (0.69ns)   --->   "%Yindex_output_prev_V_2 = select i1 %icmp_ln204, i32 %Yindex_output_prev_V_1, i32 %Yindex_output_prev_V_load_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:823]   --->   Operation 388 'select' 'Yindex_output_prev_V_2' <Predicate = (!icmp_ln692)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_80 : Operation 389 [1/1] (0.00ns)   --->   "%p_Result_9 = trunc i32 %Yindex_output_V_4"   --->   Operation 389 'trunc' 'p_Result_9' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_80 : Operation 390 [1/1] (0.00ns)   --->   "%zext_ln674_2 = zext i16 %p_Result_9"   --->   Operation 390 'zext' 'zext_ln674_2' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_80 : Operation 391 [1/1] (2.47ns)   --->   "%icmp_ln878_4 = icmp_ult  i32 %zext_ln674_2, i32 %out_div_4"   --->   Operation 391 'icmp' 'icmp_ln878_4' <Predicate = (!icmp_ln692)> <Delay = 2.47> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 392 [1/1] (0.00ns)   --->   "%zext_ln215_2 = zext i16 %p_Result_9"   --->   Operation 392 'zext' 'zext_ln215_2' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+ST_80 : Operation 393 [1/1] (2.55ns)   --->   "%ret_11 = sub i33 %lhs_V_6, i33 %zext_ln215_2"   --->   Operation 393 'sub' 'ret_11' <Predicate = (!icmp_ln692)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_80 : Operation 394 [1/1] (1.58ns)   --->   "%store_ln823 = store i32 %Yindex_output_prev_V_2, i32 %Yindex_output_prev_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:823]   --->   Operation 394 'store' 'store_ln823' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+ST_80 : Operation 395 [1/1] (1.58ns)   --->   "%store_ln823 = store i32 %Yindex_output_V_4, i32 %Yindex_output_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:823]   --->   Operation 395 'store' 'store_ln823' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+
+State 81 <SV = 80> <Delay = 6.49>
+ST_81 : Operation 396 [1/1] (0.00ns)   --->   "%Yaxis_overlap_en_load = load i1 %Yaxis_overlap_en" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 396 'load' 'Yaxis_overlap_en_load' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 397 [1/1] (0.00ns)   --->   "%zext_ln674 = zext i16 %p_Result_s"   --->   Operation 397 'zext' 'zext_ln674' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 398 [1/1] (2.10ns)   --->   "%Yindex_output_precision_error_V = sub i17 65536, i17 %zext_ln674"   --->   Operation 398 'sub' 'Yindex_output_precision_error_V' <Predicate = true> <Delay = 2.10> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 399 [1/1] (2.43ns)   --->   "%icmp_ln890 = icmp_ult  i17 %Yindex_output_precision_error_V, i17 66"   --->   Operation 399 'icmp' 'icmp_ln890' <Predicate = true> <Delay = 2.43> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 400 [1/1] (0.00ns) (grouped into LUT with out node DDR_wr_en_1)   --->   "%or_ln204 = or i1 %xor_ln890, i1 %icmp_ln204" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:204]   --->   Operation 400 'or' 'or_ln204' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 401 [1/1] (0.00ns) (grouped into LUT with out node and_ln201)   --->   "%or_ln201 = or i1 %icmp_ln890, i1 %icmp_ln576" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 401 'or' 'or_ln201' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 402 [1/1] (0.00ns) (grouped into LUT with out node and_ln201)   --->   "%or_ln201_1 = or i1 %cmp_i_i109_i, i1 %Yaxis_overlap_en_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 402 'or' 'or_ln201_1' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 403 [1/1] (0.00ns) (grouped into LUT with out node and_ln201)   --->   "%or_ln201_2 = or i1 %or_ln201_1, i1 %or_ln201" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 403 'or' 'or_ln201_2' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 404 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln201 = and i1 %icmp_ln886_4, i1 %or_ln201_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 404 'and' 'and_ln201' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 405 [1/1] (0.00ns) (grouped into LUT with out node DDR_wr_en_1)   --->   "%DDR_wr_en_tmp = and i1 %and_ln201, i1 %or_ln204" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 405 'and' 'DDR_wr_en_tmp' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 406 [1/1] (0.97ns) (out node of the LUT)   --->   "%DDR_wr_en_1 = or i1 %empty_49, i1 %DDR_wr_en_tmp" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:213]   --->   Operation 406 'or' 'DDR_wr_en_1' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 407 [1/1] (0.00ns)   --->   "%trunc_ln357 = trunc i32 %out_div_4"   --->   Operation 407 'trunc' 'trunc_ln357' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 408 [1/1] (0.00ns)   --->   "%zext_ln213 = zext i16 %trunc_ln357"   --->   Operation 408 'zext' 'zext_ln213' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 409 [1/1] (2.07ns)   --->   "%sub_ln213 = sub i17 %zext_ln213, i17 %zext_ln674"   --->   Operation 409 'sub' 'sub_ln213' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 410 [1/1] (0.78ns)   --->   "%Wy0 = select i1 %Yaxis_overlap_en_load, i17 %sub_ln213, i17 %trunc_ln213" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 410 'select' 'Wy0' <Predicate = true> <Delay = 0.78> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_81 : Operation 411 [1/1] (0.80ns)   --->   "%Wy1 = select i1 %Yaxis_overlap_en_load, i16 %p_Result_s, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201]   --->   Operation 411 'select' 'Wy1' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_81 : Operation 412 [1/2] (2.10ns) (root node of the DSP)   --->   "%x_mul_round = add i24 %x_mul, i24 128"   --->   Operation 412 'add' 'x_mul_round' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_81 : Operation 413 [1/1] (0.00ns)   --->   "%r_1 = partselect i16 @_ssdm_op_PartSelect.i16.i24.i32.i32, i24 %x_mul_round, i32 8, i32 23"   --->   Operation 413 'partselect' 'r_1' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 414 [1/1] (0.00ns)   --->   "%zext_ln1345 = zext i17 %Wy0"   --->   Operation 414 'zext' 'zext_ln1345' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 415 [1/1] (0.00ns)   --->   "%zext_ln1345_1 = zext i16 %r_1"   --->   Operation 415 'zext' 'zext_ln1345_1' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 416 [3/3] (1.05ns) (grouped into DSP with root node ta_out_round)   --->   "%ta_out_V = mul i32 %zext_ln1345_1, i32 %zext_ln1345"   --->   Operation 416 'mul' 'ta_out_V' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_81 : Operation 417 [1/4] (0.00ns) (root node of the DSP)   --->   "%x_mul_1 = mul i24 %zext_ln208, i24 %zext_ln208_3"   --->   Operation 417 'mul' 'x_mul_1' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_81 : Operation 418 [1/1] (0.00ns)   --->   "%r_3 = partselect i16 @_ssdm_op_PartSelect.i16.i24.i32.i32, i24 %x_mul_1, i32 8, i32 23"   --->   Operation 418 'partselect' 'r_3' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 419 [1/1] (0.00ns)   --->   "%zext_ln1345_2 = zext i16 %r_3"   --->   Operation 419 'zext' 'zext_ln1345_2' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 420 [4/4] (2.15ns) (root node of the DSP)   --->   "%mul_out = mul i32 %zext_ln1345_2, i32 %zext_ln1345"   --->   Operation 420 'mul' 'mul_out' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_81 : Operation 421 [1/1] (0.00ns)   --->   "%zext_ln1345_3 = zext i16 %Wy1"   --->   Operation 421 'zext' 'zext_ln1345_3' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 422 [3/3] (1.05ns) (grouped into DSP with root node ta_out_round_1)   --->   "%ta_out_V_1 = mul i32 %zext_ln1345_1, i32 %zext_ln1345_3"   --->   Operation 422 'mul' 'ta_out_V_1' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_81 : Operation 423 [4/4] (2.15ns) (root node of the DSP)   --->   "%mul_out_1 = mul i32 %zext_ln1345_2, i32 %zext_ln1345_3"   --->   Operation 423 'mul' 'mul_out_1' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_81 : Operation 424 [1/1] (0.00ns)   --->   "%br_ln524 = br i1 %DDR_wr_en_1, void, void" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:524]   --->   Operation 424 'br' 'br_ln524' <Predicate = true> <Delay = 0.00>
+ST_81 : Operation 425 [1/1] (0.00ns)   --->   "%br_ln538 = br i1 %and_ln218_1, void, void %_ZL20update_output_bufferILi1ELi1ELi0ELi480ELi480ELi1EEvbb7ap_uintILi32EES0_ILi16EEtPAmlLi2ET4__S2_S4_PAT0__AT3__S2_PS2_PAplT0_Li1E_S2_iSA_bPAT4__S0_ILi8EE.exit9495.thread_ifconv" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:538]   --->   Operation 425 'br' 'br_ln538' <Predicate = (!DDR_wr_en_1)> <Delay = 0.00>
+ST_81 : Operation 426 [1/1] (2.48ns)   --->   "%icmp_ln886_5 = icmp_sgt  i33 %ret_11, i33 65"   --->   Operation 426 'icmp' 'icmp_ln886_5' <Predicate = (!icmp_ln692)> <Delay = 2.48> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 427 [1/1] (0.00ns) (grouped into LUT with out node Yaxis_overlap_en_1)   --->   "%and_ln878 = and i1 %icmp_ln878_4, i1 %rev"   --->   Operation 427 'and' 'and_ln878' <Predicate = (!icmp_ln692)> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 428 [1/1] (0.97ns) (out node of the LUT)   --->   "%Yaxis_overlap_en_1 = and i1 %and_ln878, i1 %icmp_ln886_5"   --->   Operation 428 'and' 'Yaxis_overlap_en_1' <Predicate = (!icmp_ln692)> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_81 : Operation 429 [1/1] (1.58ns)   --->   "%store_ln878 = store i1 %Yaxis_overlap_en_1, i1 %Yaxis_overlap_en"   --->   Operation 429 'store' 'store_ln878' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+
+State 82 <SV = 81> <Delay = 4.83>
+ST_82 : Operation 430 [2/3] (1.05ns) (grouped into DSP with root node ta_out_round)   --->   "%ta_out_V = mul i32 %zext_ln1345_1, i32 %zext_ln1345"   --->   Operation 430 'mul' 'ta_out_V' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_82 : Operation 431 [3/4] (2.15ns) (root node of the DSP)   --->   "%mul_out = mul i32 %zext_ln1345_2, i32 %zext_ln1345"   --->   Operation 431 'mul' 'mul_out' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_82 : Operation 432 [2/3] (1.05ns) (grouped into DSP with root node ta_out_round_1)   --->   "%ta_out_V_1 = mul i32 %zext_ln1345_1, i32 %zext_ln1345_3"   --->   Operation 432 'mul' 'ta_out_V_1' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_82 : Operation 433 [3/4] (2.15ns) (root node of the DSP)   --->   "%mul_out_1 = mul i32 %zext_ln1345_2, i32 %zext_ln1345_3"   --->   Operation 433 'mul' 'mul_out_1' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_82 : Operation 434 [1/1] (0.00ns)   --->   "%out_col_index_load_1 = load i32 %out_col_index" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:809]   --->   Operation 434 'load' 'out_col_index_load_1' <Predicate = (DDR_wr_en_1)> <Delay = 0.00>
+ST_82 : Operation 435 [1/1] (2.47ns)   --->   "%icmp_ln809 = icmp_slt  i32 %out_col_index_load_1, i32 %zext_ln29_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:809]   --->   Operation 435 'icmp' 'icmp_ln809' <Predicate = (DDR_wr_en_1)> <Delay = 2.47> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_82 : Operation 436 [1/1] (0.00ns)   --->   "%br_ln809 = br i1 %icmp_ln809, void %._crit_edge8, void" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:809]   --->   Operation 436 'br' 'br_ln809' <Predicate = (DDR_wr_en_1)> <Delay = 0.00>
+ST_82 : Operation 437 [1/1] (0.00ns)   --->   "%out_col_index_load = load i32 %out_col_index" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:814]   --->   Operation 437 'load' 'out_col_index_load' <Predicate = (DDR_wr_en_1 & !icmp_ln204)> <Delay = 0.00>
+ST_82 : Operation 438 [1/1] (2.55ns)   --->   "%out_col_index_1 = add i32 %out_col_index_load, i32 1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:814]   --->   Operation 438 'add' 'out_col_index_1' <Predicate = (DDR_wr_en_1 & !icmp_ln204)> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_82 : Operation 439 [1/1] (0.69ns)   --->   "%select_ln811 = select i1 %icmp_ln204, i32 0, i32 %out_col_index_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:811]   --->   Operation 439 'select' 'select_ln811' <Predicate = (DDR_wr_en_1)> <Delay = 0.69> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_82 : Operation 440 [1/1] (1.58ns)   --->   "%store_ln811 = store i32 %select_ln811, i32 %out_col_index" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:811]   --->   Operation 440 'store' 'store_ln811' <Predicate = (DDR_wr_en_1)> <Delay = 1.58>
+ST_82 : Operation 441 [1/1] (0.00ns)   --->   "%br_ln811 = br void %_ZL20update_output_bufferILi1ELi1ELi0ELi480ELi480ELi1EEvbb7ap_uintILi32EES0_ILi16EEtPAmlLi2ET4__S2_S4_PAT0__AT3__S2_PS2_PAplT0_Li1E_S2_iSA_bPAT4__S0_ILi8EE.exit9495.thread_ifconv" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:811]   --->   Operation 441 'br' 'br_ln811' <Predicate = (DDR_wr_en_1)> <Delay = 0.00>
+
+State 83 <SV = 82> <Delay = 2.15>
+ST_83 : Operation 442 [1/3] (0.00ns) (grouped into DSP with root node ta_out_round)   --->   "%ta_out_V = mul i32 %zext_ln1345_1, i32 %zext_ln1345"   --->   Operation 442 'mul' 'ta_out_V' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_83 : Operation 443 [2/2] (2.10ns) (root node of the DSP)   --->   "%ta_out_round = add i32 %ta_out_V, i32 32768"   --->   Operation 443 'add' 'ta_out_round' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_83 : Operation 444 [2/4] (2.15ns) (root node of the DSP)   --->   "%mul_out = mul i32 %zext_ln1345_2, i32 %zext_ln1345"   --->   Operation 444 'mul' 'mul_out' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_83 : Operation 445 [1/3] (0.00ns) (grouped into DSP with root node ta_out_round_1)   --->   "%ta_out_V_1 = mul i32 %zext_ln1345_1, i32 %zext_ln1345_3"   --->   Operation 445 'mul' 'ta_out_V_1' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_83 : Operation 446 [2/2] (2.10ns) (root node of the DSP)   --->   "%ta_out_round_1 = add i32 %ta_out_V_1, i32 32768"   --->   Operation 446 'add' 'ta_out_round_1' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_83 : Operation 447 [2/4] (2.15ns) (root node of the DSP)   --->   "%mul_out_1 = mul i32 %zext_ln1345_2, i32 %zext_ln1345_3"   --->   Operation 447 'mul' 'mul_out_1' <Predicate = true> <Delay = 2.15> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 84 <SV = 83> <Delay = 4.47>
+ST_84 : Operation 448 [1/1] (0.00ns)   --->   "%write_col_index_V_load = load i16 %write_col_index_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 448 'load' 'write_col_index_V_load' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 449 [1/1] (0.00ns)   --->   "%p_Result_4 = trunc i16 %write_col_index_V_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 449 'trunc' 'p_Result_4' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 450 [1/1] (0.00ns) (grouped into LUT with out node or_ln489)   --->   "%out_buffer_wr_en = xor i1 %and_ln218_1, i1 1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:218]   --->   Operation 450 'xor' 'out_buffer_wr_en' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_84 : Operation 451 [1/2] (2.10ns) (root node of the DSP)   --->   "%ta_out_round = add i32 %ta_out_V, i32 32768"   --->   Operation 451 'add' 'ta_out_round' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_84 : Operation 452 [1/1] (0.00ns)   --->   "%procBlock_out_V = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %ta_out_round, i32 16, i32 31"   --->   Operation 452 'partselect' 'procBlock_out_V' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 453 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_out = mul i32 %zext_ln1345_2, i32 %zext_ln1345"   --->   Operation 453 'mul' 'mul_out' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_84 : Operation 454 [1/1] (0.00ns)   --->   "%data_mux_out_V_1 = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %mul_out, i32 16, i32 31"   --->   Operation 454 'partselect' 'data_mux_out_V_1' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 455 [1/2] (2.10ns) (root node of the DSP)   --->   "%ta_out_round_1 = add i32 %ta_out_V_1, i32 32768"   --->   Operation 455 'add' 'ta_out_round_1' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_84 : Operation 456 [1/1] (0.00ns)   --->   "%procBlock_out_V_2 = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %ta_out_round_1, i32 16, i32 31"   --->   Operation 456 'partselect' 'procBlock_out_V_2' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 457 [1/4] (0.00ns) (root node of the DSP)   --->   "%mul_out_1 = mul i32 %zext_ln1345_2, i32 %zext_ln1345_3"   --->   Operation 457 'mul' 'mul_out_1' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_84 : Operation 458 [1/1] (0.00ns)   --->   "%data_mux_out_overlap_V_1 = partselect i16 @_ssdm_op_PartSelect.i16.i32.i32.i32, i32 %mul_out_1, i32 16, i32 31"   --->   Operation 458 'partselect' 'data_mux_out_overlap_V_1' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 459 [1/1] (0.97ns) (out node of the LUT)   --->   "%or_ln489 = or i1 %DDR_wr_en_1, i1 %out_buffer_wr_en" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:489]   --->   Operation 459 'or' 'or_ln489' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_84 : Operation 460 [1/1] (0.00ns)   --->   "%conv_i82_i = zext i16 %write_col_index_V_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 460 'zext' 'conv_i82_i' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 461 [1/1] (0.00ns)   --->   "%ouput_buffer_V_0_0_addr_1 = getelementptr i16 %ouput_buffer_V_0_0, i64 0, i64 %conv_i82_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:518]   --->   Operation 461 'getelementptr' 'ouput_buffer_V_0_0_addr_1' <Predicate = true> <Delay = 0.00>
+ST_84 : Operation 462 [2/2] (3.25ns)   --->   "%read_buffer_data_V = load i9 %ouput_buffer_V_0_0_addr_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:518]   --->   Operation 462 'load' 'read_buffer_data_V' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 480> <RAM>
+ST_84 : Operation 463 [1/1] (0.00ns)   --->   "%write_col_index_V_load_1 = load i16 %write_col_index_V"   --->   Operation 463 'load' 'write_col_index_V_load_1' <Predicate = (!icmp_ln692 & !icmp_ln204)> <Delay = 0.00>
+ST_84 : Operation 464 [1/1] (2.07ns)   --->   "%write_col_index_V_1 = add i16 %write_col_index_V_load_1, i16 1"   --->   Operation 464 'add' 'write_col_index_V_1' <Predicate = (!icmp_ln692 & !and_ln218_1 & !icmp_ln204)> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_84 : Operation 465 [1/1] (0.00ns) (grouped into LUT with out node write_col_index_V_2)   --->   "%select_ln819 = select i1 %and_ln218_1, i16 %write_col_index_V_load_1, i16 %write_col_index_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:819]   --->   Operation 465 'select' 'select_ln819' <Predicate = (!icmp_ln692 & !icmp_ln204)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_84 : Operation 466 [1/1] (0.80ns) (out node of the LUT)   --->   "%write_col_index_V_2 = select i1 %icmp_ln204, i16 0, i16 %select_ln819" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750]   --->   Operation 466 'select' 'write_col_index_V_2' <Predicate = (!icmp_ln692)> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_84 : Operation 467 [1/1] (1.58ns)   --->   "%store_ln750 = store i16 %write_col_index_V_2, i16 %write_col_index_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750]   --->   Operation 467 'store' 'store_ln750' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+
+State 85 <SV = 84> <Delay = 6.08>
+ST_85 : Operation 468 [1/1] (0.00ns)   --->   "%data_previous_V_load = load i16 %data_previous_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 468 'load' 'data_previous_V_load' <Predicate = (!cmp108)> <Delay = 0.00>
+ST_85 : Operation 469 [1/1] (0.00ns)   --->   "%data_previous_V_2_load = load i16 %data_previous_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 469 'load' 'data_previous_V_2_load' <Predicate = (!cmp108)> <Delay = 0.00>
+ST_85 : Operation 470 [1/1] (0.00ns)   --->   "%data_previous_overlap_V_load = load i16 %data_previous_overlap_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 470 'load' 'data_previous_overlap_V_load' <Predicate = (!cmp108)> <Delay = 0.00>
+ST_85 : Operation 471 [1/1] (0.00ns)   --->   "%data_previous_overlap_V_2_load = load i16 %data_previous_overlap_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 471 'load' 'data_previous_overlap_V_2_load' <Predicate = (!cmp108)> <Delay = 0.00>
+ST_85 : Operation 472 [1/1] (0.00ns)   --->   "%specpipeline_ln608 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_4" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:608]   --->   Operation 472 'specpipeline' 'specpipeline_ln608' <Predicate = true> <Delay = 0.00>
+ST_85 : Operation 473 [1/1] (0.00ns)   --->   "%speclooptripcount_ln608 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 1, i64 1920, i64 960" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:608]   --->   Operation 473 'speclooptripcount' 'speclooptripcount_ln608' <Predicate = true> <Delay = 0.00>
+ST_85 : Operation 474 [1/1] (0.00ns)   --->   "%specloopname_ln608 = specloopname void @_ssdm_op_SpecLoopName, void @empty_23" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:608]   --->   Operation 474 'specloopname' 'specloopname_ln608' <Predicate = true> <Delay = 0.00>
+ST_85 : Operation 475 [1/1] (0.00ns) (grouped into LUT with out node and_ln488)   --->   "%cmp72_i = xor i1 %p_Result_4, i1 1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:692]   --->   Operation 475 'xor' 'cmp72_i' <Predicate = true> <Delay = 0.00> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 476 [1/1] (0.97ns)   --->   "%xor_ln870 = xor i1 %out_index_val_V, i1 1"   --->   Operation 476 'xor' 'xor_ln870' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 477 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln874)   --->   "%p_Result_5 = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 1, i1 %xor_ln870"   --->   Operation 477 'bitconcatenate' 'p_Result_5' <Predicate = (out_index_val_V)> <Delay = 0.00>
+ST_85 : Operation 478 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln874)   --->   "%p_Result_6 = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 0, i1 %xor_ln870"   --->   Operation 478 'bitconcatenate' 'p_Result_6' <Predicate = (!out_index_val_V)> <Delay = 0.00>
+ST_85 : Operation 479 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln874)   --->   "%data_mux_out_status_V_2 = select i1 %out_index_val_V, i2 %p_Result_5, i2 %p_Result_6" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 479 'select' 'data_mux_out_status_V_2' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 480 [1/1] (0.00ns) (grouped into LUT with out node add_ln208)   --->   "%data_mux_out_V_2 = select i1 %out_index_val_V, i16 %data_mux_out_V_1, i16 %procBlock_out_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 480 'select' 'data_mux_out_V_2' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 481 [1/1] (0.00ns) (grouped into LUT with out node add_ln208_1)   --->   "%data_mux_out_overlap_V_2 = select i1 %out_index_val_V, i16 %data_mux_out_overlap_V_1, i16 %procBlock_out_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 481 'select' 'data_mux_out_overlap_V_2' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 482 [1/1] (0.80ns)   --->   "%data_previous_V_4 = select i1 %cmp108, i16 0, i16 %data_previous_V_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 482 'select' 'data_previous_V_4' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 483 [1/1] (0.80ns)   --->   "%data_previous_overlap_V_4 = select i1 %cmp108, i16 0, i16 %data_previous_overlap_V_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 483 'select' 'data_previous_overlap_V_4' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 484 [1/1] (0.99ns) (out node of the LUT)   --->   "%icmp_ln874 = icmp_eq  i2 %data_mux_out_status_V_2, i2 0"   --->   Operation 484 'icmp' 'icmp_ln874' <Predicate = true> <Delay = 0.99> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 485 [1/1] (2.07ns) (out node of the LUT)   --->   "%add_ln208 = add i16 %data_previous_V_4, i16 %data_mux_out_V_2"   --->   Operation 485 'add' 'add_ln208' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 486 [1/1] (2.07ns) (out node of the LUT)   --->   "%add_ln208_1 = add i16 %data_previous_overlap_V_4, i16 %data_mux_out_overlap_V_2"   --->   Operation 486 'add' 'add_ln208_1' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 487 [1/1] (0.80ns)   --->   "%update_overlap = select i1 %icmp_ln874, i16 %data_previous_overlap_V_4, i16 %add_ln208_1"   --->   Operation 487 'select' 'update_overlap' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 488 [1/1] (0.80ns)   --->   "%update = select i1 %icmp_ln874, i16 %data_previous_V_4, i16 %add_ln208"   --->   Operation 488 'select' 'update' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 489 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln488 = and i1 %or_ln489, i1 %cmp72_i" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 489 'and' 'and_ln488' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 490 [1/1] (0.80ns)   --->   "%DDR_write0_temp_V = select i1 %and_ln488, i16 0, i16 %update" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 490 'select' 'DDR_write0_temp_V' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 491 [1/1] (0.80ns)   --->   "%update_overlap_4 = select i1 %and_ln488, i16 0, i16 %update_overlap" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 491 'select' 'update_overlap_4' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 492 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln874_1)   --->   "%p_Result_7 = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 0, i1 %out_index_val_V"   --->   Operation 492 'bitconcatenate' 'p_Result_7' <Predicate = (out_index_val_V)> <Delay = 0.00>
+ST_85 : Operation 493 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln874_1)   --->   "%p_Result_8 = bitconcatenate i2 @_ssdm_op_BitConcatenate.i2.i1.i1, i1 1, i1 %out_index_val_V"   --->   Operation 493 'bitconcatenate' 'p_Result_8' <Predicate = (!out_index_val_V)> <Delay = 0.00>
+ST_85 : Operation 494 [1/1] (0.00ns) (grouped into LUT with out node icmp_ln874_1)   --->   "%data_mux_out_status_V_5 = select i1 %out_index_val_V, i2 %p_Result_7, i2 %p_Result_8" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 494 'select' 'data_mux_out_status_V_5' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 495 [1/1] (0.00ns) (grouped into LUT with out node add_ln208_2)   --->   "%data_mux_out_V_3 = select i1 %out_index_val_V, i16 %procBlock_out_V, i16 %data_mux_out_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 495 'select' 'data_mux_out_V_3' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 496 [1/1] (0.00ns) (grouped into LUT with out node add_ln208_3)   --->   "%data_mux_out_overlap_V_3 = select i1 %out_index_val_V, i16 %procBlock_out_V_2, i16 %data_mux_out_overlap_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:65]   --->   Operation 496 'select' 'data_mux_out_overlap_V_3' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 497 [1/1] (0.80ns)   --->   "%data_previous_V_5 = select i1 %cmp108, i16 0, i16 %data_previous_V_2_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 497 'select' 'data_previous_V_5' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 498 [1/1] (0.80ns)   --->   "%data_previous_overlap_V_5 = select i1 %cmp108, i16 0, i16 %data_previous_overlap_V_2_load" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468]   --->   Operation 498 'select' 'data_previous_overlap_V_5' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 499 [1/1] (0.99ns) (out node of the LUT)   --->   "%icmp_ln874_1 = icmp_eq  i2 %data_mux_out_status_V_5, i2 0"   --->   Operation 499 'icmp' 'icmp_ln874_1' <Predicate = true> <Delay = 0.99> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.43> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 500 [1/1] (2.07ns) (out node of the LUT)   --->   "%add_ln208_2 = add i16 %data_previous_V_5, i16 %data_mux_out_V_3"   --->   Operation 500 'add' 'add_ln208_2' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 501 [1/1] (2.07ns) (out node of the LUT)   --->   "%add_ln208_3 = add i16 %data_previous_overlap_V_5, i16 %data_mux_out_overlap_V_3"   --->   Operation 501 'add' 'add_ln208_3' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 502 [1/1] (0.80ns)   --->   "%update_overlap_2 = select i1 %icmp_ln874_1, i16 %data_previous_overlap_V_5, i16 %add_ln208_3"   --->   Operation 502 'select' 'update_overlap_2' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 503 [1/1] (0.80ns)   --->   "%update_1 = select i1 %icmp_ln874_1, i16 %data_previous_V_5, i16 %add_ln208_2"   --->   Operation 503 'select' 'update_1' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 504 [1/1] (0.97ns)   --->   "%and_ln488_1 = and i1 %p_Result_4, i1 %or_ln489" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 504 'and' 'and_ln488_1' <Predicate = true> <Delay = 0.97> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 505 [1/1] (0.80ns)   --->   "%DDR_write1_temp_V = select i1 %and_ln488_1, i16 0, i16 %update_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 505 'select' 'DDR_write1_temp_V' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 506 [1/1] (0.80ns)   --->   "%update_overlap_5 = select i1 %and_ln488_1, i16 0, i16 %update_overlap_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 506 'select' 'update_overlap_5' <Predicate = true> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 507 [1/2] (3.25ns)   --->   "%read_buffer_data_V = load i9 %ouput_buffer_V_0_0_addr_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:518]   --->   Operation 507 'load' 'read_buffer_data_V' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 480> <RAM>
+ST_85 : Operation 508 [1/1] (0.00ns) (grouped into LUT with out node temp_sum_V)   --->   "%DDR_write0_temp_V_1 = select i1 %p_Result_4, i16 %update_1, i16 %update" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:519]   --->   Operation 508 'select' 'DDR_write0_temp_V_1' <Predicate = true> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 509 [1/1] (2.07ns) (out node of the LUT)   --->   "%temp_sum_V = add i16 %read_buffer_data_V, i16 %DDR_write0_temp_V_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:515]   --->   Operation 509 'add' 'temp_sum_V' <Predicate = true> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_85 : Operation 510 [1/1] (0.00ns) (grouped into LUT with out node buffer_data_temp)   --->   "%select_ln530 = select i1 %p_Result_4, i16 %update_overlap_2, i16 %update_overlap" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:530]   --->   Operation 510 'select' 'select_ln530' <Predicate = (DDR_wr_en_1 & Yaxis_overlap_en_load)> <Delay = 0.00> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 511 [1/1] (0.80ns) (out node of the LUT)   --->   "%buffer_data_temp = select i1 %Yaxis_overlap_en_load, i16 %select_ln530, i16 0" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:528]   --->   Operation 511 'select' 'buffer_data_temp' <Predicate = (DDR_wr_en_1)> <Delay = 0.80> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_85 : Operation 512 [1/1] (1.58ns)   --->   "%store_ln488 = store i16 %update_overlap_5, i16 %data_previous_overlap_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 512 'store' 'store_ln488' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+ST_85 : Operation 513 [1/1] (1.58ns)   --->   "%store_ln488 = store i16 %update_overlap_4, i16 %data_previous_overlap_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 513 'store' 'store_ln488' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+ST_85 : Operation 514 [1/1] (1.58ns)   --->   "%store_ln488 = store i16 %DDR_write1_temp_V, i16 %data_previous_V_2" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 514 'store' 'store_ln488' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+ST_85 : Operation 515 [1/1] (1.58ns)   --->   "%store_ln488 = store i16 %DDR_write0_temp_V, i16 %data_previous_V" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488]   --->   Operation 515 'store' 'store_ln488' <Predicate = (!icmp_ln692)> <Delay = 1.58>
+ST_85 : Operation 516 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 516 'br' 'br_ln0' <Predicate = (!icmp_ln692)> <Delay = 0.00>
+
+State 86 <SV = 85> <Delay = 5.71>
+ST_86 : Operation 517 [1/1] (3.25ns)   --->   "%store_ln539 = store i16 %temp_sum_V, i9 %ouput_buffer_V_0_0_addr_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:539]   --->   Operation 517 'store' 'store_ln539' <Predicate = (!DDR_wr_en_1 & !and_ln218_1)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 480> <RAM>
+ST_86 : Operation 518 [1/1] (0.00ns)   --->   "%br_ln540 = br void %_ZL20update_output_bufferILi1ELi1ELi0ELi480ELi480ELi1EEvbb7ap_uintILi32EES0_ILi16EEtPAmlLi2ET4__S2_S4_PAT0__AT3__S2_PS2_PAplT0_Li1E_S2_iSA_bPAT4__S0_ILi8EE.exit9495.thread_ifconv" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:540]   --->   Operation 518 'br' 'br_ln540' <Predicate = (!DDR_wr_en_1 & !and_ln218_1)> <Delay = 0.00>
+ST_86 : Operation 519 [1/1] (2.07ns)   --->   "%sum_rounding_V = add i16 %temp_sum_V, i16 128"   --->   Operation 519 'add' 'sum_rounding_V' <Predicate = (DDR_wr_en_1)> <Delay = 2.07> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.07> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_86 : Operation 520 [1/1] (0.00ns)   --->   "%tmp_V = partselect i8 @_ssdm_op_PartSelect.i8.i16.i32.i32, i16 %sum_rounding_V, i32 8, i32 15"   --->   Operation 520 'partselect' 'tmp_V' <Predicate = (DDR_wr_en_1)> <Delay = 0.00>
+ST_86 : Operation 521 [1/1] (3.25ns)   --->   "%store_ln536 = store i16 %buffer_data_temp, i9 %ouput_buffer_V_0_0_addr_1" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:536]   --->   Operation 521 'store' 'store_ln536' <Predicate = (DDR_wr_en_1)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 480> <RAM>
+ST_86 : Operation 522 [1/1] (3.63ns)   --->   "%write_ln174 = write void @_ssdm_op_Write.ap_fifo.volatile.i8P0A, i8 %img_out_434, i8 %tmp_V" [C:/Xilinx/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174]   --->   Operation 522 'write' 'write_ln174' <Predicate = (DDR_wr_en_1 & icmp_ln809)> <Delay = 3.63> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 8> <Depth = 2> <FIFO>
+ST_86 : Operation 523 [1/1] (0.00ns)   --->   "%br_ln809 = br void %._crit_edge8" [C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:809]   --->   Operation 523 'br' 'br_ln809' <Predicate = (DDR_wr_en_1 & icmp_ln809)> <Delay = 0.00>
+
+State 87 <SV = 76> <Delay = 0.00>
+ST_87 : Operation 524 [1/1] (0.00ns)   --->   "%br_ln0 = br void %._crit_edge"   --->   Operation 524 'br' 'br_ln0' <Predicate = (!cmp10531)> <Delay = 0.00>
+ST_87 : Operation 525 [1/1] (0.00ns)   --->   "%br_ln0 = br void"   --->   Operation 525 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 4.13ns
+The critical path consists of the following:
+	wire read on port 'p_read3' [9]  (0 ns)
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 2>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 3>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 4>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 5>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 6>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 7>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 8>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 9>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 10>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 11>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 12>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 13>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 14>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 15>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 16>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 17>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 18>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 19>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 20>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 21>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 22>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 23>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 24>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 25>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 26>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 27>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 28>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 29>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 30>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 31>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 32>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 33>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 34>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 35>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 36>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [18]  (4.13 ns)
+
+ <State 37>: 4.91ns
+The critical path consists of the following:
+	'phi' operation ('dim3.V') with incoming values : ('dim3.V') [21]  (0 ns)
+	'getelementptr' operation ('ouput_buffer_V_0_0_addr', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:670) [30]  (0 ns)
+	'store' operation ('store_ln670', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:670) of constant 0 on array 'ouput_buffer.V[0][0]', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:630 [31]  (3.25 ns)
+	blocking operation 1.66 ns on control path)
+
+ <State 38>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 39>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 40>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 41>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 42>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 43>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 44>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 45>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 46>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 47>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 48>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 49>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 50>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 51>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 52>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 53>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 54>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 55>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 56>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 57>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 58>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 59>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 60>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 61>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 62>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 63>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 64>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 65>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 66>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 67>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 68>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 69>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 70>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 71>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 72>: 4.13ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+
+ <State 73>: 6.61ns
+The critical path consists of the following:
+	'udiv' operation ('out_div', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [50]  (4.13 ns)
+	'icmp' operation ('cmp_i_i937_i', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [54]  (2.47 ns)
+
+ <State 74>: 6.57ns
+The critical path consists of the following:
+	'udiv' operation ('Yindex_output.V', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:29) [51]  (4.13 ns)
+	'and' operation ('empty') [65]  (0 ns)
+	'icmp' operation ('empty_49') [66]  (2.43 ns)
+
+ <State 75>: 2.43ns
+The critical path consists of the following:
+	'phi' operation ('row_index.V') with incoming values : ('row_index.V') [80]  (0 ns)
+	'icmp' operation ('cmp_i_i109_i', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:686) [88]  (2.43 ns)
+
+ <State 76>: 5.68ns
+The critical path consists of the following:
+	'load' operation ('Xindex_output_next_V_load') on local variable 'Xindex_output_next.V' [99]  (0 ns)
+	'add' operation ('Xindex_output_next.V') [118]  (2.55 ns)
+	'select' operation ('__Val2__', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:714) [119]  (0.698 ns)
+	'icmp' operation ('icmp_ln878_2') [134]  (2.43 ns)
+
+ <State 77>: 7.06ns
+The critical path consists of the following:
+	'add' operation ('ret') [147]  (2.55 ns)
+	'add' operation ('ret') [153]  (2.08 ns)
+	'icmp' operation ('icmp_ln870_9') [154]  (2.43 ns)
+
+ <State 78>: 5.93ns
+The critical path consists of the following:
+	fifo read on port 'img_gray_433' (C:/Xilinx/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:145) [209]  (3.63 ns)
+	'select' operation ('in_data.V', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:324) [216]  (1.25 ns)
+	'mul' operation of DSP[220] ('x_mul') [219]  (1.05 ns)
+
+ <State 79>: 2.15ns
+The critical path consists of the following:
+	'mul' operation of DSP[228] ('x_mul') [228]  (2.15 ns)
+
+ <State 80>: 5.8ns
+The critical path consists of the following:
+	'load' operation ('Yindex_output_V_1_load_1') on local variable 'Yindex_output.V' [302]  (0 ns)
+	'add' operation ('Yindex_output.V') [308]  (2.55 ns)
+	'select' operation ('Yindex_output.V', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:823) [310]  (0.698 ns)
+	'sub' operation ('ret') [316]  (2.55 ns)
+
+ <State 81>: 6.49ns
+The critical path consists of the following:
+	'sub' operation ('Yindex_output_precision_error.V') [175]  (2.11 ns)
+	'icmp' operation ('icmp_ln890') [182]  (2.43 ns)
+	'or' operation ('or_ln201', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201) [188]  (0 ns)
+	'or' operation ('or_ln201_2', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201) [190]  (0 ns)
+	'and' operation ('and_ln201', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201) [191]  (0.978 ns)
+	'and' operation ('DDR_wr_en_tmp', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:201) [192]  (0 ns)
+	'or' operation ('DDR_wr_en', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:213) [193]  (0.978 ns)
+
+ <State 82>: 4.84ns
+The critical path consists of the following:
+	'load' operation ('out_col_index_load', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:814) on local variable 'out_col_index' [296]  (0 ns)
+	'add' operation ('out_col_index', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:814) [297]  (2.55 ns)
+	'select' operation ('select_ln811', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:811) [298]  (0.698 ns)
+	'store' operation ('store_ln811', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:811) of variable 'select_ln811', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:811 on local variable 'out_col_index' [299]  (1.59 ns)
+
+ <State 83>: 2.15ns
+The critical path consists of the following:
+	'mul' operation of DSP[231] ('mul_out') [231]  (2.15 ns)
+
+ <State 84>: 4.47ns
+The critical path consists of the following:
+	'load' operation ('write_col_index_V_load_1') on local variable 'write_col_index.V' [304]  (0 ns)
+	'add' operation ('write_col_index.V') [305]  (2.08 ns)
+	'select' operation ('select_ln819', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:819) [306]  (0 ns)
+	'select' operation ('write_col_index.V', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750) [307]  (0.805 ns)
+	'store' operation ('store_ln750', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750) of variable 'write_col_index.V', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:750 on local variable 'write_col_index.V' [327]  (1.59 ns)
+
+ <State 85>: 6.08ns
+The critical path consists of the following:
+	'load' operation ('data_previous_overlap_V_2_load', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468) on local variable 'data_previous_overlap.V' [109]  (0 ns)
+	'select' operation ('data_previous_overlap.V', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:468) [263]  (0.805 ns)
+	'add' operation ('add_ln208_3') [266]  (2.08 ns)
+	'select' operation ('update_overlap') [267]  (0.805 ns)
+	'select' operation ('update_overlap', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488) [271]  (0.805 ns)
+	'store' operation ('store_ln488', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488) of variable 'update_overlap', C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_down_area.hpp:488 on local variable 'data_previous_overlap.V' [320]  (1.59 ns)
+
+ <State 86>: 5.71ns
+The critical path consists of the following:
+	'add' operation ('sum_rounding.V') [285]  (2.08 ns)
+	fifo write on port 'img_out_434' (C:/Xilinx/Vitis_HLS/2020.2/common/technology/autopilot/hls_stream_39.h:174) [293]  (3.63 ns)
+
+ <State 87>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+	State 40
+	State 41
+	State 42
+	State 43
+	State 44
+	State 45
+	State 46
+	State 47
+	State 48
+	State 49
+	State 50
+	State 51
+	State 52
+	State 53
+	State 54
+	State 55
+	State 56
+	State 57
+	State 58
+	State 59
+	State 60
+	State 61
+	State 62
+	State 63
+	State 64
+	State 65
+	State 66
+	State 67
+	State 68
+	State 69
+	State 70
+	State 71
+	State 72
+	State 73
+	State 74
+	State 75
+	State 76
+	State 77
+	State 78
+	State 79
+	State 80
+	State 81
+	State 82
+	State 83
+	State 84
+	State 85
+	State 86
+	State 87
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

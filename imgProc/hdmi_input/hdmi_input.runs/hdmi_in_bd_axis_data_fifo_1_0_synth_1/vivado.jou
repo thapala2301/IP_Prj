@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Mar  9 15:30:58 2026
+# Process ID: 11076
+# Current directory: C:/imgProc/attempt4/hdmi_input/hdmi_input.runs/hdmi_in_bd_axis_data_fifo_1_0_synth_1
+# Command line: vivado.exe -log hdmi_in_bd_axis_data_fifo_1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source hdmi_in_bd_axis_data_fifo_1_0.tcl
+# Log file: C:/imgProc/attempt4/hdmi_input/hdmi_input.runs/hdmi_in_bd_axis_data_fifo_1_0_synth_1/hdmi_in_bd_axis_data_fifo_1_0.vds
+# Journal file: C:/imgProc/attempt4/hdmi_input/hdmi_input.runs/hdmi_in_bd_axis_data_fifo_1_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source hdmi_in_bd_axis_data_fifo_1_0.tcl -notrace

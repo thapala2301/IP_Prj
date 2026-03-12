@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1773059037066">
+  <ports id="1" name="in_n" type="PortType" originalName="in_n" coreId="1735223644" bitwidth="64">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="2" name="in_d" type="PortType" originalName="in_d" coreId="791759919" bitwidth="16">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="12" name="ap_return" direction="DirOut">
+    <dataInputObjs>ret</dataInputObjs>
+  </ports>
+  <edges id="13" source_obj="//@ports.1" sink_obj="//@blocks.0/@node_objs.0"/>
+  <edges id="16" source_obj="//@ports.0" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="17" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="18" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.3"/>
+  <edges id="19" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="20" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@blocks.0/@node_objs.4"/>
+  <edges id="21" source_obj="//@blocks.0/@node_objs.4" sink_obj="//@blocks.0/@node_objs.5"/>
+  <edges id="22" source_obj="//@blocks.0/@node_objs.5" sink_obj="//@blocks.0/@node_objs.6"/>
+  <edges source_obj="//@blocks.0/@node_objs.6" sink_obj="//@ports.2"/>
+  <blocks id="10" name="xFUDivAreaUp" type="BlockType">
+    <node_objs xsi:type="cdfg:CdfgNode" id="3" name="in_d_read" originalName="in_d" coreId="744302897" bitwidth="16" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <dataInputObjs>in_d</dataInputObjs>
+      <dataOutputObjs>zext</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="4" name="in_n_read" originalName="in_n" coreId="744302897" bitwidth="64" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <dataInputObjs>in_n</dataInputObjs>
+      <dataOutputObjs>trunc</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="5" name="trunc_ln150" lineNumber="150" fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" fileDirectory=".." rtlName="grp_fu_28_p0" coreId="744302897" contextFuncName="xFUDivAreaUp" bitwidth="48" opcode="trunc" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" linenumber="150" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="xFUDivAreaUp"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>udiv</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="6" name="zext_ln154" lineNumber="154" fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" fileDirectory=".." rtlName="grp_fu_28_p10" coreId="1684368999" contextFuncName="xFUDivAreaUp" bitwidth="48" opcode="zext" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" linenumber="154" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="xFUDivAreaUp"/>
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>udiv</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="out_res" lineNumber="154" originalName="out_res" fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" fileDirectory=".." rtlName="udiv_48ns_16ns_48_52_seq_1_U63" coreName="DivnS_SEQ" implIndex="auto_seq" control="auto" opType="udiv" coreId="7" contextFuncName="xFUDivAreaUp" bitwidth="48" opcode="udiv" nodeLatency="51" m_display="0" m_delay="4.55" m_topoIndex="5" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" linenumber="154" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="xFUDivAreaUp"/>
+      <dataInputObjs>trunc</dataInputObjs>
+      <dataInputObjs>zext</dataInputObjs>
+      <dataOutputObjs>zext</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="zext_ln154_1" lineNumber="154" fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" fileDirectory=".." rtlName="zext_ln154_1_fu_34_p1" coreId="1646275677" contextFuncName="xFUDivAreaUp" bitwidth="64" opcode="zext" nodeLabel="51.0" m_display="0" m_topoIndex="6" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" linenumber="154" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="xFUDivAreaUp"/>
+      <dataInputObjs>udiv</dataInputObjs>
+      <dataOutputObjs>ret</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="9" name="_ln155" lineNumber="155" fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" fileDirectory=".." coreId="1684368999" contextFuncName="xFUDivAreaUp" opcode="ret" nodeLabel="51.0" m_display="0" m_topoIndex="7" m_clusterGroupNumber="-1">
+      <inlineStackInfo fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp" linenumber="155" fileDirectory="C:\Users\archit\OneDrive\Documents\Work\infoproc" functionName="xFUDivAreaUp"/>
+      <dataInputObjs>zext</dataInputObjs>
+      <dataOutputObjs>ap_return</dataOutputObjs>
+    </node_objs>
+    <fileValidLineNumbers fileName="C:/Vitis_Libraries/vision/L1/include\imgproc/xf_resize_up_area.hpp">
+      <validLinenumbers>150</validLinenumbers>
+      <validLinenumbers>154</validLinenumbers>
+      <validLinenumbers>155</validLinenumbers>
+    </fileValidLineNumbers>
+  </blocks>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <ScheduleInfo time="3"/>
+  <ScheduleInfo time="4"/>
+  <ScheduleInfo time="5"/>
+  <ScheduleInfo time="6"/>
+  <ScheduleInfo time="7"/>
+  <ScheduleInfo time="8"/>
+  <ScheduleInfo time="9"/>
+  <ScheduleInfo time="10"/>
+  <ScheduleInfo time="11"/>
+  <ScheduleInfo time="12"/>
+  <ScheduleInfo time="13"/>
+  <ScheduleInfo time="14"/>
+  <ScheduleInfo time="15"/>
+  <ScheduleInfo time="16"/>
+  <ScheduleInfo time="17"/>
+  <ScheduleInfo time="18"/>
+  <ScheduleInfo time="19"/>
+  <ScheduleInfo time="20"/>
+  <ScheduleInfo time="21"/>
+  <ScheduleInfo time="22"/>
+  <ScheduleInfo time="23"/>
+  <ScheduleInfo time="24"/>
+  <ScheduleInfo time="25"/>
+  <ScheduleInfo time="26"/>
+  <ScheduleInfo time="27"/>
+  <ScheduleInfo time="28"/>
+  <ScheduleInfo time="29"/>
+  <ScheduleInfo time="30"/>
+  <ScheduleInfo time="31"/>
+  <ScheduleInfo time="32"/>
+  <ScheduleInfo time="33"/>
+  <ScheduleInfo time="34"/>
+  <ScheduleInfo time="35"/>
+  <ScheduleInfo time="36"/>
+  <ScheduleInfo time="37"/>
+  <ScheduleInfo time="38"/>
+  <ScheduleInfo time="39"/>
+  <ScheduleInfo time="40"/>
+  <ScheduleInfo time="41"/>
+  <ScheduleInfo time="42"/>
+  <ScheduleInfo time="43"/>
+  <ScheduleInfo time="44"/>
+  <ScheduleInfo time="45"/>
+  <ScheduleInfo time="46"/>
+  <ScheduleInfo time="47"/>
+  <ScheduleInfo time="48"/>
+  <ScheduleInfo time="49"/>
+  <ScheduleInfo time="50"/>
+  <ScheduleInfo time="51"/>
+  <regnodes realName="zext_ln154_reg_43">
+    <nodeIds>6</nodeIds>
+  </regnodes>
+  <regnodes realName="trunc_ln150_reg_38">
+    <nodeIds>5</nodeIds>
+  </regnodes>
+  <expressionNodes realName="trunc_ln150_fu_20">
+    <nodeIds>5</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln154_fu_24">
+    <nodeIds>6</nodeIds>
+  </expressionNodes>
+  <expressionNodes realName="zext_ln154_1_fu_34">
+    <nodeIds>8</nodeIds>
+  </expressionNodes>
+  <moduleNodes realName="grp_fu_28">
+    <nodeIds>7</nodeIds>
+  </moduleNodes>
+  <ioNodes realName="in_d_read_read_fu_8">
+    <nodeIds>3</nodeIds>
+  </ioNodes>
+  <ioNodes realName="in_n_read_read_fu_14">
+    <nodeIds>4</nodeIds>
+  </ioNodes>
+  <ioPorts name="in_d">
+    <contents name="read">
+      <nodeIds>3</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="in_n">
+    <contents name="read">
+      <nodeIds>4</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="ap_return">
+    <contents name="ret">
+      <nodeIds>9</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="3" stage="1" latency="1"/>
+      <operations id="4" stage="1" latency="1"/>
+      <operations id="5" stage="1" latency="1"/>
+      <operations id="6" stage="1" latency="1"/>
+      <operations id="7" stage="52" latency="52"/>
+    </states>
+    <states id="2">
+      <operations id="7" stage="51" latency="52"/>
+    </states>
+    <states id="3">
+      <operations id="7" stage="50" latency="52"/>
+    </states>
+    <states id="4">
+      <operations id="7" stage="49" latency="52"/>
+    </states>
+    <states id="5">
+      <operations id="7" stage="48" latency="52"/>
+    </states>
+    <states id="6">
+      <operations id="7" stage="47" latency="52"/>
+    </states>
+    <states id="7">
+      <operations id="7" stage="46" latency="52"/>
+    </states>
+    <states id="8">
+      <operations id="7" stage="45" latency="52"/>
+    </states>
+    <states id="9">
+      <operations id="7" stage="44" latency="52"/>
+    </states>
+    <states id="10">
+      <operations id="7" stage="43" latency="52"/>
+    </states>
+    <states id="11">
+      <operations id="7" stage="42" latency="52"/>
+    </states>
+    <states id="12">
+      <operations id="7" stage="41" latency="52"/>
+    </states>
+    <states id="13">
+      <operations id="7" stage="40" latency="52"/>
+    </states>
+    <states id="14">
+      <operations id="7" stage="39" latency="52"/>
+    </states>
+    <states id="15">
+      <operations id="7" stage="38" latency="52"/>
+    </states>
+    <states id="16">
+      <operations id="7" stage="37" latency="52"/>
+    </states>
+    <states id="17">
+      <operations id="7" stage="36" latency="52"/>
+    </states>
+    <states id="18">
+      <operations id="7" stage="35" latency="52"/>
+    </states>
+    <states id="19">
+      <operations id="7" stage="34" latency="52"/>
+    </states>
+    <states id="20">
+      <operations id="7" stage="33" latency="52"/>
+    </states>
+    <states id="21">
+      <operations id="7" stage="32" latency="52"/>
+    </states>
+    <states id="22">
+      <operations id="7" stage="31" latency="52"/>
+    </states>
+    <states id="23">
+      <operations id="7" stage="30" latency="52"/>
+    </states>
+    <states id="24">
+      <operations id="7" stage="29" latency="52"/>
+    </states>
+    <states id="25">
+      <operations id="7" stage="28" latency="52"/>
+    </states>
+    <states id="26">
+      <operations id="7" stage="27" latency="52"/>
+    </states>
+    <states id="27">
+      <operations id="7" stage="26" latency="52"/>
+    </states>
+    <states id="28">
+      <operations id="7" stage="25" latency="52"/>
+    </states>
+    <states id="29">
+      <operations id="7" stage="24" latency="52"/>
+    </states>
+    <states id="30">
+      <operations id="7" stage="23" latency="52"/>
+    </states>
+    <states id="31">
+      <operations id="7" stage="22" latency="52"/>
+    </states>
+    <states id="32">
+      <operations id="7" stage="21" latency="52"/>
+    </states>
+    <states id="33">
+      <operations id="7" stage="20" latency="52"/>
+    </states>
+    <states id="34">
+      <operations id="7" stage="19" latency="52"/>
+    </states>
+    <states id="35">
+      <operations id="7" stage="18" latency="52"/>
+    </states>
+    <states id="36">
+      <operations id="7" stage="17" latency="52"/>
+    </states>
+    <states id="37">
+      <operations id="7" stage="16" latency="52"/>
+    </states>
+    <states id="38">
+      <operations id="7" stage="15" latency="52"/>
+    </states>
+    <states id="39">
+      <operations id="7" stage="14" latency="52"/>
+    </states>
+    <states id="40">
+      <operations id="7" stage="13" latency="52"/>
+    </states>
+    <states id="41">
+      <operations id="7" stage="12" latency="52"/>
+    </states>
+    <states id="42">
+      <operations id="7" stage="11" latency="52"/>
+    </states>
+    <states id="43">
+      <operations id="7" stage="10" latency="52"/>
+    </states>
+    <states id="44">
+      <operations id="7" stage="9" latency="52"/>
+    </states>
+    <states id="45">
+      <operations id="7" stage="8" latency="52"/>
+    </states>
+    <states id="46">
+      <operations id="7" stage="7" latency="52"/>
+    </states>
+    <states id="47">
+      <operations id="7" stage="6" latency="52"/>
+    </states>
+    <states id="48">
+      <operations id="7" stage="5" latency="52"/>
+    </states>
+    <states id="49">
+      <operations id="7" stage="4" latency="52"/>
+    </states>
+    <states id="50">
+      <operations id="7" stage="3" latency="52"/>
+    </states>
+    <states id="51">
+      <operations id="7" stage="2" latency="52"/>
+    </states>
+    <states id="52">
+      <operations id="7" stage="1" latency="52"/>
+      <operations id="8" stage="1" latency="1"/>
+      <operations id="9" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="3" outState="4">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="4" outState="5">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="5" outState="6">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="6" outState="7">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="7" outState="8">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="8" outState="9">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="9" outState="10">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="10" outState="11">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="11" outState="12">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="12" outState="13">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="13" outState="14">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="14" outState="15">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="15" outState="16">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="16" outState="17">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="17" outState="18">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="18" outState="19">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="19" outState="20">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="20" outState="21">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="21" outState="22">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="22" outState="23">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="23" outState="24">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="24" outState="25">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="25" outState="26">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="26" outState="27">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="27" outState="28">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="28" outState="29">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="29" outState="30">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="30" outState="31">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="31" outState="32">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="32" outState="33">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="33" outState="34">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="34" outState="35">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="35" outState="36">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="36" outState="37">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="37" outState="38">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="38" outState="39">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="39" outState="40">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="40" outState="41">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="41" outState="42">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="42" outState="43">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="43" outState="44">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="44" outState="45">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="45" outState="46">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="46" outState="47">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="47" outState="48">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="48" outState="49">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="49" outState="50">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="50" outState="51">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="51" outState="52">
+      <condition id="-1"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="xFUDivAreaUp" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="51" mMaxLatency="51">
+      <basicBlocks>10</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

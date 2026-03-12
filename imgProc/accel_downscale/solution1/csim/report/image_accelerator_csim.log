@@ -1,0 +1,16 @@
+INFO: [SIM 2] *************** CSIM start ***************
+INFO: [SIM 4] CSIM will launch GCC as the compiler.
+   Compiling ../../../accel_downscale_tb.cpp in debug mode
+   Compiling ../../../accel_downscale.cpp in debug mode
+   Generating csim.exe
+----------------------------------------
+Generating synthetic 1080p input frame...
+Firing Hardware Accelerator IP...
+Hardware processing complete!
+Verifying output AXI4-Stream...
+>>> TEST PASSED: Successfully downscaled and converted to Grayscale! <<<
+Output frame size: 480x270 (129600 pixels).
+----------------------------------------
+The maximum depth reached by any of the 2 hls::stream() instances in the design is 2073600
+INFO: [SIM 1] CSim done with 0 errors.
+INFO: [SIM 3] *************** CSIM finish ***************
