@@ -1,0 +1,164 @@
+================================================================================
+ ATTENDANCE ADD-ONS — WIRING DIAGRAM V9.0
+ PYNQ-Z2 → USB Serial → Arduino Uno → Servo + Buzzer
+================================================================================
+
+OVERVIEW
+────────
+The PYNQ handles all visual feedback via its built-in RGB LED.
+The Arduino handles physical door (servo) and audio (buzzer) only.
+No external LEDs needed — that would just duplicate what the PYNQ already does.
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│                                                                          │
+│   [PYNQ-Z2] ──── USB A→B cable ────► [Arduino Uno]                      │
+│       │                                    │                             │
+│       │ built-in                           ├──► Servo motor (door)       │
+│       ▼                                    └──► Active buzzer (audio)    │
+│   RGB LED (rgbleds[4])                                                   │
+│   Plain LEDs 0-3                                                         │
+│   Buttons BTN0/1/2/3                                                     │
+│                                                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+
+
+================================================================================
+ PYNQ ↔ ARDUINO CONNECTION
+================================================================================
+
+  PYNQ USB-A port  ────────────────────  Arduino USB-B port
+
+  Standard USB A-to-B cable.
+  This cable handles both power and serial data simultaneously.
+  No additional wiring between the two boards is needed.
+
+
+================================================================================
+ ARDUINO WIRING
+================================================================================
+
+                    ┌───────────────────────┐
+                    │      ARDUINO UNO       │
+                    │                        │
+          GND ──────┤ GND               5V  ├──── Servo VCC (red wire)
+                    │                        │
+                    │ Pin 6 (PWM) ───────────┼──── Servo signal (orange/yellow)
+                    │                        │
+                    │ Pin 7 ─────────────────┼──── Buzzer (+)
+                    │                        │
+                    └───────────────────────┘
+
+  All remaining servo/buzzer GND wires connect to Arduino GND.
+
+
+================================================================================
+ SERVO MOTOR (SG90 or MG90S recommended)
+================================================================================
+
+  Wire colour   Connection
+  ───────────   ──────────────────────
+  Red           Arduino 5V
+  Brown/Black   Arduino GND
+  Orange/Yellow Arduino Pin 6
+
+  Behaviour:
+    0°  = door locked (default/closed position)
+    90° = door unlocked (open position, held for 3 seconds then returns)
+
+  ⚠ POWER NOTE:
+  If the Arduino resets or the servo jitters during demo, the servo is
+  drawing more current than the USB port can supply.
+  Fix: power the servo from an external 5V supply instead:
+    Servo VCC  → External 5V+
+    Servo GND  → External GND  (must share GND with Arduino)
+    Servo signal → Arduino Pin 6  (signal wire stays on Arduino)
+
+
+================================================================================
+ ACTIVE BUZZER
+================================================================================
+
+  Pin           Connection
+  ────────────  ──────────────────────
+  (+) longer    Arduino Pin 7
+  (-) shorter   Arduino GND
+
+  IMPORTANT: Use an ACTIVE buzzer — it beeps when you apply HIGH voltage.
+  A PASSIVE buzzer needs a PWM tone signal and will not work with this sketch.
+  Active buzzers usually have a small circuit board on top and are marked (+).
+
+
+================================================================================
+ COMPLETE BREADBOARD LAYOUT
+================================================================================
+
+  Arduino Pin 6  ──────────────────────── Servo signal wire
+  Arduino 5V     ──────────────────────── Servo VCC (red)
+  Arduino GND    ──┬───────────────────── Servo GND (brown/black)
+                   │
+                   └───────────────────── Buzzer (-)
+
+  Arduino Pin 7  ──────────────────────── Buzzer (+)
+
+
+================================================================================
+ FINDING ARDUINO PORT ON PYNQ
+================================================================================
+
+  Run in a Jupyter cell with Arduino plugged in via USB:
+
+    import subprocess
+    print(subprocess.run(['ls', '/dev/ttyUSB*'], capture_output=True, text=True).stdout)
+    print(subprocess.run(['ls', '/dev/ttyACM*'], capture_output=True, text=True).stdout)
+
+  Plug in, run above, unplug, run again — the entry that disappears is the port.
+
+  Common values:
+    /dev/ttyUSB0   ← most common on Linux/PYNQ
+    /dev/ttyACM0   ← also common
+
+  Update ARDUINO_PORT in smart_node_v9.py to match.
+
+
+================================================================================
+ OPTIONAL: PHYSICAL LIGHT SENSOR (LDR) ON PMODA
+================================================================================
+
+  Currently the system uses time-of-day for day/night mode (night = 8pm–8am).
+  To add a real light sensor:
+
+  Components needed:
+    1x LDR (light dependent resistor)
+    1x 10kΩ resistor
+
+  Wiring (voltage divider into PMODA):
+
+    PMODA 3.3V ──── LDR ──┬──── PMODA Analog In (pin 1)
+                           │
+                          10kΩ
+                           │
+    PMODA GND  ────────────┘
+
+  Then in smart_node_v9.py, uncomment OPTION A (3 lines near top of file)
+  and calibrate NIGHT_THRESHOLD_V by printing read_light() in a bright
+  room vs a dark room and picking a value between the two readings.
+
+
+================================================================================
+ COMMAND REFERENCE
+================================================================================
+
+  Char  Level      Servo    Buzzer pattern
+  ────  ─────────  ───────  ────────────────────────────────────
+  G     Standard   Open     1 short beep (120ms)
+  V     VIP        Open     Rising 2-beep: short then longer
+  U     Guest      Open     Soft single beep (60ms)
+  D     Denied     Shut     3 descending beeps (180, 120, 60ms)
+  P     Pending    Shut     3 slow pulse beeps (60ms × 3, 450ms gap)
+  F     Flagged    Shut     Double-beep alarm × 4
+  O     Override   Open     Long authority beep (600ms)
+  A     Alarm      Shut     10 rapid pulses (70ms each)
+  L     Lockdown   Shut     Alternating long-short siren × 3
+  ?     Ping       —        Responds with 'K' (no audio)
+
+================================================================================
