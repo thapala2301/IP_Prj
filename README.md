@@ -1,6 +1,6 @@
 # 🐒 Attendance Add-Ons — Output Node
 
-> **Platform:** PYNQ-Z2 board + Arduino Uno  
+> **Platform:** PYNQ board + Arduino Uno  
 > **Role in pipeline:** Physical response layer — receives access decisions and drives hardware
 
 ---
