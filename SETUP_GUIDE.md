@@ -1,13 +1,10 @@
 # SETUP GUIDE — Attendance Add-Ons Output Node
 # Step-by-step instructions for getting everything running from scratch.
 # Follow in order. Each step has a clear expected outcome so you know it worked.
-================================================================================
 
 
-================================================================================
-PART 1 — ARDUINO SETUP
+# PART 1 — ARDUINO SETUP
 Do this on a laptop with Arduino IDE installed, before touching the PYNQ.
-================================================================================
 
 STEP 1 — Install Arduino IDE
   Download from: https://www.arduino.cc/en/software
@@ -84,10 +81,8 @@ STEP 8 — Keep Arduino plugged in via USB
   Expected outcome: Arduino powers on (two beeps) from PYNQ's USB.
 
 
-================================================================================
-PART 2 — PYNQ SETUP
+# PART 2 — PYNQ SETUP
 Do this in the PYNQ Jupyter Notebook interface (open in browser).
-================================================================================
 
 STEP 9 — Open Jupyter on the PYNQ
   Connect to PYNQ over network and open Jupyter in your browser.
@@ -225,10 +220,10 @@ STEP 19 — Shutting down
     · daily_report.txt is written automatically
 
 
-================================================================================
-OPTIONAL — ADDING PHYSICAL LIGHT SENSOR (LDR)
+
+# OPTIONAL — ADDING PHYSICAL LIGHT SENSOR (LDR)
 Do this if you want real ambient light detection instead of time-of-day.
-================================================================================
+
 
 STEP A — Wire the LDR to PMODA
   You need: 1x LDR, 1x 10kΩ resistor.
@@ -262,9 +257,7 @@ STEP C — Calibrate the threshold
   Set NIGHT_THRESHOLD_V in smart_node_v9.py to a number between the two.
 
 
-================================================================================
-TROUBLESHOOTING
-================================================================================
+# TROUBLESHOOTING
 
 Problem: Dashboard doesn't appear at all
   → Run: !jupyter nbextension enable --py widgetsnbextension --sys-prefix
@@ -293,4 +286,3 @@ Problem: Port changes every time Arduino is plugged in
   → Run ls /dev/ttyUSB* each session to check, update ARDUINO_PORT if needed
   → Or create a udev rule to give the Arduino a fixed port name (ask Archit)
 
-================================================================================
