@@ -1,0 +1,37 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Tue Mar  9 12:56:37 2021
+| Host         : Archit-Vivobook running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'hdmi_in_bd_image_accelerator_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of hdmi_in_bd_image_accelerator_0_0 (xilinx.com:hls:image_accelerator:1.0) from (Rev. 2103091226) to (Rev. 2103091255)
+
+
+
+
+
+
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Mon Mar  9 12:32:23 2026
+| Host         : Archit-Vivobook running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg400-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'hdmi_in_bd_image_accelerator_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of hdmi_in_bd_image_accelerator_0_0 (xilinx.com:hls:image_accelerator:1.0) from (Rev. 2101012347) to (Rev. 2103091226)
+

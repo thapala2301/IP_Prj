@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="accel_downscale.cpp" path="C:\Users\archit\OneDrive\Documents\Work\infoproc\accel_downscale\accel_downscale.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="accel_downscale_tb.cpp" path="C:\Users\archit\OneDrive\Documents\Work\infoproc\accel_downscale\accel_downscale_tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

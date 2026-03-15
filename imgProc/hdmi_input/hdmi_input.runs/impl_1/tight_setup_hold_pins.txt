@@ -1,0 +1,130 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|             PixelClk_int |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_pntr_flags_cc.gen_full_rst_val.ram_full_i_reg/D|
+|             PixelClk_int |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_pntr_flags_cc.ram_empty_i_reg/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg/ENARDEN|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                                    hdmi_in_bd_i/proc_sys_reset_1/U0/EXT_LPF/lpf_int_reg/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vtd_locked_reg/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[5]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[4]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[9]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[8]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[6]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[7]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[2]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[3]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[1]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                               hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vert_blanking_intvl_reg/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[0]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/gof.overflow_i_reg/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[6]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[2]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[8]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[13]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[23]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[14]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[18]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[9]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[5]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[22]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[1]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[15]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[4]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[6]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[12]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[15]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[22]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[14]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[15]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[10]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[9]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[21]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[11]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                          hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vsync_1_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[11]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[9]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[11]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[9]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                   hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/v_blank_sync_2_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[16]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[4]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[4]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[19]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[19]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[21]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[2]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[17]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[0]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[16]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[8]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[6]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[0]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[17]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[17]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[18]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[19]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[14]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[13]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[23]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[21]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[20]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[23]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[7]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[6]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                             hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/de_1_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                             hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/de_2_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[20]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[22]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[18]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[10]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[16]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[13]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[3]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                             hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/de_3_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[7]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[3]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[3]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[7]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[7]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                            hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/sof_1_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[2]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                              hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/sof_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                              hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/eol_reg/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[8]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[10]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[8]/D|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[1]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[1]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_3_reg[5]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[12]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[5]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[0]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                        hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[5]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_2_reg[12]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |                                       hdmi_in_bd_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/data_1_reg[20]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[5]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[6]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[7]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[4]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[0]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[1]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[2]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[3]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[8]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrp_inst/count_value_i_reg[9]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[0]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[1]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[9]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[2]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[8]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[7]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[6]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[5]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[4]/CE|
+| clk_out1_hdmi_in_bd_clk_wiz_0_0 |             PixelClk_int |hdmi_in_bd_i/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_sync_fifo.FIFO_INST/XPM_FIFO_SYNC_INST/xpm_fifo_base_inst/wrpp1_inst/count_value_i_reg[3]/CE|
+|               clk_fpga_0 |               clk_fpga_0 |hdmi_in_bd_i/image_accelerator_0/inst/resize_2_0_1080_1920_270_480_1_4_U0/grp_xFResizeAreaDownScale_1080_1920_1_0_1_1_270_480_1920_480_s_fu_94/sub_value_V_reg_1992_reg[15]/D|
+|               clk_fpga_0 |               clk_fpga_0 |hdmi_in_bd_i/axi_vdma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_IBTTCC.I_S2MM_MSTR_IBTTCC/sig_realigner_btt2_reg[4]/D|
+|               clk_fpga_0 |               clk_fpga_0 |hdmi_in_bd_i/axi_vdma_0/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/sig_byte_cntr_reg[11]/D|
+|               clk_fpga_0 |               clk_fpga_0 |hdmi_in_bd_i/image_accelerator_0/inst/start_for_AXIvideo2xfMat_24_9_1080_1920_1_U0_U/internal_empty_n_reg/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+

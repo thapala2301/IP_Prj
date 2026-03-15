@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Mar  9 13:06:51 2026
+# Process ID: 24444
+# Current directory: C:/imgProc/attempt3lol/hdmi_input/hdmi_input.runs/hdmi_in_bd_xbar_0_synth_1
+# Command line: vivado.exe -log hdmi_in_bd_xbar_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source hdmi_in_bd_xbar_0.tcl
+# Log file: C:/imgProc/attempt3lol/hdmi_input/hdmi_input.runs/hdmi_in_bd_xbar_0_synth_1/hdmi_in_bd_xbar_0.vds
+# Journal file: C:/imgProc/attempt3lol/hdmi_input/hdmi_input.runs/hdmi_in_bd_xbar_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source hdmi_in_bd_xbar_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/PYNQ/boards/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/archit/OneDrive/Documents/Work/infoproc/accel_downscale/solution1/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP hdmi_in_bd_xbar_0, cache-ID = 6cd4619a8a558f27.
+INFO: [Common 17-206] Exiting Vivado at Mon Mar  9 13:07:01 2026...

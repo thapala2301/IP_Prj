@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Mar  3 16:49:46 2026
+# Process ID: 17480
+# Current directory: C:/imgProc/backup/hdmi_input
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5168 C:\imgProc\backup\hdmi_input\hdmi_input.xpr
+# Log file: C:/imgProc/backup/hdmi_input/vivado.log
+# Journal file: C:/imgProc/backup/hdmi_input\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/imgProc/backup/hdmi_input/hdmi_input.xpr
+update_compile_order -fileset sources_1
+open_bd_design {C:/imgProc/backup/hdmi_input/hdmi_input.srcs/sources_1/bd/hdmi_in_bd/hdmi_in_bd.bd}
+delete_bd_objs [get_bd_intf_nets v_vid_in_axi4s_0_video_out] [get_bd_cells axis_broadcaster_0]
+connect_bd_intf_net [get_bd_intf_pins v_vid_in_axi4s_0/video_out] [get_bd_intf_pins axi_vdma_0/S_AXIS_S2MM]
+save_bd_design
+validate_bd_design
+save_bd_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+write_project_tcl -force recreate_project.tcl
+open_run impl_1

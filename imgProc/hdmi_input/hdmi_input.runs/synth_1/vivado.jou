@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Mar  9 17:27:27 2026
+# Process ID: 25764
+# Current directory: C:/imgProc/attempt4/hdmi_input/hdmi_input.runs/synth_1
+# Command line: vivado.exe -log hdmi_in_bd_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source hdmi_in_bd_wrapper.tcl
+# Log file: C:/imgProc/attempt4/hdmi_input/hdmi_input.runs/synth_1/hdmi_in_bd_wrapper.vds
+# Journal file: C:/imgProc/attempt4/hdmi_input/hdmi_input.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source hdmi_in_bd_wrapper.tcl -notrace
