@@ -1,0 +1,130 @@
+18/09/2026
+
+What Marcus Needs To Do
+Marcus (AWS) just needs to call ONE function when he gets a decision:
+
+python
+# In Marcus's AWS code, when he has a decision:
+handle_recognition_result("prof_smith", "vip")
+# or
+handle_recognition_result("Unknown", "denied")
+# or with a face image from Archit for night captures:
+handle_recognition_result("jane", "denied", frame=face_image)
+
+Phase 1: Hardware Assembly & Wiring
+You need to connect the Arduino to the servo and buzzer, then connect the Arduino to the PYNQ.
+
+Step 1: Connect the Servo to Arduino
+
+Signal (Yellow/Orange): Connect to Arduino Pin 6 .
+
+Power (Red): Connect to Arduino 5V.
+
+Ground (Brown/Black): Connect to Arduino GND.
+
+⚠️ Important Note: If the servo causes the Arduino to reset during the demo, it's drawing too much power. You must power the servo from an external 5V supply, sharing the ground with the Arduino. The signal wire stays on Pin 6.
+
+Step 2: Connect the Buzzer to Arduino
+
+Positive (+): Connect to Arduino Pin 7 .
+
+Negative (-): Connect to Arduino GND.
+
+Step 3: Connect PYNQ to Arduino
+
+Use a standard USB A to B cable.
+
+Connect the USB-A end to the PYNQ board.
+
+Connect the USB-B end to the Arduino Uno. This single cable provides both power to the Arduino and the serial communication link.
+
+Phase 2: Arduino Software Setup
+You need to put the "brain" on the Arduino so it knows what to do when it gets a signal.
+
+Step 4: Upload the Sketch to Arduino
+
+Open the Arduino IDE on a computer.
+
+Create a new sketch, delete any default text, and paste the C++ code I provided earlier (the door_mechanism.ino code).
+
+Connect your Arduino to that computer via USB.
+
+Select the correct Board (Arduino Uno) and Port in the IDE.
+
+Click the Upload button.
+
+Success Check: You should hear two short beeps from the buzzer. This confirms the code is on the Arduino and it's working.
+
+Phase 3: PYNQ Software Setup
+Now you'll prepare the PYNQ board to run the main Python script.
+
+Step 5: Connect to PYNQ & Install Libraries
+
+Power up your PYNQ board and connect to its Jupyter interface via a web browser.
+
+Open a new terminal in Jupyter (New -> Terminal).
+
+Run these installation commands one by one:
+
+bash
+pip install pyserial ipywidgets
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+After running the second command, you must restart the kernel (Kernel -> Restart).
+
+Step 6: Find the Correct Serial Port
+
+In a new Jupyter notebook cell, run this Python code:
+
+python
+import subprocess
+print(subprocess.run(['ls', '/dev/ttyUSB*'], capture_output=True, text=True).stdout)
+The output will likely be something like /dev/ttyUSB0. Make a note of this.
+
+Step 7: Create and Configure the Main Script
+
+In Jupyter, create a new Python 3 notebook.
+
+Paste the entire big Python code block I provided into the first cell.
+
+Find the ARDUINO_PORT variable (it's in Section 3 of the code).
+
+Change its value to the port you found in Step 6.
+
+Example: If you found /dev/ttyUSB0, the line should read ARDUINO_PORT = "/dev/ttyUSB0".
+
+Phase 4: Testing & Operation
+You are ready to run the system.
+
+Step 8: Connect the Hardware
+
+Take the USB cable you used to upload the Arduino sketch and plug it from the Arduino into the PYNQ board's USB port.
+
+Ensure the servo and buzzer are still connected to the Arduino as per the wiring diagram.
+
+Step 9: Run the System
+
+In your Jupyter notebook, run the cell containing the pasted code.
+
+Observe the Boot Sequence:
+
+The PYNQ's RGB LED should cycle through all 7 colors (Green, Blue, Yellow, Red, Cyan, Magenta, White). This is a hardware self-check .
+
+A dashboard with buttons and status labels should appear below the cell.
+
+The "Arduino" status on the dashboard should show as Connected.
+
+If you see all this, the system is live and waiting for commands.
+
+Step 10: Manual Testing
+Use the buttons on the Jupyter dashboard to test each physical output:
+
+Click ✅ Standard. You should see: Green LED (steady for 3s), Servo (opens for 3s), Buzzer (1 short beep).
+
+Click 🔵 VIP. You should see: Blue LED, Servo opens, Buzzer (rising 2-beep).
+
+Click 🔴 Denied. You should see: Red flashing LED, Servo (stays shut), Buzzer (3 descending beeps).
+
+Test Pending, Flagged, and Override as well.
+
+Step 11: Run the Integration Test
+Run the test_from_archit() function to simulate receiving real data from the full pipeline. This sends commands like "prof_smith|vip|night\n" to your system to ensure it parses the format correctly.
