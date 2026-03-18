@@ -1,0 +1,96 @@
+What you do from here — step by step
+Hardware setup (do this first, needs Arduino IDE on a laptop)
+
+Open Arduino IDE, open door_mechanism.ino, select board: Tools → Board → Arduino Uno
+Plug Arduino into your laptop via USB, select the port: Tools → Port → whichever appears
+Click Upload (→ arrow). When it says "Done uploading" you should hear two short beeps from the buzzer. That confirms it worked.
+Wire the servo: signal wire → Pin 6, red → 5V, black/brown → GND
+Wire the buzzer: (+) → Pin 7, (−) → GND. Must be an active buzzer (has a small circuit board on it), not a passive one
+Unplug from laptop, plug Arduino into the PYNQ's USB-A port. Two beeps again = good.
+
+PYNQ setup (do this in Jupyter)
+
+Upload smart_node.py to Jupyter via the file browser
+In a new notebook cell, run:
+
+python!pip install pyserial
+!jupyter nbextension enable --py widgetsnbextension --sys-prefix
+Then restart the kernel: Kernel → Restart
+
+Find your Arduino port — run this in a cell:
+
+pythonimport subprocess
+print(subprocess.run(['ls', '/dev/ttyUSB*'], capture_output=True, text=True).stdout)
+print(subprocess.run(['ls', '/dev/ttyACM*'], capture_output=True, text=True).stdout)
+Copy whatever port appears (e.g. /dev/ttyUSB0)
+
+Open smart_node.py in Jupyter, find ARDUINO_PORT = "/dev/ttyUSB0" near the top and update it if yours is different. Save.
+Run the system — in a notebook cell:
+
+pythonexec(open("smart_node.py").read())
+You should see the LED cycle through green → cyan → red → white (boot sequence), then "Ready. Waiting for Marcus..."
+
+Run the test scripts below to confirm everything works before handing off to Marcus
+
+
+Test scripts
+Test 1 — basic hardware check (no pipeline needed)
+python# Paste into a Jupyter cell and run
+# Walks through all 3 states with 4 seconds between each
+
+test_all()
+Expected: cyan pulsing (5s) → green steady (3s) → red strobe → back to off. Buzzer fires on each. Door opens on granted.
+Test 2 — individual state tests (run these one at a time)
+pythonhandle_recognition_result("granted")   # green LED, door opens, 1 beep
+pythonhandle_recognition_result("denied")    # red strobe, door stays shut, 3 descending beeps
+pythonhandle_recognition_result("pending")   # cyan pulse for 5s, slow beeps
+Test 3 — security escalation (alarm trigger)
+python# Run this cell — fires denied 3 times in a row
+# On the 3rd one, alarm should trigger automatically (rapid red flash + rapid buzzer)
+
+import time
+for i in range(3):
+    print(f"Denial {i+1}")
+    handle_recognition_result("denied")
+    time.sleep(2)
+Test 4 — simulate what Marcus will actually do
+python# This is exactly how Marcus's code will call yours
+# Run this to confirm the integration works end to end
+
+import time
+
+print("Simulating: person detected, processing...")
+handle_recognition_result("pending")
+time.sleep(2)
+
+print("Simulating: Marcus gets result back — GRANTED")
+handle_recognition_result("granted")
+time.sleep(4)
+
+print("Simulating: unknown person — DENIED")
+handle_recognition_result("denied")
+Test 5 — Arduino-only check (if you want to isolate the hardware)
+python# Tests serial comms directly, bypasses all the Python logic
+# Useful if LEDs work but servo/buzzer aren't responding
+
+send_to_arduino("G")   # should open door + 1 beep
+time.sleep(4)
+send_to_arduino("D")   # should play denial beeps, door stays shut
+time.sleep(2)
+send_to_arduino("A")   # rapid alarm buzzer
+
+Summary for Archit
+
+What Thanus's node does:
+It's the last step in the pipeline. Once Marcus's AWS code gets the face recognition result back from Shashank, it calls one function: handle_recognition_result("granted") or handle_recognition_result("denied"). That's the only integration point.
+From that single call, the node automatically handles everything physical:
+
+RGB LED on the PYNQ changes colour (green = granted, red = denied, cyan = processing)
+Servo rotates to open the door for 3 seconds on granted, stays shut on denied
+Buzzer plays a distinct audio pattern for each state so you can hear the result without looking
+Security escalation — if 3 denials happen in a row, or 5 within 2 minutes, an alarm fires automatically (rapid red flash + alarm buzzer pattern)
+Logging — every event is timestamped and written to attendance_log.txt
+Night mode — between 8pm and 8am, if a frame image is passed in alongside a denial, the face capture is saved automatically
+
+The physical buttons on the PYNQ board also work standalone: BTN0 simulates granted, BTN1 simulates denied, BTN3 shuts the system down cleanly.
+Archit doesn't need to touch any of this code. His pipeline feeds into Shashank → Marcus → this node. The only thing that matters to this node is the single function call Marcus makes at the end.
