@@ -1,792 +1,926 @@
-# =============================================================================
-# ATTENDANCE ADD-ONS 
-# =============================================================================
-# Physical response node for face recognition attendance system.
-# Receives access decisions from AWS and drives:
-#   · PYNQ-Z2 RGB LED (7 states, distinct colour + flash patterns)
-#   · Arduino Uno servo (physical door) + buzzer (audio feedback)
-#   · Live Jupyter dashboard with session stats, history, event log
-#   · Day/night mode via time-of-day (LDR swap-in ready)
-#   · Auto-escalation, cooldown, lockdown, heartbeat monitoring
-#
-# ENTRY POINT (Marcus calls this):
-#   handle_recognition_result(name, clearance_level, frame=None)
-#
-# SETUP:
-#   pip install pyserial
-#   jupyter nbextension enable --py widgetsnbextension --sys-prefix
-#   Update ARDUINO_PORT below, then run this file in Jupyter.
-# =============================================================================
+#!/usr/bin/env python3
+"""
+PYNQ OUTPUT NODE - Physical Response Layer
+Thanus's component for the face recognition attendance system
+
+Pipeline Position:
+Archit (FPGA) → Shashank (Face Rec) → Marcus (AWS) → YOU ARE HERE → Physical Outputs
+
+This module:
+1. LISTENS for decisions from Marcus via serial/USB (from his AWS script)
+2. CONTROLS: PYNQ RGB LED (7 colors), Servo (door), Buzzer (audio feedback)
+3. HANDLES: Day/night mode, auto-escalation, cooldowns, logging
+4. PROVIDES: Live Jupyter dashboard with session stats
+
+Integration with Marcus:
+- Marcus calls: handle_recognition_result(name, clearance_level, frame=None)
+- Your code does the rest automatically
+
+All 7 access states have distinct LED + servo + buzzer patterns:
+┌──────────┬─────────┬──────────────┬─────────────┬─────────────────┐
+│ Level    │ LED     │ Servo        │ Buzzer      │ Use Case        │
+├──────────┼─────────┼──────────────┼─────────────┼─────────────────┤
+│ standard │ Green   │ Opens 3s     │ 1 short     │ Regular access  │
+│ vip      │ Blue    │ Opens 3s     │ Rising 2    │ Priority access │
+│ guest    │ Yellow  │ Opens 3s     │ Soft 1      │ Temporary       │
+│ denied   │ Red     │ Stays shut   │ 3 descending│ Access denied   │
+│ pending  │ Cyan    │ Stays shut   │ Slow pulse  │ Processing      │
+│ flagged  │ Magenta │ Stays shut   │ Double alarm│ Security alert  │
+│ override │ White   │ Opens 3s     │ Long 1      │ Bypass lockdown │
+└──────────┴─────────┴──────────────┴─────────────┴─────────────────┘
+"""
 
 import json
-import subprocess
 import time
 import threading
 import datetime
-import ipywidgets as widgets
-from IPython.display import display, clear_output
-from pynq.overlays.base import BaseOverlay
+import subprocess
 from collections import deque
+from pathlib import Path
+
+# =============================================================================
+# SECTION 1 - PYNQ HARDWARE SETUP
+# =============================================================================
+
+try:
+    from pynq.overlays.base import BaseOverlay
+    from pynq.lib import Pmod_ADC
+    from IPython.display import display, clear_output
+    import ipywidgets as widgets
+    PYNQ_AVAILABLE = True
+    
+    print("[PYNQ] Loading base overlay...")
+    base = BaseOverlay("base.bit")
+    
+    # RGB LED (index 4 is the RGB LED on PYNQ-Z2)
+    rgb_led = base.rgbleds[4]
+    
+    # Physical buttons (BTN0, BTN1, BTN2, BTN3)
+    buttons = base.buttons
+    
+    # Plain LEDs for status indicators
+    led_heartbeat = base.leds[3]  # Blinks to show system alive
+    led_status = base.leds[0]      # Status indicator
+    
+    print("[PYNQ] Hardware initialized successfully")
+    
+except ImportError:
+    print("[WARNING] Running in simulation mode (no PYNQ hardware)")
+    PYNQ_AVAILABLE = False
+    base = None
+    rgb_led = None
+    buttons = None
+    led_heartbeat = None
+    led_status = None
+
+# =============================================================================
+# SECTION 2 - SERIAL COMMUNICATION (with Arduino for servo/buzzer)
+# =============================================================================
 
 try:
     import serial
+    import serial.tools.list_ports
     SERIAL_AVAILABLE = True
 except ImportError:
     SERIAL_AVAILABLE = False
-    print("[WARNING] pyserial not installed — run: pip install pyserial")
+    print("[WARNING] pyserial not installed - run: pip install pyserial")
 
 # =============================================================================
-# SECTION 1 — TUNEABLE CONSTANTS
-# Edit these values to tune behaviour. Do not edit logic below.
+# SECTION 3 - TUNEABLE CONSTANTS (Edit these to tune behavior)
 # =============================================================================
 
-# --- Serial ---
-ARDUINO_PORT            = "/dev/ttyUSB0"  # run: ls /dev/ttyUSB* or ls /dev/ttyACM*
-ARDUINO_BAUDRATE        = 9600
-ARDUINO_TIMEOUT_S       = 2
+# --- Serial Port Configuration ---
+# Find your Arduino port: run this in Jupyter:
+# !ls /dev/ttyUSB*  or  !ls /dev/ttyACM*
+ARDUINO_PORT = "/dev/ttyUSB0"  # Change this to match your setup
+ARDUINO_BAUDRATE = 9600
+ARDUINO_TIMEOUT = 2
 
-# --- Light / day-night ---
-NIGHT_START_HOUR        = 20   # 8pm — start of night mode (time-of-day fallback)
-NIGHT_END_HOUR          = 8    # 8am — end of night mode
-NIGHT_THRESHOLD_V       = 0.5  # Voltage below which = night (physical LDR only)
+# --- Access Control Settings ---
+ACCESS_COOLDOWN_S = 30      # Seconds before same person can re-enter
+BTN_DEBOUNCE_S = 2.0        # Min time between physical button presses
+CONSEC_UNKNOWN_LIMIT = 3    # Unknown denials in a row before alarm
+DENIAL_STREAK_LIMIT = 5     # Denials in window before sustained alarm
+DENIAL_STREAK_WINDOW_S = 120  # Rolling window for denial streak (2 minutes)
 
-# --- Access behaviour ---
-ACCESS_COOLDOWN_S       = 30   # Same person blocked for this many seconds after entry
-BTN_DEBOUNCE_S          = 2.0  # Min gap between physical PYNQ button presses
-CONSEC_UNKNOWN_LIMIT    = 3    # Unknown denials in a row before auto-alarm
-DENIAL_STREAK_LIMIT     = 5    # Denials in DENIAL_STREAK_WINDOW_S before sustained alarm
-DENIAL_STREAK_WINDOW_S  = 120  # Rolling window for denial streak check (seconds)
-ARDUINO_PING_INTERVAL_S = 30   # Seconds between Arduino heartbeat pings
+# --- Day/Night Mode (for enhanced security) ---
+# Archit will send this via the name|level format
+# Example: "prof_smith|vip|night\n" or "Unknown|denied|day\n"
+# If not provided, use time-based fallback
+NIGHT_START_HOUR = 20  # 8pm
+NIGHT_END_HOUR = 8     # 8am
 
-# --- Logging / display ---
-LOG_FILE                = "attendance_log.txt"
-REPORT_FILE             = "daily_report.txt"
-MAX_LOG_DISPLAY         = 12
-MAX_HISTORY_DISPLAY     = 20
+# --- File Paths ---
+LOG_FILE = "attendance_log.txt"
+REPORT_FILE = "daily_report.txt"
+CAPTURE_DIR = Path("captures")
+CAPTURE_DIR.mkdir(exist_ok=True)
 
-# --- Access level definitions ---
-# Confirmed RGB LED colour map for this PYNQ board:
-# 0=off  1=blue  2=green  3=cyan  4=red  5=magenta  6=yellow  7=white
-#
-# serial_cmd: single char sent to Arduino Uno over USB serial
-ACCESS_LEVELS = {
-    "standard": {"color": 2, "label": "Standard", "duration": 3, "cmd": "G"},  # green
-    "vip":      {"color": 1, "label": "VIP",      "duration": 3, "cmd": "V"},  # blue
-    "guest":    {"color": 6, "label": "Guest",    "duration": 3, "cmd": "U"},  # yellow
-    "denied":   {"color": 4, "label": "DENIED",   "duration": 1, "cmd": "D"},  # red strobe
-    "pending":  {"color": 3, "label": "Pending",  "duration": 5, "cmd": "P"},  # cyan pulse
-    "flagged":  {"color": 5, "label": "Flagged",  "duration": 4, "cmd": "F"},  # magenta flash
-    "override": {"color": 7, "label": "Override", "duration": 3, "cmd": "O"},  # white
+# --- RGB LED Color Map (Empirically verified on PYNQ-Z2) ---
+# Write these values to rgb_led.write(code)
+LED_COLORS = {
+    "off": 0,      # Off
+    "blue": 1,     # VIP
+    "green": 2,    # Standard
+    "cyan": 3,     # Pending
+    "red": 4,      # Denied / Alarm
+    "magenta": 5,  # Flagged
+    "yellow": 6,   # Guest
+    "white": 7,    # Override
 }
 
-# --- Face recognition name lists ---
-# Match stems of filenames in Shashank's known_faces/ directory
-# e.g. "prof_smith.jpg" → "prof_smith"
-VIP_NAMES     = []   # → blue LED + door opens + 2 rising beeps + fast-tracked
-FLAGGED_NAMES = []   # → magenta flash + alarm beeps + always saves face image
+# --- Access Level Definitions ---
+# Maps each level to: color, servo command, buzzer pattern, duration
+ACCESS_LEVELS = {
+    "standard": {
+        "color": "green",
+        "cmd": "G",  # Sent to Arduino
+        "duration": 3,
+        "servo": "open",
+        "buzzer": "short"
+    },
+    "vip": {
+        "color": "blue",
+        "cmd": "V",
+        "duration": 3,
+        "servo": "open",
+        "buzzer": "rising2"
+    },
+    "guest": {
+        "color": "yellow",
+        "cmd": "U",
+        "duration": 3,
+        "servo": "open",
+        "buzzer": "soft"
+    },
+    "denied": {
+        "color": "red",
+        "cmd": "D",
+        "duration": 1,
+        "servo": "closed",
+        "buzzer": "descending3"
+    },
+    "pending": {
+        "color": "cyan",
+        "cmd": "P",
+        "duration": 5,
+        "servo": "closed",
+        "buzzer": "slow3"
+    },
+    "flagged": {
+        "color": "magenta",
+        "cmd": "F",
+        "duration": 4,
+        "servo": "closed",
+        "buzzer": "double_alarm"
+    },
+    "override": {
+        "color": "white",
+        "cmd": "O",
+        "duration": 3,
+        "servo": "open",
+        "buzzer": "long"
+    },
+    "alarm": {
+        "color": "red",
+        "cmd": "A",
+        "duration": 0,
+        "servo": "closed",
+        "buzzer": "rapid"
+    },
+    "lockdown": {
+        "color": "red",
+        "cmd": "L",
+        "duration": 0,
+        "servo": "closed",
+        "buzzer": "siren"
+    }
+}
 
 # =============================================================================
-# SECTION 2 — HARDWARE SETUP
+# SECTION 4 - SHARED STATE
 # =============================================================================
 
-base     = BaseOverlay("base.bit")
-LED_MAP  = [base.leds[i] for i in range(4)]
-LOCK_LED = base.rgbleds[4]
-
-# --- Light sensor ---
-# Currently: time-of-day fallback. Night = NIGHT_START_HOUR to NIGHT_END_HOUR.
-#
-# TO ENABLE PHYSICAL LDR (at meetup):
-#   1. Plug LDR into PMODA header (voltage divider with 10kΩ to GND)
-#   2. Uncomment the three lines in OPTION A below
-#   3. Calibrate NIGHT_THRESHOLD_V by printing read_light() in bright vs dark room
-
-LIGHT_SENSOR_AVAILABLE = False
-_pmod_adc              = None
-
-# OPTION A — Pmod ADC on PMODA (uncomment when LDR is connected):
-# from pynq.lib import Pmod_ADC
-# _pmod_adc = Pmod_ADC(base.PMODA)
-# LIGHT_SENSOR_AVAILABLE = True
-
-def read_light() -> float:
-    """
-    Returns light reading as float.
-    Physical sensor: voltage 0.0–3.3V (low = dark).
-    Fallback: 0.1 at night, 2.0 during day.
-    """
-    if _pmod_adc:
-        return _pmod_adc.read()[0]
-    hour = datetime.datetime.now().hour
-    return 0.1 if (hour < NIGHT_END_HOUR or hour >= NIGHT_START_HOUR) else 2.0
-
-def is_night() -> bool:
-    if LIGHT_SENSOR_AVAILABLE:
-        return read_light() < NIGHT_THRESHOLD_V
-    hour = datetime.datetime.now().hour
-    return hour < NIGHT_END_HOUR or hour >= NIGHT_START_HOUR
-
-# --- Arduino ---
-arduino = None
-
-def _connect_arduino():
-    global arduino
-    if not SERIAL_AVAILABLE:
-        return
-    try:
-        arduino = serial.Serial(ARDUINO_PORT, ARDUINO_BAUDRATE, timeout=ARDUINO_TIMEOUT_S)
-        time.sleep(2)  # Arduino resets on connect — wait for boot
-        print(f"[ARDUINO] Connected on {ARDUINO_PORT}")
-    except Exception as e:
-        arduino = None
-        print(f"[ARDUINO] Not connected ({e}) — buzzer/servo disabled, PYNQ LED still active")
-
-def _send(cmd: str) -> bool:
-    """Send single-char command to Arduino. Silent if not connected."""
-    if arduino is None:
-        return False
-    try:
-        arduino.write(cmd.encode())
-        arduino.flush()
-        return True
-    except Exception as e:
-        log_event(f"ARDUINO ERROR: '{cmd}' — {e}")
-        return False
-
-# =============================================================================
-# SECTION 3 — SHARED STATE
-# =============================================================================
-
-shutdown_event  = threading.Event()
+shutdown_event = threading.Event()
 lockdown_active = threading.Event()
 
 state = {
-    "last_btn0":            0.0,
-    "last_btn1":            0.0,
-    "last_btn2":            0.0,
-    "access_cooldowns":     {},
+    # Timestamps for button debounce
+    "last_btn0": 0.0,
+    "last_btn1": 0.0,
+    "last_btn2": 0.0,
+    
+    # Access tracking
+    "access_cooldowns": {},        # name -> last_access_time
     "consecutive_unknowns": 0,
-    "denial_timestamps":    deque(),
-    "access_history":       deque(maxlen=MAX_HISTORY_DISPLAY),
-    "hourly_counts":        {},        # hour (int) → count, for access rate display
+    "denial_timestamps": deque(maxlen=100),
+    
+    # Session statistics
     "session_counts": {
         "standard": 0, "vip": 0, "guest": 0, "denied": 0,
-        "pending":  0, "flagged": 0, "override": 0, "alarm": 0,
+        "pending": 0, "flagged": 0, "override": 0, "alarm": 0
     },
-    "arduino_ok":    False,
+    
+    # History for display
+    "access_history": deque(maxlen=20),
+    
+    # Hardware status
+    "arduino_connected": False,
+    "current_mode": "day",  # or "night"
+    
+    # Background threads
     "active_threads": [],
+    
+    # Serial port
+    "arduino": None
 }
 
 # =============================================================================
-# SECTION 4 — DASHBOARD WIDGETS
+# SECTION 5 - ARDUINO COMMUNICATION
 # =============================================================================
 
-header        = widgets.HTML("<h2>🐒 Attendance Add-Ons — V9.0</h2>")
-status_label  = widgets.HTML("<b>Status:</b> <span style='color:green'>MONITORING</span>")
-mode_label    = widgets.HTML("<b>Env:</b> ☀️ Day")
-arduino_label = widgets.HTML("<b>Arduino:</b> <span style='color:gray'>--</span>")
-rate_label    = widgets.HTML("<b>Rate:</b> --")
-lockdown_label= widgets.HTML("")
-session_label = widgets.HTML("<b>Session:</b> loading...")
+def connect_arduino():
+    """Establish serial connection to Arduino (controls servo + buzzer)."""
+    if not SERIAL_AVAILABLE:
+        print("[ARDUINO] pyserial not available")
+        return None
+    
+    try:
+        # Try to auto-detect port if not specified
+        port = ARDUINO_PORT
+        if port == "auto":
+            ports = serial.tools.list_ports.comports()
+            for p in ports:
+                if "Arduino" in p.description or "USB" in p.description:
+                    port = p.device
+                    break
+        
+        arduino = serial.Serial(
+            port=port,
+            baudrate=ARDUINO_BAUDRATE,
+            timeout=ARDUINO_TIMEOUT
+        )
+        time.sleep(2)  # Wait for Arduino reset
+        print(f"[ARDUINO] Connected on {port}")
+        state["arduino_connected"] = True
+        return arduino
+    except Exception as e:
+        print(f"[ARDUINO] Not connected: {e}")
+        print("[ARDUINO] Running in LED-only mode")
+        state["arduino_connected"] = False
+        return None
 
-history_widget = widgets.Textarea(
-    value="", placeholder="Named access history...",
-    layout=widgets.Layout(width="100%", height="130px")
-)
-log_widget = widgets.Textarea(
-    value="", placeholder="System event log...",
-    layout=widgets.Layout(width="100%", height="130px")
-)
+def send_to_arduino(cmd: str) -> bool:
+    """Send single character command to Arduino."""
+    arduino = state.get("arduino")
+    if arduino and state["arduino_connected"]:
+        try:
+            arduino.write(cmd.encode())
+            arduino.flush()
+            return True
+        except Exception as e:
+            print(f"[ARDUINO] Send failed: {e}")
+            state["arduino_connected"] = False
+    return False
 
-# Access grant buttons
-btn_std      = widgets.Button(description="✅ Authorize Standard", button_style='success')
-btn_vip      = widgets.Button(description="🔵 Authorize VIP",      button_style='')
-btn_guest    = widgets.Button(description="🟡 Authorize Guest",     button_style='warning')
-# Special state buttons
-btn_pending  = widgets.Button(description="🔷 Simulate Pending",   button_style='')
-btn_flagged  = widgets.Button(description="⚠️ Simulate Flagged",   button_style='')
-btn_override = widgets.Button(description="⚪ Supervisor Override", button_style='')
-# Security buttons
-btn_denied   = widgets.Button(description="🔴 Simulate DENY",      button_style='danger')
-btn_alarm    = widgets.Button(description="🚨 MANUAL ALARM",       button_style='danger')
-btn_lockdown = widgets.Button(description="🔒 NIGHT LOCKDOWN",     button_style='danger')
-btn_unlock   = widgets.Button(description="🔓 Lift Lockdown",      button_style='warning')
-
-btn_vip.style.button_color      = '#003080'; btn_vip.style.text_color      = 'white'
-btn_pending.style.button_color  = '#008080'; btn_pending.style.text_color  = 'white'
-btn_flagged.style.button_color  = '#8B008B'; btn_flagged.style.text_color  = 'white'
-btn_override.style.button_color = '#444444'; btn_override.style.text_color = 'white'
-btn_lockdown.style.button_color = '#1a1a1a'; btn_lockdown.style.text_color = 'white'
-
-guide = widgets.HTML("""
-<div style='border:1px solid #ccc;padding:10px;background:#f9f9f9;font-size:12px;line-height:1.65'>
-  <b>📋 ACCESS LEVELS</b><br>
-  🟢 Standard — green LED · servo opens · 1 beep<br>
-  🔵 VIP — blue LED · servo opens · rising 2-beep · <i>fast-tracked (no pending wait)</i><br>
-  🟡 Guest — yellow LED · servo opens · soft beep<br>
-  🔴 Denied — red strobe · door shut · 3 descending beeps<br>
-  🔷 Pending — cyan pulse · door shut · slow pulse beep · <i>fires automatically while AWS decides</i><br>
-  🟣 Flagged — magenta double-flash · door shut · alarm pattern · always saves face image<br>
-  ⚪ Override — white LED · servo opens · long beep · bypasses lockdown<br><br>
-
-  <b>⚡ AUTO-ESCALATION</b><br>
-  3 consecutive unknown denials → sustained alarm<br>
-  5 denials in 2 min → sustained alarm + security alert<br>
-  Same person within 30s → cooldown block (anti-tailgate)<br><br>
-
-  <b>🔒 LOCKDOWN</b> — refuses all access except Override. Lift with 🔓 button.<br><br>
-
-  <b>🌙 DAY/NIGHT</b> — night (8pm–8am): denied/flagged also saves Archit's face frame.<br><br>
-
-  <b>📟 PHYSICAL BUTTONS</b> — BTN0=Standard · BTN1=VIP · BTN2=Guest · BTN3=Shutdown
-</div>
-""")
-
-dashboard = widgets.VBox([
-    header, guide,
-    widgets.HBox([status_label, mode_label, arduino_label, rate_label]),
-    widgets.HBox([lockdown_label]),
-    session_label,
-    widgets.HTML("<b>Access Controls:</b>"),
-    widgets.HBox([btn_std, btn_vip, btn_guest]),
-    widgets.HBox([btn_pending, btn_flagged, btn_override]),
-    widgets.HBox([btn_denied, btn_alarm, btn_lockdown, btn_unlock]),
-    widgets.HTML("<b>Named Access History:</b>"),
-    history_widget,
-    widgets.HTML("<b>System Event Log:</b>"),
-    log_widget,
-])
-
-out = widgets.Output()
+def arduino_heartbeat_loop():
+    """Periodically check if Arduino is still alive."""
+    while not shutdown_event.is_set():
+        time.sleep(30)  # Check every 30 seconds
+        
+        if state["arduino_connected"]:
+            try:
+                # Send ping
+                state["arduino"].write(b"?")
+                time.sleep(0.2)
+                
+                # Check for response
+                if state["arduino"].in_waiting > 0:
+                    resp = state["arduino"].read().decode()
+                    if resp == "K":
+                        # All good
+                        pass
+                    else:
+                        print("[ARDUINO] Unexpected response")
+                else:
+                    print("[ARDUINO] No heartbeat response")
+                    state["arduino_connected"] = False
+            except:
+                state["arduino_connected"] = False
+                print("[ARDUINO] Connection lost")
 
 # =============================================================================
-# SECTION 5 — LOGGING & DISPLAY
+# SECTION 6 - DAY/NIGHT MODE DETECTION
 # =============================================================================
 
-def log_event(message: str):
-    """Write timestamped event to file and live log widget (newest first)."""
-    ts   = time.strftime('%Y-%m-%d %H:%M:%S')
-    line = f"[{ts}] {message}"
-    with open(LOG_FILE, "a") as f:
-        f.write(line + "\n")
-    current = log_widget.value.split("\n") if log_widget.value.strip() else []
-    current.insert(0, line)
-    log_widget.value = "\n".join(current[:MAX_LOG_DISPLAY])
-
-
-def log_access_history(name: str, level_key: str):
-    """Add named entry to scrollable history widget. Skips test/unknown names."""
-    skip = {"Unknown", "Scanning...", "NO_MATCH", ""}
-    if name in skip or name.startswith("Dashboard") or name.startswith("BTN"):
-        return
-    ts    = time.strftime('%H:%M:%S')
-    label = ACCESS_LEVELS.get(level_key, {}).get("label", level_key.upper())
-    state["access_history"].appendleft(f"[{ts}]  {name:<20} {label}")
-    history_widget.value = "\n".join(state["access_history"])
-
-    # Track hourly access rate
+def is_night() -> bool:
+    """
+    Determine if it's currently night mode.
+    Archit can override this by sending 'night' or 'day' in the command.
+    """
+    # Check if we have an explicit mode from Archit
+    if "explicit_mode" in state:
+        return state["explicit_mode"] == "night"
+    
+    # Fallback to time-based
     hour = datetime.datetime.now().hour
-    state["hourly_counts"][hour] = state["hourly_counts"].get(hour, 0) + 1
+    return hour < NIGHT_END_HOUR or hour >= NIGHT_START_HOUR
 
-
-def update_session_label():
-    s = state["session_counts"]
-    session_label.value = (
-        f"<b>Session:</b> ✅{s['standard']} 🔵{s['vip']} 🟡{s['guest']} "
-        f"🔴{s['denied']} 🔷{s['pending']} 🟣{s['flagged']} "
-        f"⚪{s['override']} 🚨{s['alarm']}"
-    )
-
-
-def update_status_bar():
-    """Refresh mode, Arduino status, and live access rate label."""
-    # Day/night
-    night = is_night()
-    hour  = datetime.datetime.now().hour
-    if LIGHT_SENSOR_AVAILABLE:
-        lux = read_light()
-        mode_label.value = f"<b>Env:</b> {'🌙 Night' if night else '☀️ Day'} | {lux:.2f}V"
-    else:
-        mode_label.value = f"<b>Env:</b> {'🌙 Night' if night else '☀️ Day'} | 🕐 {hour:02d}:xx"
-
-    # Arduino
-    col = "green" if state["arduino_ok"] else "orange"
-    txt = "✅ Connected" if state["arduino_ok"] else "⚠️ Not connected"
-    arduino_label.value = f"<b>Arduino:</b> <span style='color:{col}'>{txt}</span>"
-
-    # Access rate — entries this hour
-    count = state["hourly_counts"].get(hour, 0)
-    rate_label.value = f"<b>This hour:</b> {count} entr{'y' if count==1 else 'ies'}"
-
-    # Heartbeat on LED3
-    LED_MAP[3].on() if int(time.time()) % 2 == 0 else LED_MAP[3].off()
-
-
-def generate_daily_report():
-    """Append session summary to REPORT_FILE."""
-    s     = state["session_counts"]
-    total = sum(s.values())
-    now   = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    lines = [
-        f"DAILY ACCESS REPORT — {now}",
-        "=" * 50,
-        f"Total events : {total}",
-        f"Standard     : {s['standard']}",
-        f"VIP          : {s['vip']}",
-        f"Guest        : {s['guest']}",
-        f"Denied       : {s['denied']}",
-        f"Flagged      : {s['flagged']}",
-        f"Override     : {s['override']}",
-        f"Alarms       : {s['alarm']}",
-        "",
-        "NAMED ACCESS HISTORY:",
-        "-" * 40,
-    ] + (list(state["access_history"]) or ["(none)"])
-    with open(REPORT_FILE, "a") as f:
-        f.write("\n".join(lines) + "\n\n")
-    log_event(f"REPORT: Written to {REPORT_FILE}")
+def set_mode_from_command(command: str):
+    """Parse mode from Archit's command (name|level|mode)."""
+    parts = command.strip().split('|')
+    if len(parts) >= 3:
+        mode = parts[2].lower()
+        if mode in ['day', 'night']:
+            state["explicit_mode"] = mode
+            print(f"[MODE] Set to {mode.upper()} from Archit")
+            return True
+    return False
 
 # =============================================================================
-# SECTION 6 — HARDWARE RESPONSE
+# SECTION 7 - PYNQ LED CONTROL
 # =============================================================================
 
-def flash_alarm(flashes: int = 6):
-    """Red strobe on PYNQ RGB LED. Shutdown-safe."""
+def set_led_color(color_name: str):
+    """Set RGB LED to specified color."""
+    if PYNQ_AVAILABLE and rgb_led:
+        code = LED_COLORS.get(color_name, 0)
+        rgb_led.write(code)
+
+def led_off():
+    """Turn off RGB LED."""
+    if PYNQ_AVAILABLE and rgb_led:
+        rgb_led.write(0)
+
+def flash_led(color_name: str, flashes: int = 4, duration: float = 0.1):
+    """Flash LED rapidly."""
     for _ in range(flashes):
-        if shutdown_event.is_set(): break
-        LOCK_LED.write(4); time.sleep(0.08)
-        if shutdown_event.is_set(): break
-        LOCK_LED.write(0); time.sleep(0.08)
-
+        if shutdown_event.is_set():
+            break
+        set_led_color(color_name)
+        time.sleep(duration)
+        led_off()
+        time.sleep(duration)
 
 def led_boot_sequence():
-    """Cycle all 7 colours on startup — visual hardware self-check."""
-    log_event("SYSTEM: Boot sequence — checking all LED colours")
-    for code in [2, 1, 6, 4, 3, 5, 7]:
-        if shutdown_event.is_set(): break
-        LOCK_LED.write(code)
-        time.sleep(0.35)
-    LOCK_LED.write(0)
-    log_event("SYSTEM: Boot sequence complete ✓")
+    """Visual self-check on startup."""
+    print("[LED] Boot sequence - testing all colors")
+    colors = ["green", "blue", "yellow", "red", "cyan", "magenta", "white"]
+    for color in colors:
+        if shutdown_event.is_set():
+            break
+        set_led_color(color)
+        time.sleep(0.3)
+    led_off()
+    print("[LED] Boot sequence complete")
 
+def led_pattern_pulse(color_name: str, duration: int):
+    """Slow pulsing pattern (used for pending state)."""
+    end_time = time.time() + duration
+    while time.time() < end_time and not shutdown_event.is_set():
+        set_led_color(color_name)
+        time.sleep(0.5)
+        led_off()
+        time.sleep(0.5)
 
-def save_frame(frame, reason: str) -> str:
-    """Save face frame image. Only called when Archit passes a frame in."""
-    try:
-        import cv2
-        ts       = time.strftime("%Y%m%d_%H%M%S")
-        filename = f"capture_{reason}_{ts}.jpg"
-        cv2.imwrite(filename, frame)
-        return filename
-    except Exception as e:
-        log_event(f"CAPTURE ERROR: {e}")
-        return ""
+def led_pattern_double_flash(color_name: str, duration: int):
+    """Double-flash pattern (used for flagged state)."""
+    end_time = time.time() + duration
+    while time.time() < end_time and not shutdown_event.is_set():
+        for _ in range(2):
+            set_led_color(color_name)
+            time.sleep(0.15)
+            led_off()
+            time.sleep(0.1)
+        time.sleep(0.5)
 
 # =============================================================================
-# SECTION 7 — ACCESS CONTROL LOGIC
+# SECTION 8 - ACCESS CONTROL LOGIC
 # =============================================================================
 
-def _check_cooldown(name: str) -> bool:
-    """Block re-entry within ACCESS_COOLDOWN_S. Returns True if allowed."""
-    if not name or name in ("Unknown", "Scanning...") or name.startswith(("Dashboard", "BTN")):
+def check_cooldown(name: str) -> bool:
+    """Prevent same person from re-entering too quickly."""
+    if not name or name in ["Unknown", "NO_MATCH", "Scanning..."]:
         return True
-    now  = time.time()
+    
+    now = time.time()
     last = state["access_cooldowns"].get(name, 0)
+    
     if now - last < ACCESS_COOLDOWN_S:
         remaining = int(ACCESS_COOLDOWN_S - (now - last))
-        log_event(f"COOLDOWN: {name} blocked — {remaining}s remaining")
-        status_label.value = (
-            f"<b>Status:</b> <span style='color:orange'>⏱ COOLDOWN — {name} ({remaining}s)</span>"
-        )
-        _send("D")
-        time.sleep(1)
-        if not lockdown_active.is_set():
-            status_label.value = "<b>Status:</b> <span style='color:green'>MONITORING</span>"
+        print(f"[COOLDOWN] {name} blocked - {remaining}s remaining")
+        # Trigger denied response with cooldown message
+        trigger_access("denied", name, cooldown=True)
         return False
+    
     return True
 
-
-def _track_denials(name: str, is_denial: bool):
-    """
-    Update consecutive-unknown and denial-streak counters.
-    Fires alarm automatically if thresholds are breached.
-    """
+def track_security_events(name: str, level: str):
+    """Monitor for security threats and trigger alarms."""
     now = time.time()
-
-    if is_denial:
-        # Consecutive unknown check
-        if name in ("Unknown", "NO_MATCH", ""):
+    
+    if level == "denied":
+        # Track consecutive unknowns
+        if name in ["Unknown", "NO_MATCH", ""]:
             state["consecutive_unknowns"] += 1
             if state["consecutive_unknowns"] >= CONSEC_UNKNOWN_LIMIT:
-                log_event(
-                    f"SECURITY ALERT: {CONSEC_UNKNOWN_LIMIT} consecutive unknown "
-                    f"denials — alarm triggered"
-                )
-                _fire_alarm()
+                print(f"[SECURITY] {CONSEC_UNKNOWN_LIMIT} consecutive unknowns - ALARM")
+                trigger_alarm()
                 state["consecutive_unknowns"] = 0
         else:
             state["consecutive_unknowns"] = 0
-
-        # Denial streak check
+        
+        # Track denial streak
         state["denial_timestamps"].append(now)
+        # Remove old entries
         cutoff = now - DENIAL_STREAK_WINDOW_S
         while state["denial_timestamps"] and state["denial_timestamps"][0] < cutoff:
             state["denial_timestamps"].popleft()
+        
         if len(state["denial_timestamps"]) >= DENIAL_STREAK_LIMIT:
-            log_event(
-                f"SECURITY ALERT: {DENIAL_STREAK_LIMIT} denials in "
-                f"{DENIAL_STREAK_WINDOW_S}s — sustained alarm triggered"
-            )
-            _fire_alarm()
+            print(f"[SECURITY] {DENIAL_STREAK_LIMIT} denials in {DENIAL_STREAK_WINDOW_S}s - ALARM")
+            trigger_alarm()
             state["denial_timestamps"].clear()
     else:
-        # Successful access — reset consecutive unknown counter
+        # Successful access resets unknown counter
         state["consecutive_unknowns"] = 0
 
-
-def _fire_alarm():
-    """Trigger full alarm — PYNQ strobe + Arduino + session count."""
+def trigger_alarm():
+    """Trigger full security alarm."""
+    print("[ALARM] SECURITY ALERT TRIGGERED")
     state["session_counts"]["alarm"] += 1
-    update_session_label()
-    _send("A")
-    t = threading.Thread(target=flash_alarm, args=(12,), daemon=False)
-    state["active_threads"].append(t)
-    t.start()
+    
+    # Send to Arduino
+    send_to_arduino("A")
+    
+    # Flash LED rapidly
+    flash_led("red", flashes=12, duration=0.07)
+    
+    # Log event
+    log_event("SECURITY ALARM triggered")
 
-
-def trigger_access(level_key: str, name: str = "Unknown", frame=None):
+def trigger_access(level: str, name: str = "Unknown", cooldown: bool = False):
     """
-    Central access handler.
-    Drives PYNQ RGB LED + sends serial command to Arduino on every event.
+    Core function to trigger physical outputs based on access level.
+    Called by handle_recognition_result() from Marcus.
     """
     if shutdown_event.is_set():
         return
-
-    # Lockdown check — only override bypasses
-    if lockdown_active.is_set() and level_key != "override":
-        log_event(f"LOCKDOWN: {name} blocked")
-        status_label.value = "<b>Status:</b> <span style='color:red'>🔒 LOCKDOWN — ACCESS BLOCKED</span>"
-        _send("L")
-        flash_alarm(flashes=3)
-        time.sleep(1)
-        status_label.value = "<b>Status:</b> <span style='color:red'>🔒 LOCKDOWN ACTIVE</span>"
+    
+    # Check lockdown (except override)
+    if lockdown_active.is_set() and level != "override":
+        print(f"[LOCKDOWN] Blocked {name} - {level}")
+        send_to_arduino("L")
+        flash_led("red", flashes=6)
+        log_event(f"LOCKDOWN BLOCK: {name} - {level}")
         return
-
-    # Cooldown check for granted levels
-    if level_key in ("standard", "vip", "guest", "override"):
-        if not _check_cooldown(name):
-            return
-
-    level    = ACCESS_LEVELS[level_key]
-    color    = level["color"]
-    label    = level["label"]
-    duration = level["duration"]
-    cmd      = level["cmd"]
-
-    # Log, history, counter
-    log_event(f"ACCESS [{label}]: {name}")
-    log_access_history(name, level_key)
-    state["session_counts"][level_key] += 1
-    update_session_label()
-
-    # Store cooldown timestamp
-    if name and name not in ("Unknown", "Scanning...") and not name.startswith(("Dashboard", "BTN")):
-        state["access_cooldowns"][name] = time.time()
-
-    # Send to Arduino
-    _send(cmd)
-
-    # ── PYNQ LED behaviour ──────────────────────────────────────────────────
-
-    if level_key == "denied":
-        status_label.value = f"<b>Status:</b> <span style='color:red'>🔴 DENIED — {name}</span>"
-        _track_denials(name, is_denial=True)
-        if frame is not None and is_night():
-            fname = save_frame(frame, "denied")
-            if fname: log_event(f"CAPTURE: Night denial → {fname}")
-        flash_alarm(flashes=4)
-
-    elif level_key == "pending":
-        status_label.value = f"<b>Status:</b> <span style='color:darkcyan'>🔷 VERIFYING — {name}</span>"
-        for _ in range(duration * 10):
-            if shutdown_event.is_set(): break
-            LOCK_LED.write(color) if int(time.time() * 2) % 2 == 0 else LOCK_LED.write(0)
-            time.sleep(0.1)
-        LOCK_LED.write(0)
-
-    elif level_key == "flagged":
-        status_label.value = f"<b>Status:</b> <span style='color:purple'>⚠️ FLAGGED — {name}</span>"
-        _track_denials(name, is_denial=True)
-        for _ in range(3):
-            if shutdown_event.is_set(): break
-            LOCK_LED.write(color); time.sleep(0.15)
-            LOCK_LED.write(0);     time.sleep(0.10)
-            LOCK_LED.write(color); time.sleep(0.15)
-            LOCK_LED.write(0);     time.sleep(0.50)
-        if frame is not None:
-            fname = save_frame(frame, "flagged")
-            if fname: log_event(f"CAPTURE: Flagged → {fname}")
-
+    
+    # Get level config
+    config = ACCESS_LEVELS.get(level, ACCESS_LEVELS["denied"])
+    
+    # Log the event
+    log_msg = f"ACCESS: {name} - {level.upper()}"
+    if cooldown:
+        log_msg += " (COOLDOWN BLOCK)"
+    print(f"[{log_msg}]")
+    
+    # Update statistics
+    state["session_counts"][level] = state["session_counts"].get(level, 0) + 1
+    
+    # Add to history (skip test names)
+    if name not in ["Unknown", "Dashboard", "BTN0", "BTN1", "BTN2", "Scanning..."]:
+        timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+        state["access_history"].appendleft(f"[{timestamp}] {name:<20} {level.upper()}")
+    
+    # Update cooldown for successful access
+    if level in ["standard", "vip", "guest", "override"] and not cooldown:
+        if name and name not in ["Unknown", "Scanning..."]:
+            state["access_cooldowns"][name] = time.time()
+    
+    # Track security events
+    if not cooldown:
+        track_security_events(name, level)
+    
+    # Send command to Arduino
+    send_to_arduino(config["cmd"])
+    
+    # Handle PYNQ LED patterns
+    if level == "denied":
+        flash_led(config["color"], flashes=4)
+    elif level == "pending":
+        led_pattern_pulse(config["color"], config["duration"])
+    elif level == "flagged":
+        led_pattern_double_flash(config["color"], config["duration"])
+    elif level in ["alarm", "lockdown"]:
+        flash_led(config["color"], flashes=10)
     else:
-        # standard / vip / guest / override — door opens
-        colors = {"override": "gray", "vip": "blue", "standard": "green", "guest": "goldenrod"}
-        col_str = colors.get(level_key, "blue")
-        status_label.value = (
-            f"<b>Status:</b> <span style='color:{col_str}'>🔓 {label.upper()} — {name}</span>"
-        )
-        LOCK_LED.write(color)
-        for _ in range(duration * 10):
-            if shutdown_event.is_set(): break
-            time.sleep(0.1)
-        LOCK_LED.write(0)
-        _track_denials(name, is_denial=False)
+        # Standard, VIP, Guest, Override - steady LED
+        set_led_color(config["color"])
+        time.sleep(config["duration"])
+        led_off()
+    
+    # Save capture at night if this is a security event
+    if level in ["denied", "flagged"] and is_night() and not cooldown:
+        print(f"[NIGHT MODE] {level} event - would save capture")
 
-    if not shutdown_event.is_set() and not lockdown_active.is_set():
-        status_label.value = "<b>Status:</b> <span style='color:green'>MONITORING</span>"
-
-# =============================================================================
-# SECTION 8 — PUBLIC INTEGRATION HOOKS
-# =============================================================================
-
-def handle_recognition_result(name: str, clearance_level: str, frame=None):
+def handle_recognition_result(name: str, level: str, frame=None):
     """
     ╔══════════════════════════════════════════════════════════════╗
-    ║              MAIN INTEGRATION HOOK — call from AWS           ║
+    ║              MAIN INTEGRATION HOOK - CALL FROM MARCUS       ║
     ╠══════════════════════════════════════════════════════════════╣
     ║  Args:                                                       ║
-    ║    name            str  — person's name, or "Unknown"        ║
-    ║    clearance_level str  — one of:                            ║
-    ║                          "standard" "vip"  "guest"           ║
-    ║                          "denied"   "pending"                ║
-    ║                          "flagged"  "override"               ║
-    ║    frame           ndarray (optional)                        ║
-    ║                    Archit's face image — used for capture    ║
-    ║                    on denied/flagged. Pass None if n/a.      ║
-    ╠══════════════════════════════════════════════════════════════╣
-    ║  Examples:                                                   ║
-    ║    handle_recognition_result("prof_smith", "vip")            ║
-    ║    handle_recognition_result("Unknown", "denied")            ║
-    ║    handle_recognition_result("", "pending")   # mid-process  ║
-    ║    handle_recognition_result("jane", "denied", frame=img)    ║
+    ║    name  str - Person's name or "Unknown"                    ║
+    ║    level str - One of: standard, vip, guest, denied,        ║
+    ║                      pending, flagged, override             ║
+    ║    frame ndarray - Optional face image from Archit          ║
     ╚══════════════════════════════════════════════════════════════╝
     """
+    # Check cooldown for grant levels
+    if level in ["standard", "vip", "guest", "override"]:
+        if not check_cooldown(name):
+            return
+    
+    # Spawn thread to handle access (non-blocking for Marcus)
     t = threading.Thread(
         target=trigger_access,
-        args=(clearance_level, name, frame),
+        args=(level, name),
         daemon=False
     )
     state["active_threads"].append(t)
     t.start()
 
+# =============================================================================
+# SECTION 9 - PARSING COMMANDS FROM ARCHIT (via serial)
+# =============================================================================
 
-def _map_to_level(name: str, status: str) -> str:
-    """Map Shashank's match_face.py output to an access level string."""
-    if status != "MATCH" or name in ("NO_MATCH", ""):
-        return "denied"
-    if name in FLAGGED_NAMES: return "flagged"
-    if name in VIP_NAMES:     return "vip"
-    return "standard"
-
-
-def process_face_image(image_path: str, frame=None) -> None:
+def parse_archit_command(line: str):
     """
-    Shashank bridge.
-    Call from Archit's pipeline when a face image is ready to check.
-    Fires pending immediately, runs match_face.py, then triggers full response.
-
-    Args:
-        image_path : path to face image file
-        frame      : optional ndarray from Archit for night capture
+    Parse commands from Archit's FPGA.
+    Format: "name|level|mode\n"
+    Example: "prof_smith|vip|night\n"
+    Example: "Unknown|denied|day\n"
     """
-    if shutdown_event.is_set():
+    line = line.strip()
+    if not line:
         return
+    
+    print(f"[ARCHIT] Received: {line}")
+    
+    # Parse the pipe-delimited format
+    parts = line.split('|')
+    
+    if len(parts) >= 2:
+        name = parts[0]
+        level = parts[1].lower()
+        
+        # Check for mode override (optional)
+        if len(parts) >= 3:
+            mode = parts[2].lower()
+            if mode in ['day', 'night']:
+                state["explicit_mode"] = mode
+                print(f"[MODE] Set to {mode.upper()} from Archit")
+        
+        # Trigger the access
+        handle_recognition_result(name, level)
+    else:
+        print(f"[ERROR] Invalid format from Archit: {line}")
 
-    handle_recognition_result("Scanning...", "pending")
-
+def listen_to_archit_loop():
+    """
+    Background thread that listens for commands from Archit's FPGA.
+    Archit sends: "name|level|mode\n" over serial
+    """
+    # Connect to Archit's serial output
+    # This could be USB serial or TCP socket depending on setup
+    archit_port = "/dev/ttyUSB1"  # Adjust as needed
+    archit_baud = 9600
+    
     try:
-        result = subprocess.run(
-            ["python3", "match_face.py",
-             "--input", str(image_path),
-             "--known_dir", "known_faces",
-             "--json"],
-            capture_output=True, text=True, timeout=15,
+        archit_serial = serial.Serial(
+            port=archit_port,
+            baudrate=archit_baud,
+            timeout=1
         )
-        if result.returncode != 0:
-            log_event(f"RECOGNITION ERROR: {result.stderr.strip()}")
-            handle_recognition_result("Unknown", "denied", frame)
-            return
-        output = json.loads(result.stdout.strip())
-    except subprocess.TimeoutExpired:
-        log_event("RECOGNITION ERROR: match_face.py timed out after 15s")
-        handle_recognition_result("Unknown", "denied", frame)
-        return
+        print(f"[ARCHIT] Listening on {archit_port}")
+        
+        buffer = ""
+        while not shutdown_event.is_set():
+            if archit_serial.in_waiting > 0:
+                data = archit_serial.read(archit_serial.in_waiting).decode()
+                buffer += data
+                
+                # Process complete lines
+                while '\n' in buffer:
+                    line, buffer = buffer.split('\n', 1)
+                    parse_archit_command(line)
+            
+            time.sleep(0.1)
+            
     except Exception as e:
-        log_event(f"RECOGNITION ERROR: {e}")
-        handle_recognition_result("Unknown", "denied", frame)
+        print(f"[ARCHIT] Connection error: {e}")
+        print("[ARCHIT] Will use simulation mode")
+
+# =============================================================================
+# SECTION 10 - LOGGING FUNCTIONS
+# =============================================================================
+
+def log_event(message: str):
+    """Write timestamped event to log file."""
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_line = f"[{timestamp}] {message}"
+    
+    # Write to file
+    with open(LOG_FILE, "a") as f:
+        f.write(log_line + "\n")
+    
+    # Also print to console
+    print(log_line)
+
+def generate_daily_report():
+    """Generate end-of-day report."""
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    with open(REPORT_FILE, "w") as f:
+        f.write("="*50 + "\n")
+        f.write(f"DAILY ACCESS REPORT - {timestamp}\n")
+        f.write("="*50 + "\n\n")
+        
+        f.write("SESSION STATISTICS:\n")
+        for level, count in state["session_counts"].items():
+            f.write(f"  {level.upper():10}: {count}\n")
+        
+        f.write("\nACCESS HISTORY:\n")
+        for entry in state["access_history"]:
+            f.write(f"  {entry}\n")
+        
+        f.write("\n" + "="*50 + "\n")
+    
+    log_event(f"Daily report generated: {REPORT_FILE}")
+
+# =============================================================================
+# SECTION 11 - DASHBOARD WIDGETS (Jupyter)
+# =============================================================================
+
+def create_dashboard():
+    """Create interactive Jupyter dashboard."""
+    if not PYNQ_AVAILABLE:
+        print("[DASHBOARD] Not available in simulation mode")
         return
+    
+    # Create widgets
+    header = widgets.HTML("<h2>🐒 ATTENDANCE OUTPUT NODE - Thanus</h2>")
+    
+    # Status row
+    status_label = widgets.HTML("<b>Status:</b> <span style='color:green'>MONITORING</span>")
+    mode_label = widgets.HTML(f"<b>Mode:</b> {'🌙 NIGHT' if is_night() else '☀️ DAY'}")
+    arduino_label = widgets.HTML(f"<b>Arduino:</b> {'✅' if state['arduino_connected'] else '❌'}")
+    
+    # Statistics
+    stats = widgets.HTML(self._get_stats_html())
+    
+    # Access history
+    history = widgets.Textarea(
+        value="\n".join(state["access_history"]),
+        description="History:",
+        layout=widgets.Layout(width="100%", height="150px")
+    )
+    
+    # Control buttons
+    btn_std = widgets.Button(description="✅ Standard", button_style='success')
+    btn_vip = widgets.Button(description="🔵 VIP", button_style='info')
+    btn_guest = widgets.Button(description="🟡 Guest", button_style='warning')
+    btn_denied = widgets.Button(description="🔴 Denied", button_style='danger')
+    btn_pending = widgets.Button(description="🔷 Pending")
+    btn_flagged = widgets.Button(description="🟣 Flagged")
+    btn_override = widgets.Button(description="⚪ Override")
+    btn_alarm = widgets.Button(description="🚨 ALARM", button_style='danger')
+    btn_lockdown = widgets.Button(description="🔒 Lockdown", button_style='danger')
+    
+    # Style special buttons
+    btn_pending.style.button_color = '#008080'
+    btn_pending.style.text_color = 'white'
+    btn_flagged.style.button_color = '#8B008B'
+    btn_flagged.style.text_color = 'white'
+    btn_override.style.button_color = '#444444'
+    btn_override.style.text_color = 'white'
+    
+    # Wire up buttons
+    btn_std.on_click(lambda b: handle_recognition_result("Dashboard", "standard"))
+    btn_vip.on_click(lambda b: handle_recognition_result("Dashboard", "vip"))
+    btn_guest.on_click(lambda b: handle_recognition_result("Dashboard", "guest"))
+    btn_denied.on_click(lambda b: handle_recognition_result("Dashboard", "denied"))
+    btn_pending.on_click(lambda b: handle_recognition_result("Dashboard", "pending"))
+    btn_flagged.on_click(lambda b: handle_recognition_result("Dashboard", "flagged"))
+    btn_override.on_click(lambda b: handle_recognition_result("Dashboard", "override"))
+    btn_alarm.on_click(lambda b: trigger_alarm())
+    
+    def toggle_lockdown(b):
+        if lockdown_active.is_set():
+            lockdown_active.clear()
+            btn_lockdown.description = "🔒 Lockdown"
+            btn_lockdown.button_style = 'danger'
+        else:
+            lockdown_active.set()
+            btn_lockdown.description = "🔓 Unlock"
+            btn_lockdown.button_style = 'success'
+            send_to_arduino("L")
+            flash_led("red", flashes=6)
+    
+    btn_lockdown.on_click(toggle_lockdown)
+    
+    # Layout
+    dashboard = widgets.VBox([
+        header,
+        widgets.HBox([status_label, mode_label, arduino_label]),
+        stats,
+        widgets.HTML("<b>Access Controls:</b>"),
+        widgets.HBox([btn_std, btn_vip, btn_guest]),
+        widgets.HBox([btn_pending, btn_flagged, btn_override]),
+        widgets.HBox([btn_denied, btn_alarm, btn_lockdown]),
+        widgets.HTML("<b>Access History:</b>"),
+        history
+    ])
+    
+    return dashboard
 
-    status   = output.get("status", "NO_MATCH")
-    name     = output.get("match_label", "Unknown")
-    distance = output.get("match_distance")
-    level    = _map_to_level(name, status)
-    dist_str = f" (dist={distance:.3f})" if distance is not None else ""
-    log_event(f"RECOGNITION: {name} → {level.upper()}{dist_str}")
-    handle_recognition_result(name, level, frame)
+def _get_stats_html(self):
+    """Generate HTML for statistics display."""
+    s = state["session_counts"]
+    total = sum(s.values())
+    return f"""
+    <div style='border:1px solid #ccc; padding:10px; margin:10px 0'>
+        <b>Session Statistics:</b><br>
+        Total: {total} | 
+        ✅ {s['standard']} | 🔵 {s['vip']} | 🟡 {s['guest']} |
+        🔴 {s['denied']} | 🔷 {s['pending']} | 🟣 {s['flagged']} |
+        ⚪ {s['override']} | 🚨 {s['alarm']}
+    </div>
+    """
 
 # =============================================================================
-# SECTION 9 — BUTTON CALLBACKS
+# SECTION 12 - PHYSICAL BUTTON HANDLING
 # =============================================================================
 
-def _btn_std(b):      trigger_access("standard", "Dashboard")
-def _btn_vip(b):      trigger_access("vip",      "Dashboard")
-def _btn_guest(b):    trigger_access("guest",    "Dashboard")
-def _btn_denied(b):   trigger_access("denied",   "Dashboard")
-def _btn_pending(b):  trigger_access("pending",  "Dashboard")
-def _btn_flagged(b):  trigger_access("flagged",  "Dashboard")
-def _btn_override(b): trigger_access("override", "Dashboard")
-
-def _btn_alarm(b):
-    if shutdown_event.is_set(): return
-    log_event("ALARM: Manual trigger")
-    _fire_alarm()
-
-def _btn_lockdown(b):
-    lockdown_active.set()
-    log_event("LOCKDOWN: ACTIVATED")
-    lockdown_label.value = "<span style='color:red;font-weight:bold'>🔒 LOCKDOWN ACTIVE</span>"
-    status_label.value   = "<b>Status:</b> <span style='color:red'>🔒 LOCKDOWN ACTIVE</span>"
-    _send("L")
-    t = threading.Thread(target=flash_alarm, args=(6,), daemon=False)
-    state["active_threads"].append(t); t.start()
-
-def _btn_unlock(b):
-    lockdown_active.clear()
-    log_event("LOCKDOWN: LIFTED")
-    lockdown_label.value = ""
-    status_label.value   = "<b>Status:</b> <span style='color:green'>MONITORING</span>"
-
-btn_std.on_click(_btn_std);       btn_vip.on_click(_btn_vip)
-btn_guest.on_click(_btn_guest);   btn_denied.on_click(_btn_denied)
-btn_pending.on_click(_btn_pending); btn_flagged.on_click(_btn_flagged)
-btn_override.on_click(_btn_override); btn_alarm.on_click(_btn_alarm)
-btn_lockdown.on_click(_btn_lockdown); btn_unlock.on_click(_btn_unlock)
+def button_monitor_loop():
+    """Monitor physical PYNQ buttons (BTN0, BTN1, BTN2, BTN3)."""
+    while not shutdown_event.is_set() and PYNQ_AVAILABLE and buttons:
+        time.sleep(0.05)  # 20Hz poll
+        
+        now = time.time()
+        
+        # BTN0 - Standard access
+        if buttons[0].read() == 1 and (now - state["last_btn0"]) > BTN_DEBOUNCE_S:
+            state["last_btn0"] = now
+            handle_recognition_result("BTN0", "standard")
+        
+        # BTN1 - VIP access
+        if buttons[1].read() == 1 and (now - state["last_btn1"]) > BTN_DEBOUNCE_S:
+            state["last_btn1"] = now
+            handle_recognition_result("BTN1", "vip")
+        
+        # BTN2 - Guest access
+        if buttons[2].read() == 1 and (now - state["last_btn2"]) > BTN_DEBOUNCE_S:
+            state["last_btn2"] = now
+            handle_recognition_result("BTN2", "guest")
+        
+        # BTN3 - Shutdown
+        if buttons[3].read() == 1:
+            print("[BUTTON] BTN3 pressed - shutting down...")
+            shutdown_event.set()
+            break
 
 # =============================================================================
-# SECTION 10 — BACKGROUND THREADS
+# SECTION 13 - HEARTBEAT INDICATOR
 # =============================================================================
 
-def _heartbeat_loop():
-    """Ping Arduino every ARDUINO_PING_INTERVAL_S. Warn on no response."""
+def heartbeat_loop():
+    """Blink LED 3 to show system is alive."""
     while not shutdown_event.is_set():
-        time.sleep(ARDUINO_PING_INTERVAL_S)
-        if shutdown_event.is_set() or arduino is None: continue
-        try:
-            arduino.write(b"?"); arduino.flush()
-            time.sleep(0.3)
-            if arduino.in_waiting > 0:
-                resp = arduino.read(arduino.in_waiting).decode(errors="ignore")
-                state["arduino_ok"] = "K" in resp
-            else:
-                state["arduino_ok"] = False
-                log_event("ARDUINO WARNING: No heartbeat response")
-            update_status_bar()
-        except Exception as e:
-            state["arduino_ok"] = False
-            log_event(f"ARDUINO WARNING: {e}")
-            update_status_bar()
-
-
-def _midnight_report_loop():
-    """Auto-generate daily report at midnight."""
-    while not shutdown_event.is_set():
-        now      = datetime.datetime.now()
-        tomorrow = (now + datetime.timedelta(days=1)).replace(
-            hour=0, minute=0, second=5, microsecond=0)
-        secs = (tomorrow - now).total_seconds()
-        slept = 0
-        while slept < secs and not shutdown_event.is_set():
-            time.sleep(min(60, secs - slept)); slept += 60
-        if not shutdown_event.is_set():
-            generate_daily_report()
-
-
-def _status_update_loop():
-    """Refresh status bar labels every 5 seconds."""
-    while not shutdown_event.is_set():
-        time.sleep(5)
-        if shutdown_event.is_set(): break
-        try:
-            update_status_bar()
-        except Exception:
-            pass
+        if PYNQ_AVAILABLE and led_heartbeat:
+            led_heartbeat.on()
+            time.sleep(0.5)
+            led_heartbeat.off()
+            time.sleep(0.5)
+        else:
+            time.sleep(1)
 
 # =============================================================================
-# SECTION 11 — MAIN LOOP & STARTUP
+# SECTION 14 - SYSTEM STARTUP
 # =============================================================================
-
-def _main_loop():
-    """Polls physical PYNQ buttons. Runs in background thread."""
-    log_event("SYSTEM: Node started — V9.0")
-    led_boot_sequence()
-    status_label.value = "<b>Status:</b> <span style='color:green'>MONITORING</span>"
-    update_session_label()
-    update_status_bar()
-    print("\n[READY] Dashboard live. Press BTN3 on PYNQ to exit.\n")
-
-    try:
-        while base.buttons[3].read() == 0 and not shutdown_event.is_set():
-            time.sleep(0.05)  # 20 Hz poll
-            now = time.time()
-
-            if base.buttons[0].read() == 1 and (now - state["last_btn0"]) > BTN_DEBOUNCE_S:
-                state["last_btn0"] = now
-                t = threading.Thread(target=trigger_access, args=("standard", "BTN0"), daemon=False)
-                state["active_threads"].append(t); t.start()
-
-            if base.buttons[1].read() == 1 and (now - state["last_btn1"]) > BTN_DEBOUNCE_S:
-                state["last_btn1"] = now
-                t = threading.Thread(target=trigger_access, args=("vip", "BTN1"), daemon=False)
-                state["active_threads"].append(t); t.start()
-
-            if base.buttons[2].read() == 1 and (now - state["last_btn2"]) > BTN_DEBOUNCE_S:
-                state["last_btn2"] = now
-                t = threading.Thread(target=trigger_access, args=("guest", "BTN2"), daemon=False)
-                state["active_threads"].append(t); t.start()
-
-    finally:
-        shutdown_event.set()
-        generate_daily_report()
-        for t in state["active_threads"]:
-            t.join(timeout=1.5)
-        LOCK_LED.write(0)
-        for l in LED_MAP: l.off()
-        if arduino:
-            try: arduino.close()
-            except: pass
-        log_event("SYSTEM: Shut down cleanly")
-        status_label.value = "<b>Status:</b> <span style='color:red'>⛔ OFFLINE</span>"
-        print(f"[SHUTDOWN] Log: '{LOG_FILE}' | Report: '{REPORT_FILE}'")
-
 
 def start_system():
-    _connect_arduino()
-    state["arduino_ok"] = arduino is not None
+    """Initialize and start all system components."""
+    print("\n" + "="*60)
+    print("ATTENDANCE OUTPUT NODE - Thanus")
+    print("Physical Response Layer for Face Recognition System")
+    print("="*60 + "\n")
+    
+    # 1. Connect to Arduino (servo + buzzer)
+    print("[1/6] Connecting to Arduino...")
+    arduino = connect_arduino()
+    state["arduino"] = arduino
+    
+    # 2. Run LED boot sequence
+    print("[2/6] Running LED self-test...")
+    led_boot_sequence()
+    
+    # 3. Send boot signal to Arduino
+    if arduino:
+        send_to_arduino("B")  # Boot complete
+    
+    # 4. Start background threads
+    print("[3/6] Starting background threads...")
+    
+    # Thread to listen to Archit's commands
+    archit_thread = threading.Thread(target=listen_to_archit_loop, daemon=False)
+    archit_thread.start()
+    state["active_threads"].append(archit_thread)
+    
+    # Thread for physical buttons
+    button_thread = threading.Thread(target=button_monitor_loop, daemon=False)
+    button_thread.start()
+    state["active_threads"].append(button_thread)
+    
+    # Thread for Arduino heartbeat
+    heartbeat_arduino = threading.Thread(target=arduino_heartbeat_loop, daemon=False)
+    heartbeat_arduino.start()
+    state["active_threads"].append(heartbeat_arduino)
+    
+    # Thread for LED heartbeat
+    heartbeat_led = threading.Thread(target=heartbeat_loop, daemon=False)
+    heartbeat_led.start()
+    state["active_threads"].append(heartbeat_led)
+    
+    # 5. Create dashboard
+    print("[4/6] Creating dashboard...")
+    if PYNQ_AVAILABLE:
+        dashboard = create_dashboard()
+        if dashboard:
+            from IPython.display import display
+            display(dashboard)
+    
+    # 6. Log startup
+    print("[5/6] Initializing logging...")
+    log_event("SYSTEM STARTED - Output Node v1.0")
+    
+    print("[6/6] System ready!\n")
+    print("Waiting for commands from Archit's FPGA...")
+    print("Or use dashboard buttons to test manually\n")
 
-    with out:
-        clear_output(wait=True)
-        display(dashboard)
-    display(out)
-    time.sleep(1.0)
+def shutdown():
+    """Clean shutdown of all components."""
+    print("\n[SHUTDOWN] Cleaning up...")
+    
+    # Signal all threads to stop
+    shutdown_event.set()
+    
+    # Turn off all LEDs
+    if PYNQ_AVAILABLE:
+        led_off()
+        if led_heartbeat:
+            led_heartbeat.off()
+        if led_status:
+            led_status.off()
+    
+    # Close Arduino connection
+    if state["arduino"]:
+        try:
+            state["arduino"].close()
+            print("[SHUTDOWN] Arduino disconnected")
+        except:
+            pass
+    
+    # Wait for threads to finish
+    for thread in state["active_threads"]:
+        thread.join(timeout=2)
+    
+    # Generate final report
+    generate_daily_report()
+    
+    print("[SHUTDOWN] Complete")
 
-    for target, name in [
-        (_main_loop,           "main"),
-        (_heartbeat_loop,      "heartbeat"),
-        (_midnight_report_loop,"midnight"),
-        (_status_update_loop,  "status"),
-    ]:
-        t = threading.Thread(target=target, daemon=False, name=name)
-        state["active_threads"].append(t)
-        t.start()
+# =============================================================================
+# SECTION 15 - MAIN ENTRY POINT
+# =============================================================================
 
-
-start_system()
+if __name__ == "__main__" or "get_ipython" in globals():
+    try:
+        start_system()
+        
+        # Keep running in Jupyter
+        import IPython
+        ipython = IPython.get_ipython()
+        if ipython:
+            print("\n" + "="*60)
+            print("System running. Available commands:")
+            print("  shutdown()     - Clean shutdown")
+            print("  test_access()  - Run test sequence")
+            print("  status()       - Show current status")
+            print("="*60 + "\n")
+            
+            def test_access():
+                """Test all access levels."""
+                levels = ["standard", "vip", "guest", "denied", "pending", "flagged", "override"]
+                for level in levels:
+                    print(f"\nTesting: {level}")
+                    handle_recognition_result("TEST", level
